@@ -5,6 +5,15 @@
 <meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ToolCrate — Free Tools. No Signup. Nothing Leaves Your Device.</title>
+<meta name="description" content="Free online tools with no signup, no file limits and no uploads — word counter, case converter, unit converter, QR code generator, password generator, image compressor, JSON formatter, age calculator, discount calculator and percentage calculator. Everything runs in your browser.">
+<meta name="keywords" content="free online tools, word counter, character counter, case converter, unit converter, QR code generator, password generator, image compressor, JSON formatter, age calculator, discount calculator, percentage calculator, no signup tools">
+<meta property="og:title" content="ToolCrate — Free Online Tools, No Signup">
+<meta property="og:description" content="10 free tools that run entirely in your browser — nothing is ever uploaded. No signup, no file-size traps.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolcrate.netlify.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ToolCrate — Free Online Tools, No Signup">
+<meta name="twitter:description" content="10 free tools that run entirely in your browser — nothing is ever uploaded.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -93,6 +102,9 @@
   .panel-head h2{font-size:1.6rem;}
   .panel-head p{color:var(--ink-muted);font-size:.85rem;margin-top:6px;max-width:60ch;line-height:1.5;}
   .panel-body{margin-top:24px;display:flex;flex-direction:column;gap:16px;}
+  .how-to{margin-top:8px;padding-top:20px;border-top:1px solid var(--rule);}
+  .how-to h3{font-family:var(--font-display);font-weight:600;font-size:1rem;margin:0 0 8px;}
+  .how-to p{font-size:.85rem;line-height:1.6;color:var(--ink-muted);margin:0;max-width:60ch;}
   .field label{display:block;font-size:.75rem;color:var(--ink-muted);margin-bottom:6px;}
   .field textarea,.field input[type=text],.field input[type=number],.field input[type=date],.field select{
     width:100%;padding:11px 12px;border:1px solid var(--rule);background:var(--surface);font-size:.9rem;outline:none;}
@@ -304,6 +316,7 @@
         <button class="btn secondary" id="wcClear" type="button">Clear</button>
         <button class="btn secondary" id="wcCopy" type="button">Copy text</button>
       </div>
+      <div class="how-to"><h3>How to use this word counter</h3><p>Paste your essay, message or article into the box above. The tool instantly shows word count, character count (with and without spaces), sentence count, paragraph count and estimated reading time — useful for meeting word limits on assignments, social posts or SEO content.</p></div>
     </div>
   </section>
 
@@ -323,6 +336,7 @@
         <button class="btn secondary" data-case="sentence" type="button">Sentence case</button>
       </div>
       <div class="btn-row"><button class="btn" id="ccCopy" type="button">Copy result</button></div>
+      <div class="how-to"><h3>How to use this case converter</h3><p>Type or paste any text, then pick UPPERCASE, lowercase, Title Case or Sentence case to instantly reformat it. Handy for fixing text pasted from PDFs, cleaning up headings, or preparing captions and titles.</p></div>
     </div>
   </section>
 
@@ -358,6 +372,7 @@
         </div>
       </div>
       <div class="result-box">Result: <span class="big" id="ucResult">—</span></div>
+      <div class="how-to"><h3>How to use this unit converter</h3><p>Choose a category (length, weight, temperature or volume), enter a value, then pick the units to convert from and to. The result updates instantly — no need to remember conversion formulas.</p></div>
     </div>
   </section>
 
@@ -375,6 +390,7 @@
       </div>
       <div id="qrCanvasWrap"><div id="qrcode"></div></div>
       <div class="btn-row"><button class="btn" id="qrDownload" type="button">Download PNG</button></div>
+      <div class="how-to"><h3>How to use this QR code generator</h3><p>Enter any link, WiFi text or plain message, and a scannable QR code appears instantly. Download it as a PNG for business cards, posters, menus or packaging — generated entirely in your browser, nothing is sent to a server.</p></div>
     </div>
   </section>
 
@@ -404,6 +420,7 @@
         <button class="btn" id="pgGenerate" type="button">Generate</button>
         <button class="btn secondary" id="pgCopy" type="button">Copy</button>
       </div>
+      <div class="how-to"><h3>How to use this password generator</h3><p>Set your preferred length and character types, then generate a strong, random password. It's created locally on your device using your browser's secure random number generator — never sent over the internet.</p></div>
     </div>
   </section>
 
@@ -431,6 +448,7 @@
         </div>
         <div class="btn-row"><button class="btn" id="icDownload" type="button">Download compressed image</button></div>
       </div>
+      <div class="how-to"><h3>How to use this image compressor</h3><p>Click to choose a photo (or drag one in), adjust the quality slider, and download a smaller file — great for email attachments, website uploads or WhatsApp sharing. The image is compressed entirely in your browser and never uploaded anywhere.</p></div>
     </div>
   </section>
 
@@ -450,6 +468,7 @@
       </div>
       <div id="jfStatus"></div>
       <div class="mono-out" id="jfOutput">Output will appear here…</div>
+      <div class="how-to"><h3>How to use this JSON formatter</h3><p>Paste raw or minified JSON and click Format to pretty-print it with proper indentation, or Minify to compress it for production use. Invalid JSON is flagged immediately so you can spot the error.</p></div>
     </div>
   </section>
 
@@ -472,6 +491,7 @@
         <div class="stat"><div class="n" id="acTotalDays">—</div><div class="l">total days lived</div></div>
       </div>
       <div class="result-box" id="acNextBday">Enter a date of birth to see your next birthday countdown.</div>
+      <div class="how-to"><h3>How to use this age calculator</h3><p>Pick a date of birth and instantly see the exact age in years, months and days, total days lived, and a countdown to the next birthday — useful for forms, certificates or just curiosity.</p></div>
     </div>
   </section>
 
@@ -492,6 +512,7 @@
         <div class="stat"><div class="n" id="dcSaved">—</div><div class="l">you save</div></div>
         <div class="stat"><div class="n" id="dcFinal">—</div><div class="l">final price</div></div>
       </div>
+      <div class="how-to"><h3>How to use this discount & tax calculator</h3><p>Enter the original price and discount percentage, plus tax if needed, to instantly see how much you save and the final price you'll pay — useful while shopping online or comparing sale prices.</p></div>
     </div>
   </section>
 
@@ -506,6 +527,7 @@
       <div class="subject-rows" id="agRows"></div>
       <div class="btn-row"><button class="btn secondary" id="agAddRow" type="button">+ Add subject</button></div>
       <div class="result-box">Overall percentage: <span class="big" id="agResult">—</span></div>
+      <div class="how-to"><h3>How to use this percentage & aggregate calculator</h3><p>Add a row for each subject with obtained and total marks, and the overall percentage across all subjects is calculated automatically — handy for students working out their aggregate for admissions or report cards.</p></div>
     </div>
   </section>
 
@@ -647,6 +669,20 @@
     }
   });
 
+  var DEFAULT_TITLE = document.title;
+  var TOOL_META = {
+    'word-counter': 'Free Word & Character Counter Online — No Signup | ToolCrate',
+    'case-converter': 'Free Case Converter — UPPERCASE, lowercase, Title Case | ToolCrate',
+    'unit-converter': 'Free Unit Converter — Length, Weight, Temperature | ToolCrate',
+    'qr-generator': 'Free QR Code Generator Online — No Signup | ToolCrate',
+    'password-generator': 'Free Strong Password Generator Online | ToolCrate',
+    'image-compressor': 'Free Image Compressor Online — Reduce Photo Size | ToolCrate',
+    'json-formatter': 'Free JSON Formatter & Validator Online | ToolCrate',
+    'age-calculator': 'Free Age Calculator — Exact Age in Years, Months, Days | ToolCrate',
+    'discount-calculator': 'Free Discount & Tax Calculator Online | ToolCrate',
+    'aggregate-calculator': 'Free Percentage & Aggregate Calculator | ToolCrate'
+  };
+
   function openTool(id){
     panels.forEach(function(p){ p.classList.add('hidden'); });
     var panel = document.getElementById('panel-' + id);
@@ -657,6 +693,7 @@
       searchRow.style.display = 'none';
       window.location.hash = id;
       window.scrollTo({top:0, behavior:'smooth'});
+      document.title = TOOL_META[id] || DEFAULT_TITLE;
     }
   }
   function closeTool(){
@@ -666,6 +703,7 @@
     searchRow.style.display = '';
     window.location.hash = '';
     window.scrollTo({top:0, behavior:'smooth'});
+    document.title = DEFAULT_TITLE;
   }
   document.querySelectorAll('.back-btn').forEach(function(b){
     b.addEventListener('click', closeTool);
