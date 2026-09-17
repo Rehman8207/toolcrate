@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free JSON Formatter & Validator Online | ToolCrate</title>
+<meta name="description" content="Free online JSON formatter, validator and minifier. Pretty-print or minify JSON instantly, with errors flagged as you type.">
+<link rel="canonical" href="https://toolcrate.netlify.app/json-formatter.html">
+<meta property="og:title" content="Free JSON Formatter & Validator Online | ToolCrate">
+<meta property="og:description" content="Free online JSON formatter, validator and minifier. Pretty-print or minify JSON instantly, with errors flagged as you type.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolcrate.netlify.app/json-formatter.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free JSON Formatter & Validator Online | ToolCrate">
+<meta name="twitter:description" content="Free online JSON formatter, validator and minifier. Pretty-print or minify JSON instantly, with errors flagged as you type.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="row">
+      <div class="brand-block">
+        <div>
+          <div class="brand"><h1><a href="index.html" style="text-decoration:none;color:inherit;">ToolCrate</a></h1></div>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
+    </div>
+  </header>
+
+  <section class="tool-panel" id="panel-json-formatter" style="position:relative;overflow:hidden;">
+    <a class="back-btn" href="index.html">← Back to all tools</a>
+    <div class="panel-art"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="5"><path d="M60 30c-20 0-20 20-20 40s0 30-20 30c20 0 20 10 20 30s0 40 20 40"/><path d="M140 30c20 0 20 20 20 40s0 30 20 30c-20 0-20 10-20 30s0 40-20 40"/></svg></div>
+    <div class="panel-head">
+      <div class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg></div>
+      <div>
+        <h2>JSON formatter &amp; validator</h2>
+        <p>Paste JSON to pretty-print, validate or minify it.</p>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="field"><textarea id="jfInput" placeholder='{"example": true, "items": [1, 2, 3]}'></textarea></div>
+      <div class="btn-row">
+        <button class="btn" id="jfFormat" type="button">Format</button>
+        <button class="btn secondary" id="jfMinify" type="button">Minify</button>
+        <button class="btn secondary" id="jfCopy" type="button">Copy output</button>
+      </div>
+      <div id="jfStatus"></div>
+      <div class="mono-out" id="jfOutput">Output will appear here…</div>
+      <div class="how-to"><h3>How to use this JSON formatter</h3><p>Paste raw or minified JSON and click Format to pretty-print it with proper indentation, or Minify to compress it for production use. Invalid JSON is flagged immediately so you can spot the error.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>ToolCrate — built for people, not ads.</span>
+    <nav class="footer-links">
+      <a href="index.html">All tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+  </footer>
+</div>
+<script src="assets/common.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var jfInput = document.getElementById('jfInput');
+  var jfOutput = document.getElementById('jfOutput');
+  var jfStatus = document.getElementById('jfStatus');
+  function jfParse(){
+    try{
+      var parsed = JSON.parse(jfInput.value);
+      jfStatus.innerHTML = '<span class="ok">Valid JSON</span>';
+      return parsed;
+    }catch(e){
+      jfStatus.innerHTML = '<span class="err">Invalid JSON — ' + e.message + '</span>';
+      return null;
+    }
+  }
+  document.getElementById('jfFormat').addEventListener('click', function(){
+    var p = jfParse();
+    if(p !== null) jfOutput.textContent = JSON.stringify(p, null, 2);
+  });
+  document.getElementById('jfMinify').addEventListener('click', function(){
+    var p = jfParse();
+    if(p !== null) jfOutput.textContent = JSON.stringify(p);
+  });
+  document.getElementById('jfCopy').addEventListener('click', function(){
+    navigator.clipboard && navigator.clipboard.writeText(jfOutput.textContent).catch(function(){});
+  });
+
+})();
+</script>
+</body>
+</html>

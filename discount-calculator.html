@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Discount & Tax Calculator Online | ToolCrate</title>
+<meta name="description" content="Free online discount and tax calculator. Instantly see the final price and how much you save after a discount and tax.">
+<link rel="canonical" href="https://toolcrate.netlify.app/discount-calculator.html">
+<meta property="og:title" content="Free Discount & Tax Calculator Online | ToolCrate">
+<meta property="og:description" content="Free online discount and tax calculator. Instantly see the final price and how much you save after a discount and tax.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolcrate.netlify.app/discount-calculator.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Discount & Tax Calculator Online | ToolCrate">
+<meta name="twitter:description" content="Free online discount and tax calculator. Instantly see the final price and how much you save after a discount and tax.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="row">
+      <div class="brand-block">
+        <div>
+          <div class="brand"><h1><a href="index.html" style="text-decoration:none;color:inherit;">ToolCrate</a></h1></div>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
+    </div>
+  </header>
+
+  <section class="tool-panel" id="panel-discount-calculator" style="position:relative;overflow:hidden;">
+    <a class="back-btn" href="index.html">← Back to all tools</a>
+    <div class="panel-art"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><path d="M35 110L110 35h55v55l-75 75a10 10 0 01-14 0l-41-41a10 10 0 010-14z"/><circle cx="130" cy="60" r="10" fill="currentColor" stroke="none"/></svg></div>
+    <div class="panel-head">
+      <div class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
+      <div>
+        <h2>Discount &amp; tax calculator</h2>
+        <p>Work out a final price after a discount and tax, and see exactly how much you save.</p>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row3">
+        <div class="field"><label for="dcPrice">Original price</label><input type="number" id="dcPrice" value="1000"></div>
+        <div class="field"><label for="dcDiscount">Discount %</label><input type="number" id="dcDiscount" value="20"></div>
+        <div class="field"><label for="dcTax">Tax % (optional)</label><input type="number" id="dcTax" value="0"></div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><div class="n" id="dcSaved">—</div><div class="l">you save</div></div>
+        <div class="stat"><div class="n" id="dcFinal">—</div><div class="l">final price</div></div>
+      </div>
+      <div class="how-to"><h3>How to use this discount & tax calculator</h3><p>Enter the original price and discount percentage, plus tax if needed, to instantly see how much you save and the final price you'll pay — useful while shopping online or comparing sale prices.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>ToolCrate — built for people, not ads.</span>
+    <nav class="footer-links">
+      <a href="index.html">All tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+  </footer>
+</div>
+<script src="assets/common.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var dcPrice = document.getElementById('dcPrice');
+  var dcDiscount = document.getElementById('dcDiscount');
+  var dcTax = document.getElementById('dcTax');
+  function computeDC(){
+    var price = parseFloat(dcPrice.value) || 0;
+    var discount = parseFloat(dcDiscount.value) || 0;
+    var tax = parseFloat(dcTax.value) || 0;
+    var afterDiscount = price - (price * discount / 100);
+    var final = afterDiscount + (afterDiscount * tax / 100);
+    var saved = price - afterDiscount;
+    document.getElementById('dcSaved').textContent = saved.toFixed(2);
+    document.getElementById('dcFinal').textContent = final.toFixed(2);
+  }
+  [dcPrice, dcDiscount, dcTax].forEach(function(el){ el.addEventListener('input', computeDC); });
+  computeDC();
+
+})();
+</script>
+</body>
+</html>

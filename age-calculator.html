@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Age Calculator — Exact Age in Years, Months, Days | ToolCrate</title>
+<meta name="description" content="Free online age calculator. Find your exact age in years, months and days, total days lived, and a countdown to your next birthday.">
+<link rel="canonical" href="https://toolcrate.netlify.app/age-calculator.html">
+<meta property="og:title" content="Free Age Calculator — Exact Age in Years, Months, Days | ToolCrate">
+<meta property="og:description" content="Free online age calculator. Find your exact age in years, months and days, total days lived, and a countdown to your next birthday.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolcrate.netlify.app/age-calculator.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Age Calculator — Exact Age in Years, Months, Days | ToolCrate">
+<meta name="twitter:description" content="Free online age calculator. Find your exact age in years, months and days, total days lived, and a countdown to your next birthday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="row">
+      <div class="brand-block">
+        <div>
+          <div class="brand"><h1><a href="index.html" style="text-decoration:none;color:inherit;">ToolCrate</a></h1></div>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
+    </div>
+  </header>
+
+  <section class="tool-panel" id="panel-age-calculator" style="position:relative;overflow:hidden;">
+    <a class="back-btn" href="index.html">← Back to all tools</a>
+    <div class="panel-art"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><rect x="30" y="40" width="140" height="130" rx="8"/><path d="M30 75h140M65 25v30M135 25v30"/><circle cx="70" cy="105" r="6" fill="currentColor" stroke="none"/><circle cx="100" cy="105" r="6" fill="currentColor" stroke="none"/><circle cx="130" cy="105" r="6" fill="currentColor" stroke="none"/><circle cx="70" cy="135" r="6" fill="currentColor" stroke="none"/></svg></div>
+    <div class="panel-head">
+      <div class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
+      <div>
+        <h2>Age calculator</h2>
+        <p>Find exact age in years, months and days from a date of birth.</p>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="acDob">Date of birth</label>
+        <input type="date" id="acDob">
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><div class="n" id="acYears">—</div><div class="l">years</div></div>
+        <div class="stat"><div class="n" id="acMonths">—</div><div class="l">months</div></div>
+        <div class="stat"><div class="n" id="acDays">—</div><div class="l">days</div></div>
+        <div class="stat"><div class="n" id="acTotalDays">—</div><div class="l">total days lived</div></div>
+      </div>
+      <div class="result-box" id="acNextBday">Enter a date of birth to see your next birthday countdown.</div>
+      <div class="how-to"><h3>How to use this age calculator</h3><p>Pick a date of birth and instantly see the exact age in years, months and days, total days lived, and a countdown to the next birthday — useful for forms, certificates or just curiosity.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>ToolCrate — built for people, not ads.</span>
+    <nav class="footer-links">
+      <a href="index.html">All tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+  </footer>
+</div>
+<script src="assets/common.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var acDob = document.getElementById('acDob');
+  acDob.addEventListener('change', function(){
+    if(!acDob.value) return;
+    var dob = new Date(acDob.value);
+    var now = new Date();
+    if(dob > now){
+      document.getElementById('acNextBday').textContent = 'That date is in the future.';
+      return;
+    }
+    var years = now.getFullYear() - dob.getFullYear();
+    var months = now.getMonth() - dob.getMonth();
+    var days = now.getDate() - dob.getDate();
+    if(days < 0){
+      months -= 1;
+      var prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+      days += prevMonth.getDate();
+    }
+    if(months < 0){ years -= 1; months += 12; }
+    var totalDays = Math.floor((now - dob) / (1000*60*60*24));
+    document.getElementById('acYears').textContent = years;
+    document.getElementById('acMonths').textContent = months;
+    document.getElementById('acDays').textContent = days;
+    document.getElementById('acTotalDays').textContent = totalDays.toLocaleString();
+
+    var nextBday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
+    if(nextBday < now) nextBday.setFullYear(now.getFullYear() + 1);
+    var daysLeft = Math.ceil((nextBday - now) / (1000*60*60*24));
+    document.getElementById('acNextBday').textContent =
+      daysLeft === 0 ? 'Happy birthday! 🎉' : daysLeft + ' day' + (daysLeft===1?'':'s') + ' until your next birthday.';
+  });
+
+})();
+</script>
+</body>
+</html>

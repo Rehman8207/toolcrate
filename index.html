@@ -6,236 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ToolCrate — Free Tools. No Signup. Nothing Leaves Your Device.</title>
 <meta name="description" content="Free online tools with no signup, no file limits and no uploads — word counter, case converter, unit converter, QR code generator, password generator, image compressor, JSON formatter, age calculator, discount calculator and percentage calculator. Everything runs in your browser.">
-<meta name="keywords" content="free online tools, word counter, character counter, case converter, unit converter, QR code generator, password generator, image compressor, JSON formatter, age calculator, discount calculator, percentage calculator, no signup tools">
-<meta property="og:title" content="ToolCrate — Free Online Tools, No Signup">
-<meta property="og:description" content="10 free tools that run entirely in your browser — nothing is ever uploaded. No signup, no file-size traps.">
+<link rel="canonical" href="https://toolcrate.netlify.app/">
+<meta property="og:title" content="ToolCrate — Free Tools. No Signup. Nothing Leaves Your Device.">
+<meta property="og:description" content="Free online tools with no signup, no file limits and no uploads — word counter, case converter, unit converter, QR code generator, password generator, image compressor, JSON formatter, age calculator, discount calculator and percentage calculator. Everything runs in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://toolcrate.netlify.app/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ToolCrate — Free Online Tools, No Signup">
-<meta name="twitter:description" content="10 free tools that run entirely in your browser — nothing is ever uploaded.">
+<meta name="twitter:title" content="ToolCrate — Free Tools. No Signup. Nothing Leaves Your Device.">
+<meta name="twitter:description" content="Free online tools with no signup, no file limits and no uploads — word counter, case converter, unit converter, QR code generator, password generator, image compressor, JSON formatter, age calculator, discount calculator and percentage calculator. Everything runs in your browser.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<style>
-  :root{
-    --bg:#EEEFE9; --bg-elevated:#F7F7F2; --surface:#FFFFFF;
-    --ink:#16201D; --ink-muted:#5B655F;
-    --accent:#A97C1B; --accent-ink:#FFFFFF;
-    --rule:#D8D9CF; --surface-hover:#F0EEE3;
-    --danger:#B3432D; --good:#3E7A4E;
-    --font-display:'Fraunces', Georgia, serif;
-    --font-mono:'IBM Plex Mono', 'SF Mono', Consolas, monospace;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#10161A; --bg-elevated:#161F22; --surface:#1B2528;
-      --ink:#ECE7DA; --ink-muted:#93A29D;
-      --accent:#D8AE3E; --accent-ink:#10161A;
-      --rule:#2A3538; --surface-hover:#212D30;
-      --danger:#E08064; --good:#7BC694;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#10161A; --bg-elevated:#161F22; --surface:#1B2528;
-    --ink:#ECE7DA; --ink-muted:#93A29D;
-    --accent:#D8AE3E; --accent-ink:#10161A;
-    --rule:#2A3538; --surface-hover:#212D30;
-    --danger:#E08064; --good:#7BC694;
-  }
-
-  *{box-sizing:border-box;}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-mono);
-       -webkit-font-smoothing:antialiased;transition:background .2s,color .2s;}
-  a{color:inherit;}
-  h1,h2,h3{font-family:var(--font-display);font-weight:500;margin:0;letter-spacing:-0.01em;}
-  button,input,select,textarea{font-family:var(--font-mono);color:var(--ink);}
-  .wrap{max-width:920px;margin:0 auto;padding:0 20px;}
-
-  /* ---- Masthead ---- */
-  .masthead{border-bottom:1px solid var(--rule);padding:28px 0 22px;}
-  .masthead .row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
-  .brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
-  .brand h1{font-size:2.1rem;}
-  .brand .mark{font-size:1.5rem;}
-  .tagline{color:var(--ink-muted);font-size:.85rem;margin-top:6px;max-width:44ch;line-height:1.5;}
-  .theme-toggle{border:1px solid var(--rule);background:var(--surface);color:var(--ink);
-    border-radius:0;padding:8px 12px;font-size:.78rem;cursor:pointer;white-space:nowrap;}
-  .theme-toggle:hover{background:var(--surface-hover);}
-  .search-row{margin-top:20px;}
-  .search-row input{width:100%;padding:12px 14px;border:1px solid var(--rule);background:var(--surface);
-    font-size:.9rem;outline:none;}
-  .search-row input:focus{border-color:var(--accent);}
-
-  /* ---- Category rail ---- */
-  .category-rail{display:flex;flex-wrap:wrap;gap:8px;padding:16px 0;border-bottom:1px solid var(--rule);}
-  .chip{border:1px solid var(--rule);background:transparent;color:var(--ink-muted);padding:6px 12px;
-    font-size:.76rem;cursor:pointer;border-radius:0;}
-  .chip.active{border-color:var(--accent);color:var(--ink);background:var(--surface);}
-  .chip:hover{color:var(--ink);}
-
-  /* ---- Tool ledger rows ---- */
-  .tool-list{padding:6px 0 40px;}
-  .tool-row{display:flex;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule);
-    cursor:pointer;}
-  .tool-row:hover{background:var(--surface-hover);}
-  .tool-row .idx{font-size:.78rem;color:var(--ink-muted);width:26px;flex-shrink:0;}
-  .tool-row .info{flex:1;min-width:0;}
-  .tool-row .info h3{font-size:1.15rem;}
-  .tool-row .info p{margin:4px 0 0;color:var(--ink-muted);font-size:.82rem;}
-  .tool-row .tag{font-size:.68rem;color:var(--accent);flex-shrink:0;}
-  .tool-row .arrow{color:var(--ink-muted);flex-shrink:0;}
-  .empty-note{padding:40px 0;color:var(--ink-muted);font-size:.85rem;}
-
-  /* ---- Tool panels ---- */
-  .tool-panel{padding:24px 0 56px;position:relative;overflow:hidden;}
-  .panel-art{position:absolute;top:-30px;right:-30px;width:300px;height:300px;pointer-events:none;
-    color:var(--accent);opacity:.16;z-index:0;transform:rotate(-6deg);}
-  .panel-art svg{width:100%;height:100%;}
-  .panel-head,.panel-body{position:relative;z-index:1;}
-  @media (max-width:640px){.panel-art{width:220px;height:220px;top:-30px;right:-30px;}}
-  .tool-panel.hidden{display:none;}
-  .back-btn{border:none;background:none;color:var(--ink-muted);cursor:pointer;font-size:.8rem;
-    padding:0;margin-bottom:18px;display:inline-flex;align-items:center;gap:6px;}
-  .back-btn:hover{color:var(--ink);}
-  .panel-head h2{font-size:1.6rem;}
-  .panel-head p{color:var(--ink-muted);font-size:.85rem;margin-top:6px;max-width:60ch;line-height:1.5;}
-  .panel-body{margin-top:24px;display:flex;flex-direction:column;gap:16px;}
-  .how-to{margin-top:8px;padding-top:20px;border-top:1px solid var(--rule);}
-  .how-to h3{font-family:var(--font-display);font-weight:600;font-size:1rem;margin:0 0 8px;}
-  .how-to p{font-size:.85rem;line-height:1.6;color:var(--ink-muted);margin:0;max-width:60ch;}
-  .field label{display:block;font-size:.75rem;color:var(--ink-muted);margin-bottom:6px;}
-  .field textarea,.field input[type=text],.field input[type=number],.field input[type=date],.field select{
-    width:100%;padding:11px 12px;border:1px solid var(--rule);background:var(--surface);font-size:.9rem;outline:none;}
-  .field textarea:focus,.field input:focus,.field select:focus{border-color:var(--accent);}
-  .field textarea{min-height:130px;resize:vertical;}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
-  @media (max-width:560px){.row2,.row3{grid-template-columns:1fr;}}
-  .btn{border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);
-    padding:11px 18px;font-size:.85rem;cursor:pointer;border-radius:0;font-family:var(--font-mono);}
-  .btn:hover{opacity:.88;}
-  .btn.secondary{background:transparent;color:var(--ink);border-color:var(--rule);}
-  .btn.secondary:hover{background:var(--surface-hover);}
-  .btn-row{display:flex;flex-wrap:wrap;gap:10px;}
-  .result-box{border:1px solid var(--rule);background:var(--bg-elevated);padding:16px;font-size:.9rem;}
-  .result-box .big{font-family:var(--font-display);font-size:1.7rem;color:var(--accent);}
-  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:1px;
-    background:var(--rule);border:1px solid var(--rule);}
-  .stat{background:var(--surface);padding:14px;}
-  .stat .n{font-family:var(--font-display);font-size:1.5rem;color:var(--accent);}
-  .stat .l{font-size:.7rem;color:var(--ink-muted);margin-top:2px;}
-  .checks{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;}
-  .checks label{display:flex;align-items:center;gap:6px;color:var(--ink-muted);}
-  .slider-row{display:flex;align-items:center;gap:12px;}
-  .slider-row input[type=range]{flex:1;accent-color:var(--accent);}
-  .slider-row .val{font-size:.85rem;min-width:34px;text-align:right;}
-  .mono-out{font-family:var(--font-mono);white-space:pre-wrap;word-break:break-word;font-size:.82rem;
-    border:1px solid var(--rule);background:var(--bg-elevated);padding:14px;min-height:60px;}
-  .err{color:var(--danger);font-size:.82rem;}
-  .ok{color:var(--good);font-size:.82rem;}
-  #qrCanvasWrap{display:flex;justify-content:center;padding:20px;border:1px solid var(--rule);background:#fff;}
-  .drop-zone{border:1px dashed var(--rule);padding:30px;text-align:center;color:var(--ink-muted);
-    font-size:.82rem;cursor:pointer;background:var(--bg-elevated);}
-  .drop-zone.drag{border-color:var(--accent);color:var(--ink);}
-  .img-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  @media (max-width:560px){.img-compare{grid-template-columns:1fr;}}
-  .img-compare figure{margin:0;border:1px solid var(--rule);}
-  .img-compare img{width:100%;display:block;}
-  .img-compare figcaption{padding:8px 10px;font-size:.75rem;color:var(--ink-muted);border-top:1px solid var(--rule);}
-  .subject-rows{display:flex;flex-direction:column;gap:10px;}
-  .subject-row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:10px;align-items:center;}
-  @media (max-width:560px){.subject-row{grid-template-columns:1fr 1fr;}}
-  .remove-row{border:1px solid var(--rule);background:transparent;color:var(--ink-muted);cursor:pointer;
-    padding:8px 10px;font-size:.75rem;}
-
-  footer{border-top:1px solid var(--rule);padding:30px 0 40px;color:var(--ink-muted);font-size:.78rem;
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-
-  /* ---- Entrance animation ---- */
-  @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-  @keyframes floaty{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-6px) rotate(1deg);}}
-  @keyframes popIn{from{opacity:0;transform:scale(.96);}to{opacity:1;transform:scale(1);}}
-  @keyframes spinSlow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-  .masthead{animation:fadeUp .5s ease both;}
-  .feature-strip{animation:fadeUp .5s ease .1s both;}
-  .category-rail{animation:fadeUp .5s ease .15s both;}
-  .tool-row{animation:fadeUp .4s ease both;}
-  .tool-row:nth-child(1){animation-delay:.02s;} .tool-row:nth-child(2){animation-delay:.06s;}
-  .tool-row:nth-child(3){animation-delay:.10s;} .tool-row:nth-child(4){animation-delay:.14s;}
-  .tool-row:nth-child(5){animation-delay:.18s;} .tool-row:nth-child(6){animation-delay:.22s;}
-  .tool-row:nth-child(7){animation-delay:.26s;} .tool-row:nth-child(8){animation-delay:.30s;}
-  .tool-row:nth-child(9){animation-delay:.34s;} .tool-row:nth-child(10){animation-delay:.38s;}
-  .tool-panel:not(.hidden){animation:popIn .35s cubic-bezier(.2,.8,.3,1) both;}
-
-  /* ---- Micro-interactions ---- */
-  *{transition:background-color .18s ease, border-color .18s ease, color .18s ease, transform .15s ease, box-shadow .18s ease;}
-  .tool-row{position:relative;overflow:hidden;}
-  .tool-row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);
-    transform:scaleY(0);transition:transform .22s ease;}
-  .tool-row:hover::before{transform:scaleY(1);}
-  .tool-row:hover{padding-left:6px;}
-  .tool-row:hover .icon{background:var(--accent);color:var(--accent-ink);transform:rotate(-6deg) scale(1.05);}
-  .tool-row:hover .arrow{transform:translateX(4px);color:var(--accent);}
-  .tool-row .arrow{display:inline-block;}
-  .tool-row:active{transform:scale(.995);}
-  .btn{position:relative;}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 4px 0 0 var(--rule);}
-  .btn:active{transform:translateY(0);box-shadow:none;}
-  .btn.secondary:hover{transform:translateY(-2px);}
-  .chip{transition:all .18s ease;}
-  .chip:hover{transform:translateY(-1px);border-color:var(--accent);}
-  .chip.active{animation:popIn .25s ease both;}
-  .theme-toggle:hover{transform:rotate(-4deg);}
-  .back-btn{transition:transform .15s ease, color .18s ease;}
-  .back-btn:hover{transform:translateX(-4px);}
-  .stat{transition:background .18s ease;}
-  .stat:hover{background:var(--surface-hover);}
-  .feature-item svg{animation:none;}
-  .feature-item:hover svg{animation:floaty 1.4s ease-in-out infinite;}
-  .field textarea,.field input,.field select{transition:border-color .18s ease, box-shadow .18s ease;}
-  .field textarea:focus,.field input:focus,.field select:focus{box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);}
-  .result-box .big{display:inline-block;animation:popIn .25s ease both;}
-  #qrCanvasWrap{transition:transform .2s ease;}
-  #qrCanvasWrap:hover{transform:scale(1.02);}
-  .remove-row{transition:all .15s ease;}
-  .remove-row:hover{background:var(--danger);color:#fff;border-color:var(--danger);}
-
-  /* ---- Hero illustration ---- */
-  body{background-image:radial-gradient(var(--rule) 1px, transparent 1px);background-size:22px 22px;background-attachment:fixed;}
-  .hero-illus{width:120px;height:120px;flex-shrink:0;animation:floaty 5s ease-in-out infinite;}
-  .hero-illus svg{width:100%;height:100%;}
-  .hero-illus circle:first-child{animation:spinSlow 40s linear infinite;transform-origin:center;}
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important;transition:none !important;}
-  }
-  .masthead .row{align-items:center;}
-  .brand-block{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
-
-  /* ---- Feature strip ---- */
-  .feature-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);
-    border:1px solid var(--rule);margin:20px 0 0;}
-  @media (max-width:640px){.feature-strip{grid-template-columns:1fr;}}
-  .feature-item{background:var(--bg-elevated);padding:16px 18px;display:flex;align-items:flex-start;gap:12px;}
-  .feature-item svg{flex-shrink:0;width:22px;height:22px;color:var(--accent);}
-  .feature-item h4{font-family:var(--font-mono);font-size:.82rem;font-weight:600;margin:0 0 3px;}
-  .feature-item p{margin:0;font-size:.74rem;color:var(--ink-muted);line-height:1.4;}
-
-  /* ---- Tool row icon ---- */
-  .tool-row .icon{width:30px;height:30px;flex-shrink:0;border:1px solid var(--rule);display:flex;
-    align-items:center;justify-content:center;color:var(--accent);background:var(--bg-elevated);}
-  .tool-row .icon svg{width:16px;height:16px;}
-
-  /* ---- Panel icon badge ---- */
-  .panel-head{display:flex;align-items:flex-start;gap:16px;}
-  .panel-icon{width:46px;height:46px;border:1px solid var(--rule);background:var(--bg-elevated);
-    display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;}
-  .panel-icon svg{width:24px;height:24px;}
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-
 <div class="wrap">
   <header class="masthead">
     <div class="row">
@@ -291,354 +75,119 @@
     <button class="chip" data-cat="dev">Dev &amp; utility</button>
   </nav>
 
-  <section class="tool-list" id="toolList"></section>
-
-  <!-- ===================== PANELS ===================== -->
-
-  <!-- 1. Word counter -->
-  <section class="tool-panel hidden" id="panel-word-counter" data-title="Word &amp; Character Counter">
-    <button class="back-btn">← Back to all tools</button>
-    <div class="panel-head">
-      <h2>Word &amp; character counter</h2>
-      <p>Paste or type text below. Counts update as you type — nothing is stored or uploaded.</p>
-    </div>
-    <div class="panel-body">
-      <div class="field"><textarea id="wcInput" placeholder="Start typing or paste your text here…"></textarea></div>
-      <div class="stat-grid">
-        <div class="stat"><div class="n" id="wcWords">0</div><div class="l">words</div></div>
-        <div class="stat"><div class="n" id="wcChars">0</div><div class="l">characters</div></div>
-        <div class="stat"><div class="n" id="wcCharsNS">0</div><div class="l">chars, no spaces</div></div>
-        <div class="stat"><div class="n" id="wcSentences">0</div><div class="l">sentences</div></div>
-        <div class="stat"><div class="n" id="wcParas">0</div><div class="l">paragraphs</div></div>
-        <div class="stat"><div class="n" id="wcReadTime">0s</div><div class="l">read time</div></div>
-      </div>
-      <div class="btn-row">
-        <button class="btn secondary" id="wcClear" type="button">Clear</button>
-        <button class="btn secondary" id="wcCopy" type="button">Copy text</button>
-      </div>
-      <div class="how-to"><h3>How to use this word counter</h3><p>Paste your essay, message or article into the box above. The tool instantly shows word count, character count (with and without spaces), sentence count, paragraph count and estimated reading time — useful for meeting word limits on assignments, social posts or SEO content.</p></div>
-    </div>
-  </section>
-
-  <!-- 2. Case converter -->
-  <section class="tool-panel hidden" id="panel-case-converter" data-title="Case Converter">
-    <button class="back-btn">← Back to all tools</button>
-    <div class="panel-head">
-      <h2>Case converter</h2>
-      <p>Switch text between UPPERCASE, lowercase, Title Case and Sentence case.</p>
-    </div>
-    <div class="panel-body">
-      <div class="field"><textarea id="ccInput" placeholder="Type or paste text…"></textarea></div>
-      <div class="btn-row">
-        <button class="btn secondary" data-case="upper" type="button">UPPERCASE</button>
-        <button class="btn secondary" data-case="lower" type="button">lowercase</button>
-        <button class="btn secondary" data-case="title" type="button">Title Case</button>
-        <button class="btn secondary" data-case="sentence" type="button">Sentence case</button>
-      </div>
-      <div class="btn-row"><button class="btn" id="ccCopy" type="button">Copy result</button></div>
-      <div class="how-to"><h3>How to use this case converter</h3><p>Type or paste any text, then pick UPPERCASE, lowercase, Title Case or Sentence case to instantly reformat it. Handy for fixing text pasted from PDFs, cleaning up headings, or preparing captions and titles.</p></div>
-    </div>
-  </section>
-
-  <!-- 3. Unit converter -->
-  <section class="tool-panel hidden" id="panel-unit-converter" data-title="Unit Converter">
-    <button class="back-btn">← Back to all tools</button>
-    <div class="panel-head">
-      <h2>Unit converter</h2>
-      <p>Convert length, weight, temperature and volume between common units.</p>
-    </div>
-    <div class="panel-body">
-      <div class="field">
-        <label for="ucCategory">Category</label>
-        <select id="ucCategory">
-          <option value="length">Length</option>
-          <option value="weight">Weight</option>
-          <option value="temperature">Temperature</option>
-          <option value="volume">Volume</option>
-        </select>
-      </div>
-      <div class="row3">
-        <div class="field">
-          <label for="ucValue">Value</label>
-          <input type="number" id="ucValue" value="1">
-        </div>
-        <div class="field">
-          <label for="ucFrom">From</label>
-          <select id="ucFrom"></select>
-        </div>
-        <div class="field">
-          <label for="ucTo">To</label>
-          <select id="ucTo"></select>
-        </div>
-      </div>
-      <div class="result-box">Result: <span class="big" id="ucResult">—</span></div>
-      <div class="how-to"><h3>How to use this unit converter</h3><p>Choose a category (length, weight, temperature or volume), enter a value, then pick the units to convert from and to. The result updates instantly — no need to remember conversion formulas.</p></div>
-    </div>
-  </section>
-
-  <!-- 4. QR generator -->
-  <section class="tool-panel hidden" id="panel-qr-generator" data-title="QR Code Generator">
-    <button class="back-btn">← Back to all tools</button>
-    <div class="panel-head">
-      <h2>QR code generator</h2>
-      <p>Turn any link or text into a downloadable QR code. Generated locally in your browser.</p>
-    </div>
-    <div class="panel-body">
-      <div class="field">
-        <label for="qrInput">Text or URL</label>
-        <input type="text" id="qrInput" placeholder="https://example.com" value="https://example.com">
-      </div>
-      <div id="qrCanvasWrap"><div id="qrcode"></div></div>
-      <div class="btn-row"><button class="btn" id="qrDownload" type="button">Download PNG</button></div>
-      <div class="how-to"><h3>How to use this QR code generator</h3><p>Enter any link, WiFi text or plain message, and a scannable QR code appears instantly. Download it as a PNG for business cards, posters, menus or packaging — generated entirely in your browser, nothing is sent to a server.</p></div>
-    </div>
-  </section>
-
-  <!-- 5. Password generator -->
-  <section class="tool-panel hidden" id="panel-password-generator" data-title="Password Generator">
-    <button class="back-btn">← Back to all tools</button>
-    <div class="panel-head">
-      <h2>Password generator</h2>
-      <p>Create a strong random password. Generated on your device, never transmitted.</p>
-    </div>
-    <div class="panel-body">
-      <div class="mono-out" id="pgOutput" style="font-size:1.1rem;text-align:center;">—</div>
-      <div class="field">
-        <label for="pgLength">Length</label>
-        <div class="slider-row">
-          <input type="range" id="pgLength" min="6" max="40" value="16">
-          <span class="val" id="pgLengthVal">16</span>
-        </div>
-      </div>
-      <div class="checks">
-        <label><input type="checkbox" id="pgUpper" checked> Uppercase (A–Z)</label>
-        <label><input type="checkbox" id="pgLower" checked> Lowercase (a–z)</label>
-        <label><input type="checkbox" id="pgNumbers" checked> Numbers (0–9)</label>
-        <label><input type="checkbox" id="pgSymbols"> Symbols (!@#$)</label>
-      </div>
-      <div class="btn-row">
-        <button class="btn" id="pgGenerate" type="button">Generate</button>
-        <button class="btn secondary" id="pgCopy" type="button">Copy</button>
-      </div>
-      <div class="how-to"><h3>How to use this password generator</h3><p>Set your preferred length and character types, then generate a strong, random password. It's created locally on your device using your browser's secure random number generator — never sent over the internet.</p></div>
-    </div>
-  </section>
-
-  <!-- 6. Image compressor -->
-  <section class="tool-panel hidden" id="panel-image-compressor" data-title="Image Compressor">
-    <button class="back-btn">← Back to all tools</button>
-    <div class="panel-head">
-      <h2>Image compressor</h2>
-      <p>Shrink a photo's file size before emailing or uploading it. Processed locally — the image never leaves your device.</p>
-    </div>
-    <div class="panel-body">
-      <div class="drop-zone" id="icDrop">Click to choose an image, or drag one here</div>
-      <input type="file" id="icFile" accept="image/*" style="display:none;">
-      <div id="icControls" style="display:none;">
-        <div class="field">
-          <label for="icQuality">Quality</label>
-          <div class="slider-row">
-            <input type="range" id="icQuality" min="10" max="100" value="70">
-            <span class="val" id="icQualityVal">70%</span>
-          </div>
-        </div>
-        <div class="img-compare">
-          <figure><img id="icOriginalImg"><figcaption id="icOriginalCap">Original</figcaption></figure>
-          <figure><img id="icCompressedImg"><figcaption id="icCompressedCap">Compressed</figcaption></figure>
-        </div>
-        <div class="btn-row"><button class="btn" id="icDownload" type="button">Download compressed image</button></div>
-      </div>
-      <div class="how-to"><h3>How to use this image compressor</h3><p>Click to choose a photo (or drag one in), adjust the quality slider, and download a smaller file — great for email attachments, website uploads or WhatsApp sharing. The image is compressed entirely in your browser and never uploaded anywhere.</p></div>
-    </div>
-  </section>
-
-  <!-- 7. JSON formatter -->
-  <section class="tool-panel hidden" id="panel-json-formatter" data-title="JSON Formatter &amp; Validator">
-    <button class="back-btn">← Back to all tools</button>
-    <div class="panel-head">
-      <h2>JSON formatter &amp; validator</h2>
-      <p>Paste JSON to pretty-print, validate or minify it.</p>
-    </div>
-    <div class="panel-body">
-      <div class="field"><textarea id="jfInput" placeholder='{"example": true, "items": [1, 2, 3]}'></textarea></div>
-      <div class="btn-row">
-        <button class="btn" id="jfFormat" type="button">Format</button>
-        <button class="btn secondary" id="jfMinify" type="button">Minify</button>
-        <button class="btn secondary" id="jfCopy" type="button">Copy output</button>
-      </div>
-      <div id="jfStatus"></div>
-      <div class="mono-out" id="jfOutput">Output will appear here…</div>
-      <div class="how-to"><h3>How to use this JSON formatter</h3><p>Paste raw or minified JSON and click Format to pretty-print it with proper indentation, or Minify to compress it for production use. Invalid JSON is flagged immediately so you can spot the error.</p></div>
-    </div>
-  </section>
-
-  <!-- 8. Age calculator -->
-  <section class="tool-panel hidden" id="panel-age-calculator" data-title="Age Calculator">
-    <button class="back-btn">← Back to all tools</button>
-    <div class="panel-head">
-      <h2>Age calculator</h2>
-      <p>Find exact age in years, months and days from a date of birth.</p>
-    </div>
-    <div class="panel-body">
-      <div class="field">
-        <label for="acDob">Date of birth</label>
-        <input type="date" id="acDob">
-      </div>
-      <div class="stat-grid">
-        <div class="stat"><div class="n" id="acYears">—</div><div class="l">years</div></div>
-        <div class="stat"><div class="n" id="acMonths">—</div><div class="l">months</div></div>
-        <div class="stat"><div class="n" id="acDays">—</div><div class="l">days</div></div>
-        <div class="stat"><div class="n" id="acTotalDays">—</div><div class="l">total days lived</div></div>
-      </div>
-      <div class="result-box" id="acNextBday">Enter a date of birth to see your next birthday countdown.</div>
-      <div class="how-to"><h3>How to use this age calculator</h3><p>Pick a date of birth and instantly see the exact age in years, months and days, total days lived, and a countdown to the next birthday — useful for forms, certificates or just curiosity.</p></div>
-    </div>
-  </section>
-
-  <!-- 9. Discount & tax calculator -->
-  <section class="tool-panel hidden" id="panel-discount-calculator" data-title="Discount &amp; Tax Calculator">
-    <button class="back-btn">← Back to all tools</button>
-    <div class="panel-head">
-      <h2>Discount &amp; tax calculator</h2>
-      <p>Work out a final price after a discount and tax, and see exactly how much you save.</p>
-    </div>
-    <div class="panel-body">
-      <div class="row3">
-        <div class="field"><label for="dcPrice">Original price</label><input type="number" id="dcPrice" value="1000"></div>
-        <div class="field"><label for="dcDiscount">Discount %</label><input type="number" id="dcDiscount" value="20"></div>
-        <div class="field"><label for="dcTax">Tax % (optional)</label><input type="number" id="dcTax" value="0"></div>
-      </div>
-      <div class="stat-grid">
-        <div class="stat"><div class="n" id="dcSaved">—</div><div class="l">you save</div></div>
-        <div class="stat"><div class="n" id="dcFinal">—</div><div class="l">final price</div></div>
-      </div>
-      <div class="how-to"><h3>How to use this discount & tax calculator</h3><p>Enter the original price and discount percentage, plus tax if needed, to instantly see how much you save and the final price you'll pay — useful while shopping online or comparing sale prices.</p></div>
-    </div>
-  </section>
-
-  <!-- 10. Aggregate / percentage calculator -->
-  <section class="tool-panel hidden" id="panel-aggregate-calculator" data-title="Percentage &amp; Aggregate Calculator">
-    <button class="back-btn">← Back to all tools</button>
-    <div class="panel-head">
-      <h2>Percentage &amp; aggregate calculator</h2>
-      <p>Add each subject's obtained and total marks to get your overall percentage.</p>
-    </div>
-    <div class="panel-body">
-      <div class="subject-rows" id="agRows"></div>
-      <div class="btn-row"><button class="btn secondary" id="agAddRow" type="button">+ Add subject</button></div>
-      <div class="result-box">Overall percentage: <span class="big" id="agResult">—</span></div>
-      <div class="how-to"><h3>How to use this percentage & aggregate calculator</h3><p>Add a row for each subject with obtained and total marks, and the overall percentage across all subjects is calculated automatically — handy for students working out their aggregate for admissions or report cards.</p></div>
-    </div>
+  <section class="tool-list" id="toolList">
+      <a class="tool-row" data-cat="text" data-name="word & character counter" data-desc="paste or type text below. counts update as you type — nothing is stored or uploaded." href="word-counter.html">
+        <div class="idx">01</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
+        <div class="info"><h3>Word & Character Counter</h3><p>Paste or type text below. Counts update as you type — nothing is stored or uploaded.</p></div>
+        <div class="tag">text</div>
+        <div class="arrow">&#8594;</div>
+      </a>
+      <a class="tool-row" data-cat="text" data-name="case converter" data-desc="switch text between uppercase, lowercase, title case and sentence case." href="case-converter.html">
+        <div class="idx">02</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
+        <div class="info"><h3>Case Converter</h3><p>Switch text between UPPERCASE, lowercase, Title Case and Sentence case.</p></div>
+        <div class="tag">text</div>
+        <div class="arrow">&#8594;</div>
+      </a>
+      <a class="tool-row" data-cat="numbers" data-name="unit converter" data-desc="convert length, weight, temperature and volume between common units." href="unit-converter.html">
+        <div class="idx">03</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
+        <div class="info"><h3>Unit Converter</h3><p>Convert length, weight, temperature and volume between common units.</p></div>
+        <div class="tag">numbers</div>
+        <div class="arrow">&#8594;</div>
+      </a>
+      <a class="tool-row" data-cat="dev" data-name="qr code generator" data-desc="turn any link or text into a downloadable qr code. generated locally in your browser." href="qr-generator.html">
+        <div class="idx">04</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg></div>
+        <div class="info"><h3>QR Code Generator</h3><p>Turn any link or text into a downloadable QR code. Generated locally in your browser.</p></div>
+        <div class="tag">dev</div>
+        <div class="arrow">&#8594;</div>
+      </a>
+      <a class="tool-row" data-cat="dev" data-name="password generator" data-desc="create a strong random password. generated on your device, never transmitted." href="password-generator.html">
+        <div class="idx">05</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg></div>
+        <div class="info"><h3>Password Generator</h3><p>Create a strong random password. Generated on your device, never transmitted.</p></div>
+        <div class="tag">dev</div>
+        <div class="arrow">&#8594;</div>
+      </a>
+      <a class="tool-row" data-cat="image" data-name="image compressor" data-desc="shrink a photo's file size before emailing or uploading it. processed locally — the image never leaves your device." href="image-compressor.html">
+        <div class="idx">06</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="1"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg></div>
+        <div class="info"><h3>Image Compressor</h3><p>Shrink a photo's file size before emailing or uploading it. Processed locally — the image never leaves your device.</p></div>
+        <div class="tag">image</div>
+        <div class="arrow">&#8594;</div>
+      </a>
+      <a class="tool-row" data-cat="dev" data-name="json formatter & validator" data-desc="paste json to pretty-print, validate or minify it." href="json-formatter.html">
+        <div class="idx">07</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg></div>
+        <div class="info"><h3>JSON Formatter & Validator</h3><p>Paste JSON to pretty-print, validate or minify it.</p></div>
+        <div class="tag">dev</div>
+        <div class="arrow">&#8594;</div>
+      </a>
+      <a class="tool-row" data-cat="numbers" data-name="age calculator" data-desc="find exact age in years, months and days from a date of birth." href="age-calculator.html">
+        <div class="idx">08</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
+        <div class="info"><h3>Age Calculator</h3><p>Find exact age in years, months and days from a date of birth.</p></div>
+        <div class="tag">numbers</div>
+        <div class="arrow">&#8594;</div>
+      </a>
+      <a class="tool-row" data-cat="numbers" data-name="discount & tax calculator" data-desc="work out a final price after a discount and tax, and see exactly how much you save." href="discount-calculator.html">
+        <div class="idx">09</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
+        <div class="info"><h3>Discount & Tax Calculator</h3><p>Work out a final price after a discount and tax, and see exactly how much you save.</p></div>
+        <div class="tag">numbers</div>
+        <div class="arrow">&#8594;</div>
+      </a>
+      <a class="tool-row" data-cat="numbers" data-name="percentage & aggregate calculator" data-desc="add each subject's obtained and total marks to get your overall percentage." href="aggregate-calculator.html">
+        <div class="idx">10</div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
+        <div class="info"><h3>Percentage & Aggregate Calculator</h3><p>Add each subject's obtained and total marks to get your overall percentage.</p></div>
+        <div class="tag">numbers</div>
+        <div class="arrow">&#8594;</div>
+      </a>
+    <div class="empty-note" id="emptyNote" style="display:none;">No tools match that search.</div>
   </section>
 
   <footer>
     <span>ToolCrate — built for people, not ads.</span>
-    <span>All tools run on your device. Nothing is uploaded, ever.</span>
+    <nav class="footer-links">
+      <a href="index.html">All tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
   </footer>
 </div>
-
+<script src="assets/common.js"></script>
 <script>
 (function(){
   "use strict";
-
-  /* ---------------- Theme ---------------- */
-  var themeBtn = document.getElementById('themeToggle');
-  function applyTheme(t){
-    if(t){ document.documentElement.setAttribute('data-theme', t); }
-    else { document.documentElement.removeAttribute('data-theme'); }
-    themeBtn.textContent = (t === 'dark') ? 'Light mode' : 'Dark mode';
-  }
-  var savedTheme = null;
-  try { savedTheme = localStorage.getItem('toolcrate-theme'); } catch(e){}
-  applyTheme(savedTheme);
-  themeBtn.addEventListener('click', function(){
-    var current = document.documentElement.getAttribute('data-theme');
-    var next = current === 'dark' ? 'light' : 'dark';
-    applyTheme(next);
-    try { localStorage.setItem('toolcrate-theme', next); } catch(e){}
-  });
-
-  /* ---------------- Tool registry ---------------- */
-  var TOOLS = [
-    {id:'word-counter', name:'Word & Character Counter', desc:'Live word, character and sentence counts as you type.', cat:'text'},
-    {id:'case-converter', name:'Case Converter', desc:'UPPERCASE, lowercase, Title Case, Sentence case.', cat:'text'},
-    {id:'unit-converter', name:'Unit Converter', desc:'Length, weight, temperature and volume, instantly.', cat:'numbers'},
-    {id:'qr-generator', name:'QR Code Generator', desc:'Turn any link or text into a downloadable QR code.', cat:'dev'},
-    {id:'password-generator', name:'Password Generator', desc:'Strong random passwords with custom rules.', cat:'dev'},
-    {id:'image-compressor', name:'Image Compressor', desc:'Shrink a photo\u2019s file size before sharing it.', cat:'image'},
-    {id:'json-formatter', name:'JSON Formatter & Validator', desc:'Pretty-print, validate or minify JSON.', cat:'dev'},
-    {id:'age-calculator', name:'Age Calculator', desc:'Exact age in years, months and days from a birthdate.', cat:'numbers'},
-    {id:'discount-calculator', name:'Discount & Tax Calculator', desc:'Final price after a discount and tax, in one step.', cat:'numbers'},
-    {id:'aggregate-calculator', name:'Percentage & Aggregate Calculator', desc:'Overall percentage across multiple subjects.', cat:'numbers'}
-  ];
-
-  var TOOL_ART = {
-    'word-counter': '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><path d="M30 40h140M30 70h100M30 100h140M30 130h80M30 160h110"/></svg>',
-    'case-converter': '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><text x="20" y="90" font-size="70" font-family="Georgia,serif" stroke="none" fill="currentColor">Aa</text><path d="M20 130h160M20 160h120"/></svg>',
-    'unit-converter': '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><path d="M40 60h60M100 60l40 20M40 140h60M100 140l40-20"/><circle cx="40" cy="60" r="10"/><circle cx="40" cy="140" r="10"/><path d="M70 30v140" stroke-dasharray="6 6"/></svg>',
-    'qr-generator': '<svg viewBox="0 0 200 200" fill="currentColor" stroke="none"><rect x="20" y="20" width="50" height="50"/><rect x="35" y="35" width="20" height="20" fill="var(--bg,#fff)"/><rect x="130" y="20" width="50" height="50"/><rect x="145" y="35" width="20" height="20" fill="var(--bg,#fff)"/><rect x="20" y="130" width="50" height="50"/><rect x="35" y="145" width="20" height="20" fill="var(--bg,#fff)"/><rect x="90" y="90" width="20" height="20"/><rect x="130" y="120" width="20" height="20"/><rect x="160" y="150" width="20" height="20"/><rect x="90" y="150" width="20" height="20"/></svg>',
-    'password-generator': '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><rect x="50" y="90" width="100" height="80" rx="8"/><path d="M70 90V60a30 30 0 0160 0v30"/><circle cx="100" cy="130" r="8" fill="currentColor" stroke="none"/></svg>',
-    'image-compressor': '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><rect x="25" y="35" width="150" height="110" rx="6"/><circle cx="65" cy="75" r="14"/><path d="M25 130l45-35 35 25 30-20 40 30"/></svg>',
-    'json-formatter': '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="5"><path d="M60 30c-20 0-20 20-20 40s0 30-20 30c20 0 20 10 20 30s0 40 20 40"/><path d="M140 30c20 0 20 20 20 40s0 30 20 30c-20 0-20 10-20 30s0 40-20 40"/></svg>',
-    'age-calculator': '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><rect x="30" y="40" width="140" height="130" rx="8"/><path d="M30 75h140M65 25v30M135 25v30"/><circle cx="70" cy="105" r="6" fill="currentColor" stroke="none"/><circle cx="100" cy="105" r="6" fill="currentColor" stroke="none"/><circle cx="130" cy="105" r="6" fill="currentColor" stroke="none"/><circle cx="70" cy="135" r="6" fill="currentColor" stroke="none"/></svg>',
-    'discount-calculator': '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><path d="M35 110L110 35h55v55l-75 75a10 10 0 01-14 0l-41-41a10 10 0 010-14z"/><circle cx="130" cy="60" r="10" fill="currentColor" stroke="none"/></svg>',
-    'aggregate-calculator': '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><path d="M30 170V90M75 170V60M120 170V110M165 170V40"/></svg>'
-  };
-
-  var CAT_ICONS = {
-    text: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg>',
-    image: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="1"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg>',
-    numbers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg>',
-    dev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg>'
-  };
-
-  var listEl = document.getElementById('toolList');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.tool-row'));
+  var emptyNote = document.getElementById('emptyNote');
   var currentCat = 'all';
   var currentQuery = '';
 
-  function renderList(){
-    listEl.innerHTML = '';
-    var q = currentQuery.trim().toLowerCase();
-    var filtered = TOOLS.filter(function(t){
-      var catOk = currentCat === 'all' || t.cat === currentCat;
-      var qOk = !q || (t.name.toLowerCase().indexOf(q) > -1 || t.desc.toLowerCase().indexOf(q) > -1);
-      return catOk && qOk;
-    });
-    if(filtered.length === 0){
-      var empty = document.createElement('div');
-      empty.className = 'empty-note';
-      empty.textContent = 'No tools match that search.';
-      listEl.appendChild(empty);
-      return;
-    }
-    filtered.forEach(function(t, i){
-      var row = document.createElement('div');
-      row.className = 'tool-row';
-      row.setAttribute('data-tool', t.id);
-      row.innerHTML =
-        '<div class="idx">' + String(i+1).padStart(2,'0') + '</div>' +
-        '<div class="icon">' + (CAT_ICONS[t.cat] || '') + '</div>' +
-        '<div class="info"><h3>' + t.name + '</h3><p>' + t.desc + '</p></div>' +
-        '<div class="tag">' + t.cat + '</div>' +
-        '<div class="arrow">&#8594;</div>';
-      row.addEventListener('click', function(){ openTool(t.id); });
-      listEl.appendChild(row);
-    });
-  }
-  renderList();
+  /* Entrance animation only plays once, on first paint — filtering the
+     list afterwards just shows/hides rows instead of re-animating them,
+     so typing in search doesn't flicker. */
+  rows.forEach(function(r, i){ r.style.animationDelay = (Math.min(i, 10) * 0.04) + 's'; });
 
-  /* Inject icon badges into each panel header */
-  TOOLS.forEach(function(t){
-    var head = document.querySelector('#panel-' + t.id + ' .panel-head');
-    if(!head) return;
-    var textWrap = document.createElement('div');
-    while(head.firstChild){ textWrap.appendChild(head.firstChild); }
-    var badge = document.createElement('div');
-    badge.className = 'panel-icon';
-    badge.innerHTML = CAT_ICONS[t.cat] || '';
-    head.appendChild(badge);
-    head.appendChild(textWrap);
-  });
+  function applyFilter(){
+    var q = currentQuery.trim().toLowerCase();
+    var anyVisible = false;
+    rows.forEach(function(row){
+      var cat = row.getAttribute('data-cat');
+      var name = row.getAttribute('data-name');
+      var desc = row.getAttribute('data-desc');
+      var catOk = currentCat === 'all' || cat === currentCat;
+      var qOk = !q || name.indexOf(q) > -1 || desc.indexOf(q) > -1;
+      var show = catOk && qOk;
+      row.style.display = show ? '' : 'none';
+      if(show) anyVisible = true;
+    });
+    emptyNote.style.display = anyVisible ? 'none' : 'block';
+  }
 
   document.getElementById('categoryRail').addEventListener('click', function(e){
     var btn = e.target.closest('.chip');
@@ -646,411 +195,12 @@
     document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
     btn.classList.add('active');
     currentCat = btn.getAttribute('data-cat');
-    renderList();
+    applyFilter();
   });
   document.getElementById('toolSearch').addEventListener('input', function(e){
     currentQuery = e.target.value;
-    renderList();
+    applyFilter();
   });
-
-  /* ---------------- Panel routing ---------------- */
-  var gridSection = document.getElementById('toolList');
-  var railSection = document.getElementById('categoryRail');
-  var searchRow = document.querySelector('.search-row');
-  var panels = document.querySelectorAll('.tool-panel');
-
-  panels.forEach(function(p){
-    var id = p.id.replace('panel-', '');
-    if(TOOL_ART[id]){
-      var art = document.createElement('div');
-      art.className = 'panel-art';
-      art.innerHTML = TOOL_ART[id];
-      p.insertBefore(art, p.firstChild);
-    }
-  });
-
-  var DEFAULT_TITLE = document.title;
-  var TOOL_META = {
-    'word-counter': 'Free Word & Character Counter Online — No Signup | ToolCrate',
-    'case-converter': 'Free Case Converter — UPPERCASE, lowercase, Title Case | ToolCrate',
-    'unit-converter': 'Free Unit Converter — Length, Weight, Temperature | ToolCrate',
-    'qr-generator': 'Free QR Code Generator Online — No Signup | ToolCrate',
-    'password-generator': 'Free Strong Password Generator Online | ToolCrate',
-    'image-compressor': 'Free Image Compressor Online — Reduce Photo Size | ToolCrate',
-    'json-formatter': 'Free JSON Formatter & Validator Online | ToolCrate',
-    'age-calculator': 'Free Age Calculator — Exact Age in Years, Months, Days | ToolCrate',
-    'discount-calculator': 'Free Discount & Tax Calculator Online | ToolCrate',
-    'aggregate-calculator': 'Free Percentage & Aggregate Calculator | ToolCrate'
-  };
-
-  function openTool(id){
-    panels.forEach(function(p){ p.classList.add('hidden'); });
-    var panel = document.getElementById('panel-' + id);
-    if(panel){
-      panel.classList.remove('hidden');
-      gridSection.style.display = 'none';
-      railSection.style.display = 'none';
-      searchRow.style.display = 'none';
-      window.location.hash = id;
-      window.scrollTo({top:0, behavior:'smooth'});
-      document.title = TOOL_META[id] || DEFAULT_TITLE;
-    }
-  }
-  function closeTool(){
-    panels.forEach(function(p){ p.classList.add('hidden'); });
-    gridSection.style.display = '';
-    railSection.style.display = '';
-    searchRow.style.display = '';
-    window.location.hash = '';
-    window.scrollTo({top:0, behavior:'smooth'});
-    document.title = DEFAULT_TITLE;
-  }
-  document.querySelectorAll('.back-btn').forEach(function(b){
-    b.addEventListener('click', closeTool);
-  });
-  window.addEventListener('hashchange', function(){
-    var id = window.location.hash.replace('#','');
-    if(id && document.getElementById('panel-' + id)) openTool(id);
-    else if(!id) closeTool();
-  });
-  (function initFromHash(){
-    var id = window.location.hash.replace('#','');
-    if(id && document.getElementById('panel-' + id)) openTool(id);
-  })();
-
-  /* ================= TOOL 1: Word counter ================= */
-  var wcInput = document.getElementById('wcInput');
-  function updateWC(){
-    var text = wcInput.value;
-    var trimmed = text.trim();
-    var words = trimmed ? trimmed.split(/\s+/).length : 0;
-    var chars = text.length;
-    var charsNS = text.replace(/\s/g,'').length;
-    var sentences = trimmed ? (trimmed.match(/[.!?]+(\s|$)/g) || []).length || (trimmed ? 1 : 0) : 0;
-    var paras = trimmed ? trimmed.split(/\n+/).filter(function(p){return p.trim().length>0;}).length : 0;
-    var minutes = words / 200;
-    var readTime = minutes < 1 ? Math.max(1, Math.round(minutes*60)) + 's' : minutes.toFixed(1) + 'm';
-    document.getElementById('wcWords').textContent = words;
-    document.getElementById('wcChars').textContent = chars;
-    document.getElementById('wcCharsNS').textContent = charsNS;
-    document.getElementById('wcSentences').textContent = sentences;
-    document.getElementById('wcParas').textContent = paras;
-    document.getElementById('wcReadTime').textContent = readTime;
-  }
-  wcInput.addEventListener('input', updateWC);
-  document.getElementById('wcClear').addEventListener('click', function(){ wcInput.value=''; updateWC(); });
-  document.getElementById('wcCopy').addEventListener('click', function(){
-    navigator.clipboard && navigator.clipboard.writeText(wcInput.value).catch(function(){});
-  });
-  updateWC();
-
-  /* ================= TOOL 2: Case converter ================= */
-  var ccInput = document.getElementById('ccInput');
-  document.querySelectorAll('[data-case]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var mode = btn.getAttribute('data-case');
-      var v = ccInput.value;
-      if(mode === 'upper') v = v.toUpperCase();
-      else if(mode === 'lower') v = v.toLowerCase();
-      else if(mode === 'title') v = v.replace(/\w\S*/g, function(t){ return t.charAt(0).toUpperCase() + t.substr(1).toLowerCase(); });
-      else if(mode === 'sentence') v = v.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, function(t){ return t.toUpperCase(); });
-      ccInput.value = v;
-    });
-  });
-  document.getElementById('ccCopy').addEventListener('click', function(){
-    navigator.clipboard && navigator.clipboard.writeText(ccInput.value).catch(function(){});
-  });
-
-  /* ================= TOOL 3: Unit converter ================= */
-  var UNIT_DATA = {
-    length: {base:'m', units:{
-      m:1, km:1000, cm:0.01, mm:0.001, mile:1609.34, yard:0.9144, foot:0.3048, inch:0.0254
-    }},
-    weight: {base:'kg', units:{
-      kg:1, g:0.001, mg:0.000001, ton:1000, pound:0.453592, ounce:0.0283495
-    }},
-    volume: {base:'l', units:{
-      l:1, ml:0.001, gallon:3.78541, quart:0.946353, cup:0.24, tbsp:0.0147868, tsp:0.00492892
-    }},
-    temperature: {base:'c', units:{c:1,f:1,k:1}}
-  };
-  var ucCategory = document.getElementById('ucCategory');
-  var ucFrom = document.getElementById('ucFrom');
-  var ucTo = document.getElementById('ucTo');
-  var ucValue = document.getElementById('ucValue');
-  var ucResult = document.getElementById('ucResult');
-
-  function populateUnits(){
-    var cat = ucCategory.value;
-    var units = Object.keys(UNIT_DATA[cat].units);
-    ucFrom.innerHTML = units.map(function(u){ return '<option value="'+u+'">'+u+'</option>'; }).join('');
-    ucTo.innerHTML = units.map(function(u){ return '<option value="'+u+'">'+u+'</option>'; }).join('');
-    ucTo.selectedIndex = units.length > 1 ? 1 : 0;
-    computeUC();
-  }
-  function tempConvert(v, from, to){
-    var c;
-    if(from === 'c') c = v;
-    else if(from === 'f') c = (v-32) * 5/9;
-    else c = v - 273.15;
-    if(to === 'c') return c;
-    if(to === 'f') return c * 9/5 + 32;
-    return c + 273.15;
-  }
-  function computeUC(){
-    var cat = ucCategory.value;
-    var val = parseFloat(ucValue.value);
-    if(isNaN(val)){ ucResult.textContent = '—'; return; }
-    var from = ucFrom.value, to = ucTo.value;
-    var out;
-    if(cat === 'temperature'){
-      out = tempConvert(val, from, to);
-    } else {
-      var data = UNIT_DATA[cat].units;
-      var baseVal = val * data[from];
-      out = baseVal / data[to];
-    }
-    ucResult.textContent = (Math.round(out * 100000) / 100000) + ' ' + to;
-  }
-  ucCategory.addEventListener('change', populateUnits);
-  [ucFrom, ucTo, ucValue].forEach(function(el){ el.addEventListener('input', computeUC); });
-  populateUnits();
-
-  /* ================= TOOL 4: QR generator ================= */
-  var qrInput = document.getElementById('qrInput');
-  var qrContainer = document.getElementById('qrcode');
-  var qrObj = null;
-  function renderQR(){
-    qrContainer.innerHTML = '';
-    try{
-      qrObj = new QRCode(qrContainer, {
-        text: qrInput.value || ' ',
-        width: 220, height: 220,
-        colorDark: '#10161A', colorLight: '#ffffff'
-      });
-    }catch(e){}
-  }
-  qrInput.addEventListener('input', renderQR);
-  document.getElementById('qrDownload').addEventListener('click', function(){
-    var canvas = qrContainer.querySelector('canvas');
-    if(!canvas) return;
-    var link = document.createElement('a');
-    link.download = 'toolcrate-qr-code.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  });
-  renderQR();
-
-  /* ================= TOOL 5: Password generator ================= */
-  var pgLength = document.getElementById('pgLength');
-  var pgLengthVal = document.getElementById('pgLengthVal');
-  var pgOutput = document.getElementById('pgOutput');
-  function genPassword(){
-    var len = parseInt(pgLength.value, 10);
-    var upper = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
-    var lower = 'abcdefghijkmnpqrstuvwxyz';
-    var nums = '23456789';
-    var syms = '!@#$%^&*_-+=?';
-    var pool = '';
-    if(document.getElementById('pgUpper').checked) pool += upper;
-    if(document.getElementById('pgLower').checked) pool += lower;
-    if(document.getElementById('pgNumbers').checked) pool += nums;
-    if(document.getElementById('pgSymbols').checked) pool += syms;
-    if(!pool){ pgOutput.textContent = 'Select at least one character type.'; return; }
-    var arr = new Uint32Array(len);
-    window.crypto.getRandomValues(arr);
-    var out = '';
-    for(var i=0;i<len;i++){ out += pool[arr[i] % pool.length]; }
-    pgOutput.textContent = out;
-  }
-  pgLength.addEventListener('input', function(){ pgLengthVal.textContent = pgLength.value; genPassword(); });
-  ['pgUpper','pgLower','pgNumbers','pgSymbols'].forEach(function(id){
-    document.getElementById(id).addEventListener('change', genPassword);
-  });
-  document.getElementById('pgGenerate').addEventListener('click', genPassword);
-  document.getElementById('pgCopy').addEventListener('click', function(){
-    navigator.clipboard && navigator.clipboard.writeText(pgOutput.textContent).catch(function(){});
-  });
-  genPassword();
-
-  /* ================= TOOL 6: Image compressor ================= */
-  var icDrop = document.getElementById('icDrop');
-  var icFile = document.getElementById('icFile');
-  var icControls = document.getElementById('icControls');
-  var icQuality = document.getElementById('icQuality');
-  var icQualityVal = document.getElementById('icQualityVal');
-  var icOriginalImg = document.getElementById('icOriginalImg');
-  var icCompressedImg = document.getElementById('icCompressedImg');
-  var icOriginalCap = document.getElementById('icOriginalCap');
-  var icCompressedCap = document.getElementById('icCompressedCap');
-  var icDownloadBtn = document.getElementById('icDownload');
-  var currentImage = null, currentFileName = 'image', originalSize = 0;
-
-  icDrop.addEventListener('click', function(){ icFile.click(); });
-  icDrop.addEventListener('dragover', function(e){ e.preventDefault(); icDrop.classList.add('drag'); });
-  icDrop.addEventListener('dragleave', function(){ icDrop.classList.remove('drag'); });
-  icDrop.addEventListener('drop', function(e){
-    e.preventDefault(); icDrop.classList.remove('drag');
-    if(e.dataTransfer.files && e.dataTransfer.files[0]) handleImageFile(e.dataTransfer.files[0]);
-  });
-  icFile.addEventListener('change', function(){
-    if(icFile.files && icFile.files[0]) handleImageFile(icFile.files[0]);
-  });
-
-  function handleImageFile(file){
-    if(!file.type.startsWith('image/')) return;
-    originalSize = file.size;
-    currentFileName = file.name.replace(/\.[^.]+$/, '');
-    var reader = new FileReader();
-    reader.onload = function(e){
-      currentImage = new Image();
-      currentImage.onload = function(){
-        icOriginalImg.src = e.target.result;
-        icOriginalCap.textContent = 'Original — ' + formatBytes(originalSize);
-        icControls.style.display = 'block';
-        compressImage();
-      };
-      currentImage.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-  function formatBytes(b){
-    if(b < 1024) return b + ' B';
-    if(b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
-    return (b/(1024*1024)).toFixed(2) + ' MB';
-  }
-  function compressImage(){
-    if(!currentImage) return;
-    var canvas = document.createElement('canvas');
-    canvas.width = currentImage.width;
-    canvas.height = currentImage.height;
-    var ctx = canvas.getContext('2d');
-    ctx.drawImage(currentImage, 0, 0);
-    var quality = parseInt(icQuality.value, 10) / 100;
-    var dataUrl = canvas.toDataURL('image/jpeg', quality);
-    icCompressedImg.src = dataUrl;
-    var approxBytes = Math.round((dataUrl.length - 'data:image/jpeg;base64,'.length) * 0.75);
-    icCompressedCap.textContent = 'Compressed — ' + formatBytes(approxBytes);
-    icCompressedImg.dataset.href = dataUrl;
-  }
-  icQuality.addEventListener('input', function(){
-    icQualityVal.textContent = icQuality.value + '%';
-    compressImage();
-  });
-  icDownloadBtn.addEventListener('click', function(){
-    var url = icCompressedImg.dataset.href;
-    if(!url) return;
-    var link = document.createElement('a');
-    link.download = currentFileName + '-compressed.jpg';
-    link.href = url;
-    link.click();
-  });
-
-  /* ================= TOOL 7: JSON formatter ================= */
-  var jfInput = document.getElementById('jfInput');
-  var jfOutput = document.getElementById('jfOutput');
-  var jfStatus = document.getElementById('jfStatus');
-  function jfParse(){
-    try{
-      var parsed = JSON.parse(jfInput.value);
-      jfStatus.innerHTML = '<span class="ok">Valid JSON</span>';
-      return parsed;
-    }catch(e){
-      jfStatus.innerHTML = '<span class="err">Invalid JSON — ' + e.message + '</span>';
-      return null;
-    }
-  }
-  document.getElementById('jfFormat').addEventListener('click', function(){
-    var p = jfParse();
-    if(p !== null) jfOutput.textContent = JSON.stringify(p, null, 2);
-  });
-  document.getElementById('jfMinify').addEventListener('click', function(){
-    var p = jfParse();
-    if(p !== null) jfOutput.textContent = JSON.stringify(p);
-  });
-  document.getElementById('jfCopy').addEventListener('click', function(){
-    navigator.clipboard && navigator.clipboard.writeText(jfOutput.textContent).catch(function(){});
-  });
-
-  /* ================= TOOL 8: Age calculator ================= */
-  var acDob = document.getElementById('acDob');
-  acDob.addEventListener('change', function(){
-    if(!acDob.value) return;
-    var dob = new Date(acDob.value);
-    var now = new Date();
-    if(dob > now){
-      document.getElementById('acNextBday').textContent = 'That date is in the future.';
-      return;
-    }
-    var years = now.getFullYear() - dob.getFullYear();
-    var months = now.getMonth() - dob.getMonth();
-    var days = now.getDate() - dob.getDate();
-    if(days < 0){
-      months -= 1;
-      var prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-      days += prevMonth.getDate();
-    }
-    if(months < 0){ years -= 1; months += 12; }
-    var totalDays = Math.floor((now - dob) / (1000*60*60*24));
-    document.getElementById('acYears').textContent = years;
-    document.getElementById('acMonths').textContent = months;
-    document.getElementById('acDays').textContent = days;
-    document.getElementById('acTotalDays').textContent = totalDays.toLocaleString();
-
-    var nextBday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
-    if(nextBday < now) nextBday.setFullYear(now.getFullYear() + 1);
-    var daysLeft = Math.ceil((nextBday - now) / (1000*60*60*24));
-    document.getElementById('acNextBday').textContent =
-      daysLeft === 0 ? 'Happy birthday! 🎉' : daysLeft + ' day' + (daysLeft===1?'':'s') + ' until your next birthday.';
-  });
-
-  /* ================= TOOL 9: Discount calculator ================= */
-  var dcPrice = document.getElementById('dcPrice');
-  var dcDiscount = document.getElementById('dcDiscount');
-  var dcTax = document.getElementById('dcTax');
-  function computeDC(){
-    var price = parseFloat(dcPrice.value) || 0;
-    var discount = parseFloat(dcDiscount.value) || 0;
-    var tax = parseFloat(dcTax.value) || 0;
-    var afterDiscount = price - (price * discount / 100);
-    var final = afterDiscount + (afterDiscount * tax / 100);
-    var saved = price - afterDiscount;
-    document.getElementById('dcSaved').textContent = saved.toFixed(2);
-    document.getElementById('dcFinal').textContent = final.toFixed(2);
-  }
-  [dcPrice, dcDiscount, dcTax].forEach(function(el){ el.addEventListener('input', computeDC); });
-  computeDC();
-
-  /* ================= TOOL 10: Aggregate calculator ================= */
-  var agRows = document.getElementById('agRows');
-  var agResult = document.getElementById('agResult');
-  var agCount = 0;
-  function addAgRow(name){
-    agCount++;
-    var row = document.createElement('div');
-    row.className = 'subject-row';
-    row.innerHTML =
-      '<input type="text" class="ag-name" placeholder="Subject name" value="' + (name || 'Subject ' + agCount) + '">' +
-      '<input type="number" class="ag-obtained" placeholder="Obtained" value="0">' +
-      '<input type="number" class="ag-total" placeholder="Total" value="100">' +
-      '<button class="remove-row" type="button">Remove</button>';
-    row.querySelector('.remove-row').addEventListener('click', function(){ row.remove(); computeAG(); });
-    row.querySelectorAll('input').forEach(function(inp){ inp.addEventListener('input', computeAG); });
-    agRows.appendChild(row);
-  }
-  document.getElementById('agAddRow').addEventListener('click', function(){ addAgRow(); computeAG(); });
-  function computeAG(){
-    var obtainedTotal = 0, maxTotal = 0;
-    agRows.querySelectorAll('.subject-row').forEach(function(row){
-      var o = parseFloat(row.querySelector('.ag-obtained').value) || 0;
-      var t = parseFloat(row.querySelector('.ag-total').value) || 0;
-      obtainedTotal += o; maxTotal += t;
-    });
-    agResult.textContent = maxTotal > 0 ? ((obtainedTotal / maxTotal) * 100).toFixed(2) + '%' : '—';
-  }
-  addAgRow('Subject 1'); addAgRow('Subject 2'); addAgRow('Subject 3');
-  computeAG();
-
 })();
 </script>
 </body>

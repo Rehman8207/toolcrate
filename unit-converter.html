@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Unit Converter — Length, Weight, Temperature | ToolCrate</title>
+<meta name="description" content="Free online unit converter for length, weight, temperature and volume. Instant results, no signup, runs entirely in your browser.">
+<link rel="canonical" href="https://toolcrate.netlify.app/unit-converter.html">
+<meta property="og:title" content="Free Unit Converter — Length, Weight, Temperature | ToolCrate">
+<meta property="og:description" content="Free online unit converter for length, weight, temperature and volume. Instant results, no signup, runs entirely in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolcrate.netlify.app/unit-converter.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Unit Converter — Length, Weight, Temperature | ToolCrate">
+<meta name="twitter:description" content="Free online unit converter for length, weight, temperature and volume. Instant results, no signup, runs entirely in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="row">
+      <div class="brand-block">
+        <div>
+          <div class="brand"><h1><a href="index.html" style="text-decoration:none;color:inherit;">ToolCrate</a></h1></div>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
+    </div>
+  </header>
+
+  <section class="tool-panel" id="panel-unit-converter" style="position:relative;overflow:hidden;">
+    <a class="back-btn" href="index.html">← Back to all tools</a>
+    <div class="panel-art"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4"><path d="M40 60h60M100 60l40 20M40 140h60M100 140l40-20"/><circle cx="40" cy="60" r="10"/><circle cx="40" cy="140" r="10"/><path d="M70 30v140" stroke-dasharray="6 6"/></svg></div>
+    <div class="panel-head">
+      <div class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
+      <div>
+        <h2>Unit converter</h2>
+        <p>Convert length, weight, temperature and volume between common units.</p>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="ucCategory">Category</label>
+        <select id="ucCategory">
+          <option value="length">Length</option>
+          <option value="weight">Weight</option>
+          <option value="temperature">Temperature</option>
+          <option value="volume">Volume</option>
+        </select>
+      </div>
+      <div class="row3">
+        <div class="field">
+          <label for="ucValue">Value</label>
+          <input type="number" id="ucValue" value="1">
+        </div>
+        <div class="field">
+          <label for="ucFrom">From</label>
+          <select id="ucFrom"></select>
+        </div>
+        <div class="field">
+          <label for="ucTo">To</label>
+          <select id="ucTo"></select>
+        </div>
+      </div>
+      <div class="result-box">Result: <span class="big" id="ucResult">—</span></div>
+      <div class="how-to"><h3>How to use this unit converter</h3><p>Choose a category (length, weight, temperature or volume), enter a value, then pick the units to convert from and to. The result updates instantly — no need to remember conversion formulas.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>ToolCrate — built for people, not ads.</span>
+    <nav class="footer-links">
+      <a href="index.html">All tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+  </footer>
+</div>
+<script src="assets/common.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var UNIT_DATA = {
+    length: {base:'m', units:{
+      m:1, km:1000, cm:0.01, mm:0.001, mile:1609.34, yard:0.9144, foot:0.3048, inch:0.0254
+    }},
+    weight: {base:'kg', units:{
+      kg:1, g:0.001, mg:0.000001, ton:1000, pound:0.453592, ounce:0.0283495
+    }},
+    volume: {base:'l', units:{
+      l:1, ml:0.001, gallon:3.78541, quart:0.946353, cup:0.24, tbsp:0.0147868, tsp:0.00492892
+    }},
+    temperature: {base:'c', units:{c:1,f:1,k:1}}
+  };
+  var ucCategory = document.getElementById('ucCategory');
+  var ucFrom = document.getElementById('ucFrom');
+  var ucTo = document.getElementById('ucTo');
+  var ucValue = document.getElementById('ucValue');
+  var ucResult = document.getElementById('ucResult');
+
+  function populateUnits(){
+    var cat = ucCategory.value;
+    var units = Object.keys(UNIT_DATA[cat].units);
+    ucFrom.innerHTML = units.map(function(u){ return '<option value="'+u+'">'+u+'</option>'; }).join('');
+    ucTo.innerHTML = units.map(function(u){ return '<option value="'+u+'">'+u+'</option>'; }).join('');
+    ucTo.selectedIndex = units.length > 1 ? 1 : 0;
+    computeUC();
+  }
+  function tempConvert(v, from, to){
+    var c;
+    if(from === 'c') c = v;
+    else if(from === 'f') c = (v-32) * 5/9;
+    else c = v - 273.15;
+    if(to === 'c') return c;
+    if(to === 'f') return c * 9/5 + 32;
+    return c + 273.15;
+  }
+  function computeUC(){
+    var cat = ucCategory.value;
+    var val = parseFloat(ucValue.value);
+    if(isNaN(val)){ ucResult.textContent = '—'; return; }
+    var from = ucFrom.value, to = ucTo.value;
+    var out;
+    if(cat === 'temperature'){
+      out = tempConvert(val, from, to);
+    } else {
+      var data = UNIT_DATA[cat].units;
+      var baseVal = val * data[from];
+      out = baseVal / data[to];
+    }
+    ucResult.textContent = (Math.round(out * 100000) / 100000) + ' ' + to;
+  }
+  ucCategory.addEventListener('change', populateUnits);
+  [ucFrom, ucTo, ucValue].forEach(function(el){ el.addEventListener('input', computeUC); });
+  populateUnits();
+
+})();
+</script>
+</body>
+</html>
