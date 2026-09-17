@@ -235,3 +235,61 @@
   .prose a{color:var(--accent);}
   .prose ul{color:var(--ink-muted);font-size:.9rem;line-height:1.7;padding-left:20px;}
   .prose .updated{font-size:.75rem;color:var(--ink-muted);margin-bottom:24px;}
+/* --- Interactive Animations & UX Enhancements --- */
+
+/* Smooth Card Hover & Glow Effect */
+.tool-row {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s, box-shadow 0.25s !important;
+}
+.tool-row:hover {
+  transform: translateY(-4px) scale(1.008);
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.3), 0 0 15px rgba(59, 130, 246, 0.15);
+}
+
+/* Arrow Hover Motion */
+.tool-row .arrow {
+  transition: transform 0.2s ease !important;
+}
+.tool-row:hover .arrow {
+  transform: translateX(6px);
+  color: #60a5fa;
+}
+
+/* Primary Buttons Pulse & Hover Effect */
+.btn-action, .btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.btn-action:hover, .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -4px rgba(59, 130, 246, 0.5);
+}
+.btn-action:active, .btn:active {
+  transform: translateY(0);
+}
+
+/* File Upload Card Drag & Pulse Effects */
+.upload-card, .upload-box {
+  transition: all 0.3s ease !important;
+}
+.upload-card:hover, .upload-box:hover {
+  border-color: #3b82f6 !important;
+  background: rgba(59, 130, 246, 0.06) !important;
+  transform: scale(1.005);
+}
+
+/* Dynamic Entrance Fade-in for Tool Result Cards */
+.result-box, .result-card {
+  animation: slideUpFade 0.35s ease-out forwards;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
