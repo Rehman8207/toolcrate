@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToolCrate — Free Tools. No Signup. Nothing Leaves Your Device.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --bg:#EEEFE9; --bg-elevated:#F7F7F2; --surface:#FFFFFF;
+    --ink:#16201D; --ink-muted:#5B655F;
+    --accent:#A97C1B; --accent-ink:#FFFFFF;
+    --rule:#D8D9CF; --surface-hover:#F0EEE3;
+    --danger:#B3432D; --good:#3E7A4E;
+    --font-display:'Fraunces', Georgia, serif;
+    --font-mono:'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#10161A; --bg-elevated:#161F22; --surface:#1B2528;
+      --ink:#ECE7DA; --ink-muted:#93A29D;
+      --accent:#D8AE3E; --accent-ink:#10161A;
+      --rule:#2A3538; --surface-hover:#212D30;
+      --danger:#E08064; --good:#7BC694;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#10161A; --bg-elevated:#161F22; --surface:#1B2528;
+    --ink:#ECE7DA; --ink-muted:#93A29D;
+    --accent:#D8AE3E; --accent-ink:#10161A;
+    --rule:#2A3538; --surface-hover:#212D30;
+    --danger:#E08064; --good:#7BC694;
+  }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-mono);
+       -webkit-font-smoothing:antialiased;transition:background .2s,color .2s;}
+  a{color:inherit;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:500;margin:0;letter-spacing:-0.01em;}
+  button,input,select,textarea{font-family:var(--font-mono);color:var(--ink);}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;}
+
+  /* ---- Masthead ---- */
+  .masthead{border-bottom:1px solid var(--rule);padding:28px 0 22px;}
+  .masthead .row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .brand h1{font-size:2.1rem;}
+  .brand .mark{font-size:1.5rem;}
+  .tagline{color:var(--ink-muted);font-size:.85rem;margin-top:6px;max-width:44ch;line-height:1.5;}
+  .theme-toggle{border:1px solid var(--rule);background:var(--surface);color:var(--ink);
+    border-radius:0;padding:8px 12px;font-size:.78rem;cursor:pointer;white-space:nowrap;}
+  .theme-toggle:hover{background:var(--surface-hover);}
+  .search-row{margin-top:20px;}
+  .search-row input{width:100%;padding:12px 14px;border:1px solid var(--rule);background:var(--surface);
+    font-size:.9rem;outline:none;}
+  .search-row input:focus{border-color:var(--accent);}
+
+  /* ---- Category rail ---- */
+  .category-rail{display:flex;flex-wrap:wrap;gap:8px;padding:16px 0;border-bottom:1px solid var(--rule);}
+  .chip{border:1px solid var(--rule);background:transparent;color:var(--ink-muted);padding:6px 12px;
+    font-size:.76rem;cursor:pointer;border-radius:0;}
+  .chip.active{border-color:var(--accent);color:var(--ink);background:var(--surface);}
+  .chip:hover{color:var(--ink);}
+
+  /* ---- Tool ledger rows ---- */
+  .tool-list{padding:6px 0 40px;}
+  .tool-row{display:flex;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule);
+    cursor:pointer;}
+  .tool-row:hover{background:var(--surface-hover);}
+  .tool-row .idx{font-size:.78rem;color:var(--ink-muted);width:26px;flex-shrink:0;}
+  .tool-row .info{flex:1;min-width:0;}
+  .tool-row .info h3{font-size:1.15rem;}
+  .tool-row .info p{margin:4px 0 0;color:var(--ink-muted);font-size:.82rem;}
+  .tool-row .tag{font-size:.68rem;color:var(--accent);flex-shrink:0;}
+  .tool-row .arrow{color:var(--ink-muted);flex-shrink:0;}
+  .empty-note{padding:40px 0;color:var(--ink-muted);font-size:.85rem;}
+
+  /* ---- Tool panels ---- */
+  .tool-panel{padding:24px 0 56px;}
+  .tool-panel.hidden{display:none;}
+  .back-btn{border:none;background:none;color:var(--ink-muted);cursor:pointer;font-size:.8rem;
+    padding:0;margin-bottom:18px;display:inline-flex;align-items:center;gap:6px;}
+  .back-btn:hover{color:var(--ink);}
+  .panel-head h2{font-size:1.6rem;}
+  .panel-head p{color:var(--ink-muted);font-size:.85rem;margin-top:6px;max-width:60ch;line-height:1.5;}
+  .panel-body{margin-top:24px;display:flex;flex-direction:column;gap:16px;}
+  .field label{display:block;font-size:.75rem;color:var(--ink-muted);margin-bottom:6px;}
+  .field textarea,.field input[type=text],.field input[type=number],.field input[type=date],.field select{
+    width:100%;padding:11px 12px;border:1px solid var(--rule);background:var(--surface);font-size:.9rem;outline:none;}
+  .field textarea:focus,.field input:focus,.field select:focus{border-color:var(--accent);}
+  .field textarea{min-height:130px;resize:vertical;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  @media (max-width:560px){.row2,.row3{grid-template-columns:1fr;}}
+  .btn{border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);
+    padding:11px 18px;font-size:.85rem;cursor:pointer;border-radius:0;font-family:var(--font-mono);}
+  .btn:hover{opacity:.88;}
+  .btn.secondary{background:transparent;color:var(--ink);border-color:var(--rule);}
+  .btn.secondary:hover{background:var(--surface-hover);}
+  .btn-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .result-box{border:1px solid var(--rule);background:var(--bg-elevated);padding:16px;font-size:.9rem;}
+  .result-box .big{font-family:var(--font-display);font-size:1.7rem;color:var(--accent);}
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:1px;
+    background:var(--rule);border:1px solid var(--rule);}
+  .stat{background:var(--surface);padding:14px;}
+  .stat .n{font-family:var(--font-display);font-size:1.5rem;color:var(--accent);}
+  .stat .l{font-size:.7rem;color:var(--ink-muted);margin-top:2px;}
+  .checks{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;}
+  .checks label{display:flex;align-items:center;gap:6px;color:var(--ink-muted);}
+  .slider-row{display:flex;align-items:center;gap:12px;}
+  .slider-row input[type=range]{flex:1;accent-color:var(--accent);}
+  .slider-row .val{font-size:.85rem;min-width:34px;text-align:right;}
+  .mono-out{font-family:var(--font-mono);white-space:pre-wrap;word-break:break-word;font-size:.82rem;
+    border:1px solid var(--rule);background:var(--bg-elevated);padding:14px;min-height:60px;}
+  .err{color:var(--danger);font-size:.82rem;}
+  .ok{color:var(--good);font-size:.82rem;}
+  #qrCanvasWrap{display:flex;justify-content:center;padding:20px;border:1px solid var(--rule);background:#fff;}
+  .drop-zone{border:1px dashed var(--rule);padding:30px;text-align:center;color:var(--ink-muted);
+    font-size:.82rem;cursor:pointer;background:var(--bg-elevated);}
+  .drop-zone.drag{border-color:var(--accent);color:var(--ink);}
+  .img-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:560px){.img-compare{grid-template-columns:1fr;}}
+  .img-compare figure{margin:0;border:1px solid var(--rule);}
+  .img-compare img{width:100%;display:block;}
+  .img-compare figcaption{padding:8px 10px;font-size:.75rem;color:var(--ink-muted);border-top:1px solid var(--rule);}
+  .subject-rows{display:flex;flex-direction:column;gap:10px;}
+  .subject-row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:10px;align-items:center;}
+  @media (max-width:560px){.subject-row{grid-template-columns:1fr 1fr;}}
+  .remove-row{border:1px solid var(--rule);background:transparent;color:var(--ink-muted);cursor:pointer;
+    padding:8px 10px;font-size:.75rem;}
+
+  footer{border-top:1px solid var(--rule);padding:30px 0 40px;color:var(--ink-muted);font-size:.78rem;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  /* ---- Hero illustration ---- */
+  body{background-image:radial-gradient(var(--rule) 1px, transparent 1px);background-size:22px 22px;background-attachment:fixed;}
+  .hero-illus{width:120px;height:120px;flex-shrink:0;}
+  .hero-illus svg{width:100%;height:100%;}
+  .masthead .row{align-items:center;}
+  .brand-block{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+
+  /* ---- Feature strip ---- */
+  .feature-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);
+    border:1px solid var(--rule);margin:20px 0 0;}
+  @media (max-width:640px){.feature-strip{grid-template-columns:1fr;}}
+  .feature-item{background:var(--bg-elevated);padding:16px 18px;display:flex;align-items:flex-start;gap:12px;}
+  .feature-item svg{flex-shrink:0;width:22px;height:22px;color:var(--accent);}
+  .feature-item h4{font-family:var(--font-mono);font-size:.82rem;font-weight:600;margin:0 0 3px;}
+  .feature-item p{margin:0;font-size:.74rem;color:var(--ink-muted);line-height:1.4;}
+
+  /* ---- Tool row icon ---- */
+  .tool-row .icon{width:30px;height:30px;flex-shrink:0;border:1px solid var(--rule);display:flex;
+    align-items:center;justify-content:center;color:var(--accent);background:var(--bg-elevated);}
+  .tool-row .icon svg{width:16px;height:16px;}
+
+  /* ---- Panel icon badge ---- */
+  .panel-head{display:flex;align-items:flex-start;gap:16px;}
+  .panel-icon{width:46px;height:46px;border:1px solid var(--rule);background:var(--bg-elevated);
+    display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;}
+  .panel-icon svg{width:24px;height:24px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="row">
+      <div class="brand-block">
+        <div class="hero-illus" aria-hidden="true">
+          <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="58" stroke="var(--rule)" stroke-width="1"/>
+            <g stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M40 78 L74 44a8 8 0 0 0 0-11.3l-1.7-1.7a8 8 0 0 0-11.3 0L27 65"/>
+              <circle cx="33" cy="72" r="7"/>
+              <path d="M62 33 L67 28" />
+            </g>
+            <g stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7">
+              <rect x="66" y="60" width="30" height="9" rx="1.5" transform="rotate(35 66 60)"/>
+              <circle cx="88" cy="82" r="3" fill="var(--ink)" stroke="none"/>
+            </g>
+            <g stroke="var(--ink)" stroke-width="2" opacity="0.5">
+              <path d="M78 34 h14 M85 27 v14" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+        <div>
+          <div class="brand"><h1>ToolCrate</h1></div>
+          <p class="tagline">Ten free tools that run entirely in your browser. Nothing you type or upload is ever sent to a server — no signup, no file limits, no waiting.</p>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
+    </div>
+    <div class="search-row">
+      <input id="toolSearch" type="text" placeholder="Search a tool — word counter, QR code, unit convert…" autocomplete="off">
+    </div>
+    <div class="feature-strip">
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div><h4>Nothing is uploaded</h4><p>Every tool runs in your browser. Your files and text never touch a server.</p></div>
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <div><h4>No signup, no waiting</h4><p>Open a tool and use it immediately. No account, no email, no queue.</p></div>
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 12l4-4M4 12l4 4"/></svg>
+        <div><h4>No file-size traps</h4><p>No hidden caps pushing you toward a paid plan. Free means free.</p></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="category-rail" id="categoryRail">
+    <button class="chip active" data-cat="all">All tools</button>
+    <button class="chip" data-cat="text">Text</button>
+    <button class="chip" data-cat="image">Image</button>
+    <button class="chip" data-cat="numbers">Numbers</button>
+    <button class="chip" data-cat="dev">Dev &amp; utility</button>
+  </nav>
+
+  <section class="tool-list" id="toolList"></section>
+
+  <!-- ===================== PANELS ===================== -->
+
+  <!-- 1. Word counter -->
+  <section class="tool-panel hidden" id="panel-word-counter" data-title="Word &amp; Character Counter">
+    <button class="back-btn">← Back to all tools</button>
+    <div class="panel-head">
+      <h2>Word &amp; character counter</h2>
+      <p>Paste or type text below. Counts update as you type — nothing is stored or uploaded.</p>
+    </div>
+    <div class="panel-body">
+      <div class="field"><textarea id="wcInput" placeholder="Start typing or paste your text here…"></textarea></div>
+      <div class="stat-grid">
+        <div class="stat"><div class="n" id="wcWords">0</div><div class="l">words</div></div>
+        <div class="stat"><div class="n" id="wcChars">0</div><div class="l">characters</div></div>
+        <div class="stat"><div class="n" id="wcCharsNS">0</div><div class="l">chars, no spaces</div></div>
+        <div class="stat"><div class="n" id="wcSentences">0</div><div class="l">sentences</div></div>
+        <div class="stat"><div class="n" id="wcParas">0</div><div class="l">paragraphs</div></div>
+        <div class="stat"><div class="n" id="wcReadTime">0s</div><div class="l">read time</div></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn secondary" id="wcClear" type="button">Clear</button>
+        <button class="btn secondary" id="wcCopy" type="button">Copy text</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Case converter -->
+  <section class="tool-panel hidden" id="panel-case-converter" data-title="Case Converter">
+    <button class="back-btn">← Back to all tools</button>
+    <div class="panel-head">
+      <h2>Case converter</h2>
+      <p>Switch text between UPPERCASE, lowercase, Title Case and Sentence case.</p>
+    </div>
+    <div class="panel-body">
+      <div class="field"><textarea id="ccInput" placeholder="Type or paste text…"></textarea></div>
+      <div class="btn-row">
+        <button class="btn secondary" data-case="upper" type="button">UPPERCASE</button>
+        <button class="btn secondary" data-case="lower" type="button">lowercase</button>
+        <button class="btn secondary" data-case="title" type="button">Title Case</button>
+        <button class="btn secondary" data-case="sentence" type="button">Sentence case</button>
+      </div>
+      <div class="btn-row"><button class="btn" id="ccCopy" type="button">Copy result</button></div>
+    </div>
+  </section>
+
+  <!-- 3. Unit converter -->
+  <section class="tool-panel hidden" id="panel-unit-converter" data-title="Unit Converter">
+    <button class="back-btn">← Back to all tools</button>
+    <div class="panel-head">
+      <h2>Unit converter</h2>
+      <p>Convert length, weight, temperature and volume between common units.</p>
+    </div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="ucCategory">Category</label>
+        <select id="ucCategory">
+          <option value="length">Length</option>
+          <option value="weight">Weight</option>
+          <option value="temperature">Temperature</option>
+          <option value="volume">Volume</option>
+        </select>
+      </div>
+      <div class="row3">
+        <div class="field">
+          <label for="ucValue">Value</label>
+          <input type="number" id="ucValue" value="1">
+        </div>
+        <div class="field">
+          <label for="ucFrom">From</label>
+          <select id="ucFrom"></select>
+        </div>
+        <div class="field">
+          <label for="ucTo">To</label>
+          <select id="ucTo"></select>
+        </div>
+      </div>
+      <div class="result-box">Result: <span class="big" id="ucResult">—</span></div>
+    </div>
+  </section>
+
+  <!-- 4. QR generator -->
+  <section class="tool-panel hidden" id="panel-qr-generator" data-title="QR Code Generator">
+    <button class="back-btn">← Back to all tools</button>
+    <div class="panel-head">
+      <h2>QR code generator</h2>
+      <p>Turn any link or text into a downloadable QR code. Generated locally in your browser.</p>
+    </div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="qrInput">Text or URL</label>
+        <input type="text" id="qrInput" placeholder="https://example.com" value="https://example.com">
+      </div>
+      <div id="qrCanvasWrap"><div id="qrcode"></div></div>
+      <div class="btn-row"><button class="btn" id="qrDownload" type="button">Download PNG</button></div>
+    </div>
+  </section>
+
+  <!-- 5. Password generator -->
+  <section class="tool-panel hidden" id="panel-password-generator" data-title="Password Generator">
+    <button class="back-btn">← Back to all tools</button>
+    <div class="panel-head">
+      <h2>Password generator</h2>
+      <p>Create a strong random password. Generated on your device, never transmitted.</p>
+    </div>
+    <div class="panel-body">
+      <div class="mono-out" id="pgOutput" style="font-size:1.1rem;text-align:center;">—</div>
+      <div class="field">
+        <label for="pgLength">Length</label>
+        <div class="slider-row">
+          <input type="range" id="pgLength" min="6" max="40" value="16">
+          <span class="val" id="pgLengthVal">16</span>
+        </div>
+      </div>
+      <div class="checks">
+        <label><input type="checkbox" id="pgUpper" checked> Uppercase (A–Z)</label>
+        <label><input type="checkbox" id="pgLower" checked> Lowercase (a–z)</label>
+        <label><input type="checkbox" id="pgNumbers" checked> Numbers (0–9)</label>
+        <label><input type="checkbox" id="pgSymbols"> Symbols (!@#$)</label>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="pgGenerate" type="button">Generate</button>
+        <button class="btn secondary" id="pgCopy" type="button">Copy</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Image compressor -->
+  <section class="tool-panel hidden" id="panel-image-compressor" data-title="Image Compressor">
+    <button class="back-btn">← Back to all tools</button>
+    <div class="panel-head">
+      <h2>Image compressor</h2>
+      <p>Shrink a photo's file size before emailing or uploading it. Processed locally — the image never leaves your device.</p>
+    </div>
+    <div class="panel-body">
+      <div class="drop-zone" id="icDrop">Click to choose an image, or drag one here</div>
+      <input type="file" id="icFile" accept="image/*" style="display:none;">
+      <div id="icControls" style="display:none;">
+        <div class="field">
+          <label for="icQuality">Quality</label>
+          <div class="slider-row">
+            <input type="range" id="icQuality" min="10" max="100" value="70">
+            <span class="val" id="icQualityVal">70%</span>
+          </div>
+        </div>
+        <div class="img-compare">
+          <figure><img id="icOriginalImg"><figcaption id="icOriginalCap">Original</figcaption></figure>
+          <figure><img id="icCompressedImg"><figcaption id="icCompressedCap">Compressed</figcaption></figure>
+        </div>
+        <div class="btn-row"><button class="btn" id="icDownload" type="button">Download compressed image</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. JSON formatter -->
+  <section class="tool-panel hidden" id="panel-json-formatter" data-title="JSON Formatter &amp; Validator">
+    <button class="back-btn">← Back to all tools</button>
+    <div class="panel-head">
+      <h2>JSON formatter &amp; validator</h2>
+      <p>Paste JSON to pretty-print, validate or minify it.</p>
+    </div>
+    <div class="panel-body">
+      <div class="field"><textarea id="jfInput" placeholder='{"example": true, "items": [1, 2, 3]}'></textarea></div>
+      <div class="btn-row">
+        <button class="btn" id="jfFormat" type="button">Format</button>
+        <button class="btn secondary" id="jfMinify" type="button">Minify</button>
+        <button class="btn secondary" id="jfCopy" type="button">Copy output</button>
+      </div>
+      <div id="jfStatus"></div>
+      <div class="mono-out" id="jfOutput">Output will appear here…</div>
+    </div>
+  </section>
+
+  <!-- 8. Age calculator -->
+  <section class="tool-panel hidden" id="panel-age-calculator" data-title="Age Calculator">
+    <button class="back-btn">← Back to all tools</button>
+    <div class="panel-head">
+      <h2>Age calculator</h2>
+      <p>Find exact age in years, months and days from a date of birth.</p>
+    </div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="acDob">Date of birth</label>
+        <input type="date" id="acDob">
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><div class="n" id="acYears">—</div><div class="l">years</div></div>
+        <div class="stat"><div class="n" id="acMonths">—</div><div class="l">months</div></div>
+        <div class="stat"><div class="n" id="acDays">—</div><div class="l">days</div></div>
+        <div class="stat"><div class="n" id="acTotalDays">—</div><div class="l">total days lived</div></div>
+      </div>
+      <div class="result-box" id="acNextBday">Enter a date of birth to see your next birthday countdown.</div>
+    </div>
+  </section>
+
+  <!-- 9. Discount & tax calculator -->
+  <section class="tool-panel hidden" id="panel-discount-calculator" data-title="Discount &amp; Tax Calculator">
+    <button class="back-btn">← Back to all tools</button>
+    <div class="panel-head">
+      <h2>Discount &amp; tax calculator</h2>
+      <p>Work out a final price after a discount and tax, and see exactly how much you save.</p>
+    </div>
+    <div class="panel-body">
+      <div class="row3">
+        <div class="field"><label for="dcPrice">Original price</label><input type="number" id="dcPrice" value="1000"></div>
+        <div class="field"><label for="dcDiscount">Discount %</label><input type="number" id="dcDiscount" value="20"></div>
+        <div class="field"><label for="dcTax">Tax % (optional)</label><input type="number" id="dcTax" value="0"></div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><div class="n" id="dcSaved">—</div><div class="l">you save</div></div>
+        <div class="stat"><div class="n" id="dcFinal">—</div><div class="l">final price</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Aggregate / percentage calculator -->
+  <section class="tool-panel hidden" id="panel-aggregate-calculator" data-title="Percentage &amp; Aggregate Calculator">
+    <button class="back-btn">← Back to all tools</button>
+    <div class="panel-head">
+      <h2>Percentage &amp; aggregate calculator</h2>
+      <p>Add each subject's obtained and total marks to get your overall percentage.</p>
+    </div>
+    <div class="panel-body">
+      <div class="subject-rows" id="agRows"></div>
+      <div class="btn-row"><button class="btn secondary" id="agAddRow" type="button">+ Add subject</button></div>
+      <div class="result-box">Overall percentage: <span class="big" id="agResult">—</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>ToolCrate — built for people, not ads.</span>
+    <span>All tools run on your device. Nothing is uploaded, ever.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- Theme ---------------- */
+  var themeBtn = document.getElementById('themeToggle');
+  function applyTheme(t){
+    if(t){ document.documentElement.setAttribute('data-theme', t); }
+    else { document.documentElement.removeAttribute('data-theme'); }
+    themeBtn.textContent = (t === 'dark') ? 'Light mode' : 'Dark mode';
+  }
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem('toolcrate-theme'); } catch(e){}
+  applyTheme(savedTheme);
+  themeBtn.addEventListener('click', function(){
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('toolcrate-theme', next); } catch(e){}
+  });
+
+  /* ---------------- Tool registry ---------------- */
+  var TOOLS = [
+    {id:'word-counter', name:'Word & Character Counter', desc:'Live word, character and sentence counts as you type.', cat:'text'},
+    {id:'case-converter', name:'Case Converter', desc:'UPPERCASE, lowercase, Title Case, Sentence case.', cat:'text'},
+    {id:'unit-converter', name:'Unit Converter', desc:'Length, weight, temperature and volume, instantly.', cat:'numbers'},
+    {id:'qr-generator', name:'QR Code Generator', desc:'Turn any link or text into a downloadable QR code.', cat:'dev'},
+    {id:'password-generator', name:'Password Generator', desc:'Strong random passwords with custom rules.', cat:'dev'},
+    {id:'image-compressor', name:'Image Compressor', desc:'Shrink a photo\u2019s file size before sharing it.', cat:'image'},
+    {id:'json-formatter', name:'JSON Formatter & Validator', desc:'Pretty-print, validate or minify JSON.', cat:'dev'},
+    {id:'age-calculator', name:'Age Calculator', desc:'Exact age in years, months and days from a birthdate.', cat:'numbers'},
+    {id:'discount-calculator', name:'Discount & Tax Calculator', desc:'Final price after a discount and tax, in one step.', cat:'numbers'},
+    {id:'aggregate-calculator', name:'Percentage & Aggregate Calculator', desc:'Overall percentage across multiple subjects.', cat:'numbers'}
+  ];
+
+  var CAT_ICONS = {
+    text: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg>',
+    image: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="1"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg>',
+    numbers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg>',
+    dev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg>'
+  };
+
+  var listEl = document.getElementById('toolList');
+  var currentCat = 'all';
+  var currentQuery = '';
+
+  function renderList(){
+    listEl.innerHTML = '';
+    var q = currentQuery.trim().toLowerCase();
+    var filtered = TOOLS.filter(function(t){
+      var catOk = currentCat === 'all' || t.cat === currentCat;
+      var qOk = !q || (t.name.toLowerCase().indexOf(q) > -1 || t.desc.toLowerCase().indexOf(q) > -1);
+      return catOk && qOk;
+    });
+    if(filtered.length === 0){
+      var empty = document.createElement('div');
+      empty.className = 'empty-note';
+      empty.textContent = 'No tools match that search.';
+      listEl.appendChild(empty);
+      return;
+    }
+    filtered.forEach(function(t, i){
+      var row = document.createElement('div');
+      row.className = 'tool-row';
+      row.setAttribute('data-tool', t.id);
+      row.innerHTML =
+        '<div class="idx">' + String(i+1).padStart(2,'0') + '</div>' +
+        '<div class="icon">' + (CAT_ICONS[t.cat] || '') + '</div>' +
+        '<div class="info"><h3>' + t.name + '</h3><p>' + t.desc + '</p></div>' +
+        '<div class="tag">' + t.cat + '</div>' +
+        '<div class="arrow">&#8594;</div>';
+      row.addEventListener('click', function(){ openTool(t.id); });
+      listEl.appendChild(row);
+    });
+  }
+  renderList();
+
+  /* Inject icon badges into each panel header */
+  TOOLS.forEach(function(t){
+    var head = document.querySelector('#panel-' + t.id + ' .panel-head');
+    if(!head) return;
+    var textWrap = document.createElement('div');
+    while(head.firstChild){ textWrap.appendChild(head.firstChild); }
+    var badge = document.createElement('div');
+    badge.className = 'panel-icon';
+    badge.innerHTML = CAT_ICONS[t.cat] || '';
+    head.appendChild(badge);
+    head.appendChild(textWrap);
+  });
+
+  document.getElementById('categoryRail').addEventListener('click', function(e){
+    var btn = e.target.closest('.chip');
+    if(!btn) return;
+    document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+    btn.classList.add('active');
+    currentCat = btn.getAttribute('data-cat');
+    renderList();
+  });
+  document.getElementById('toolSearch').addEventListener('input', function(e){
+    currentQuery = e.target.value;
+    renderList();
+  });
+
+  /* ---------------- Panel routing ---------------- */
+  var gridSection = document.getElementById('toolList');
+  var railSection = document.getElementById('categoryRail');
+  var searchRow = document.querySelector('.search-row');
+  var panels = document.querySelectorAll('.tool-panel');
+
+  function openTool(id){
+    panels.forEach(function(p){ p.classList.add('hidden'); });
+    var panel = document.getElementById('panel-' + id);
+    if(panel){
+      panel.classList.remove('hidden');
+      gridSection.style.display = 'none';
+      railSection.style.display = 'none';
+      searchRow.style.display = 'none';
+      window.location.hash = id;
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  }
+  function closeTool(){
+    panels.forEach(function(p){ p.classList.add('hidden'); });
+    gridSection.style.display = '';
+    railSection.style.display = '';
+    searchRow.style.display = '';
+    window.location.hash = '';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  document.querySelectorAll('.back-btn').forEach(function(b){
+    b.addEventListener('click', closeTool);
+  });
+  window.addEventListener('hashchange', function(){
+    var id = window.location.hash.replace('#','');
+    if(id && document.getElementById('panel-' + id)) openTool(id);
+    else if(!id) closeTool();
+  });
+  (function initFromHash(){
+    var id = window.location.hash.replace('#','');
+    if(id && document.getElementById('panel-' + id)) openTool(id);
+  })();
+
+  /* ================= TOOL 1: Word counter ================= */
+  var wcInput = document.getElementById('wcInput');
+  function updateWC(){
+    var text = wcInput.value;
+    var trimmed = text.trim();
+    var words = trimmed ? trimmed.split(/\s+/).length : 0;
+    var chars = text.length;
+    var charsNS = text.replace(/\s/g,'').length;
+    var sentences = trimmed ? (trimmed.match(/[.!?]+(\s|$)/g) || []).length || (trimmed ? 1 : 0) : 0;
+    var paras = trimmed ? trimmed.split(/\n+/).filter(function(p){return p.trim().length>0;}).length : 0;
+    var minutes = words / 200;
+    var readTime = minutes < 1 ? Math.max(1, Math.round(minutes*60)) + 's' : minutes.toFixed(1) + 'm';
+    document.getElementById('wcWords').textContent = words;
+    document.getElementById('wcChars').textContent = chars;
+    document.getElementById('wcCharsNS').textContent = charsNS;
+    document.getElementById('wcSentences').textContent = sentences;
+    document.getElementById('wcParas').textContent = paras;
+    document.getElementById('wcReadTime').textContent = readTime;
+  }
+  wcInput.addEventListener('input', updateWC);
+  document.getElementById('wcClear').addEventListener('click', function(){ wcInput.value=''; updateWC(); });
+  document.getElementById('wcCopy').addEventListener('click', function(){
+    navigator.clipboard && navigator.clipboard.writeText(wcInput.value).catch(function(){});
+  });
+  updateWC();
+
+  /* ================= TOOL 2: Case converter ================= */
+  var ccInput = document.getElementById('ccInput');
+  document.querySelectorAll('[data-case]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var mode = btn.getAttribute('data-case');
+      var v = ccInput.value;
+      if(mode === 'upper') v = v.toUpperCase();
+      else if(mode === 'lower') v = v.toLowerCase();
+      else if(mode === 'title') v = v.replace(/\w\S*/g, function(t){ return t.charAt(0).toUpperCase() + t.substr(1).toLowerCase(); });
+      else if(mode === 'sentence') v = v.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, function(t){ return t.toUpperCase(); });
+      ccInput.value = v;
+    });
+  });
+  document.getElementById('ccCopy').addEventListener('click', function(){
+    navigator.clipboard && navigator.clipboard.writeText(ccInput.value).catch(function(){});
+  });
+
+  /* ================= TOOL 3: Unit converter ================= */
+  var UNIT_DATA = {
+    length: {base:'m', units:{
+      m:1, km:1000, cm:0.01, mm:0.001, mile:1609.34, yard:0.9144, foot:0.3048, inch:0.0254
+    }},
+    weight: {base:'kg', units:{
+      kg:1, g:0.001, mg:0.000001, ton:1000, pound:0.453592, ounce:0.0283495
+    }},
+    volume: {base:'l', units:{
+      l:1, ml:0.001, gallon:3.78541, quart:0.946353, cup:0.24, tbsp:0.0147868, tsp:0.00492892
+    }},
+    temperature: {base:'c', units:{c:1,f:1,k:1}}
+  };
+  var ucCategory = document.getElementById('ucCategory');
+  var ucFrom = document.getElementById('ucFrom');
+  var ucTo = document.getElementById('ucTo');
+  var ucValue = document.getElementById('ucValue');
+  var ucResult = document.getElementById('ucResult');
+
+  function populateUnits(){
+    var cat = ucCategory.value;
+    var units = Object.keys(UNIT_DATA[cat].units);
+    ucFrom.innerHTML = units.map(function(u){ return '<option value="'+u+'">'+u+'</option>'; }).join('');
+    ucTo.innerHTML = units.map(function(u){ return '<option value="'+u+'">'+u+'</option>'; }).join('');
+    ucTo.selectedIndex = units.length > 1 ? 1 : 0;
+    computeUC();
+  }
+  function tempConvert(v, from, to){
+    var c;
+    if(from === 'c') c = v;
+    else if(from === 'f') c = (v-32) * 5/9;
+    else c = v - 273.15;
+    if(to === 'c') return c;
+    if(to === 'f') return c * 9/5 + 32;
+    return c + 273.15;
+  }
+  function computeUC(){
+    var cat = ucCategory.value;
+    var val = parseFloat(ucValue.value);
+    if(isNaN(val)){ ucResult.textContent = '—'; return; }
+    var from = ucFrom.value, to = ucTo.value;
+    var out;
+    if(cat === 'temperature'){
+      out = tempConvert(val, from, to);
+    } else {
+      var data = UNIT_DATA[cat].units;
+      var baseVal = val * data[from];
+      out = baseVal / data[to];
+    }
+    ucResult.textContent = (Math.round(out * 100000) / 100000) + ' ' + to;
+  }
+  ucCategory.addEventListener('change', populateUnits);
+  [ucFrom, ucTo, ucValue].forEach(function(el){ el.addEventListener('input', computeUC); });
+  populateUnits();
+
+  /* ================= TOOL 4: QR generator ================= */
+  var qrInput = document.getElementById('qrInput');
+  var qrContainer = document.getElementById('qrcode');
+  var qrObj = null;
+  function renderQR(){
+    qrContainer.innerHTML = '';
+    try{
+      qrObj = new QRCode(qrContainer, {
+        text: qrInput.value || ' ',
+        width: 220, height: 220,
+        colorDark: '#10161A', colorLight: '#ffffff'
+      });
+    }catch(e){}
+  }
+  qrInput.addEventListener('input', renderQR);
+  document.getElementById('qrDownload').addEventListener('click', function(){
+    var canvas = qrContainer.querySelector('canvas');
+    if(!canvas) return;
+    var link = document.createElement('a');
+    link.download = 'toolcrate-qr-code.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+  renderQR();
+
+  /* ================= TOOL 5: Password generator ================= */
+  var pgLength = document.getElementById('pgLength');
+  var pgLengthVal = document.getElementById('pgLengthVal');
+  var pgOutput = document.getElementById('pgOutput');
+  function genPassword(){
+    var len = parseInt(pgLength.value, 10);
+    var upper = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    var lower = 'abcdefghijkmnpqrstuvwxyz';
+    var nums = '23456789';
+    var syms = '!@#$%^&*_-+=?';
+    var pool = '';
+    if(document.getElementById('pgUpper').checked) pool += upper;
+    if(document.getElementById('pgLower').checked) pool += lower;
+    if(document.getElementById('pgNumbers').checked) pool += nums;
+    if(document.getElementById('pgSymbols').checked) pool += syms;
+    if(!pool){ pgOutput.textContent = 'Select at least one character type.'; return; }
+    var arr = new Uint32Array(len);
+    window.crypto.getRandomValues(arr);
+    var out = '';
+    for(var i=0;i<len;i++){ out += pool[arr[i] % pool.length]; }
+    pgOutput.textContent = out;
+  }
+  pgLength.addEventListener('input', function(){ pgLengthVal.textContent = pgLength.value; genPassword(); });
+  ['pgUpper','pgLower','pgNumbers','pgSymbols'].forEach(function(id){
+    document.getElementById(id).addEventListener('change', genPassword);
+  });
+  document.getElementById('pgGenerate').addEventListener('click', genPassword);
+  document.getElementById('pgCopy').addEventListener('click', function(){
+    navigator.clipboard && navigator.clipboard.writeText(pgOutput.textContent).catch(function(){});
+  });
+  genPassword();
+
+  /* ================= TOOL 6: Image compressor ================= */
+  var icDrop = document.getElementById('icDrop');
+  var icFile = document.getElementById('icFile');
+  var icControls = document.getElementById('icControls');
+  var icQuality = document.getElementById('icQuality');
+  var icQualityVal = document.getElementById('icQualityVal');
+  var icOriginalImg = document.getElementById('icOriginalImg');
+  var icCompressedImg = document.getElementById('icCompressedImg');
+  var icOriginalCap = document.getElementById('icOriginalCap');
+  var icCompressedCap = document.getElementById('icCompressedCap');
+  var icDownloadBtn = document.getElementById('icDownload');
+  var currentImage = null, currentFileName = 'image', originalSize = 0;
+
+  icDrop.addEventListener('click', function(){ icFile.click(); });
+  icDrop.addEventListener('dragover', function(e){ e.preventDefault(); icDrop.classList.add('drag'); });
+  icDrop.addEventListener('dragleave', function(){ icDrop.classList.remove('drag'); });
+  icDrop.addEventListener('drop', function(e){
+    e.preventDefault(); icDrop.classList.remove('drag');
+    if(e.dataTransfer.files && e.dataTransfer.files[0]) handleImageFile(e.dataTransfer.files[0]);
+  });
+  icFile.addEventListener('change', function(){
+    if(icFile.files && icFile.files[0]) handleImageFile(icFile.files[0]);
+  });
+
+  function handleImageFile(file){
+    if(!file.type.startsWith('image/')) return;
+    originalSize = file.size;
+    currentFileName = file.name.replace(/\.[^.]+$/, '');
+    var reader = new FileReader();
+    reader.onload = function(e){
+      currentImage = new Image();
+      currentImage.onload = function(){
+        icOriginalImg.src = e.target.result;
+        icOriginalCap.textContent = 'Original — ' + formatBytes(originalSize);
+        icControls.style.display = 'block';
+        compressImage();
+      };
+      currentImage.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+  function formatBytes(b){
+    if(b < 1024) return b + ' B';
+    if(b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(2) + ' MB';
+  }
+  function compressImage(){
+    if(!currentImage) return;
+    var canvas = document.createElement('canvas');
+    canvas.width = currentImage.width;
+    canvas.height = currentImage.height;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(currentImage, 0, 0);
+    var quality = parseInt(icQuality.value, 10) / 100;
+    var dataUrl = canvas.toDataURL('image/jpeg', quality);
+    icCompressedImg.src = dataUrl;
+    var approxBytes = Math.round((dataUrl.length - 'data:image/jpeg;base64,'.length) * 0.75);
+    icCompressedCap.textContent = 'Compressed — ' + formatBytes(approxBytes);
+    icCompressedImg.dataset.href = dataUrl;
+  }
+  icQuality.addEventListener('input', function(){
+    icQualityVal.textContent = icQuality.value + '%';
+    compressImage();
+  });
+  icDownloadBtn.addEventListener('click', function(){
+    var url = icCompressedImg.dataset.href;
+    if(!url) return;
+    var link = document.createElement('a');
+    link.download = currentFileName + '-compressed.jpg';
+    link.href = url;
+    link.click();
+  });
+
+  /* ================= TOOL 7: JSON formatter ================= */
+  var jfInput = document.getElementById('jfInput');
+  var jfOutput = document.getElementById('jfOutput');
+  var jfStatus = document.getElementById('jfStatus');
+  function jfParse(){
+    try{
+      var parsed = JSON.parse(jfInput.value);
+      jfStatus.innerHTML = '<span class="ok">Valid JSON</span>';
+      return parsed;
+    }catch(e){
+      jfStatus.innerHTML = '<span class="err">Invalid JSON — ' + e.message + '</span>';
+      return null;
+    }
+  }
+  document.getElementById('jfFormat').addEventListener('click', function(){
+    var p = jfParse();
+    if(p !== null) jfOutput.textContent = JSON.stringify(p, null, 2);
+  });
+  document.getElementById('jfMinify').addEventListener('click', function(){
+    var p = jfParse();
+    if(p !== null) jfOutput.textContent = JSON.stringify(p);
+  });
+  document.getElementById('jfCopy').addEventListener('click', function(){
+    navigator.clipboard && navigator.clipboard.writeText(jfOutput.textContent).catch(function(){});
+  });
+
+  /* ================= TOOL 8: Age calculator ================= */
+  var acDob = document.getElementById('acDob');
+  acDob.addEventListener('change', function(){
+    if(!acDob.value) return;
+    var dob = new Date(acDob.value);
+    var now = new Date();
+    if(dob > now){
+      document.getElementById('acNextBday').textContent = 'That date is in the future.';
+      return;
+    }
+    var years = now.getFullYear() - dob.getFullYear();
+    var months = now.getMonth() - dob.getMonth();
+    var days = now.getDate() - dob.getDate();
+    if(days < 0){
+      months -= 1;
+      var prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+      days += prevMonth.getDate();
+    }
+    if(months < 0){ years -= 1; months += 12; }
+    var totalDays = Math.floor((now - dob) / (1000*60*60*24));
+    document.getElementById('acYears').textContent = years;
+    document.getElementById('acMonths').textContent = months;
+    document.getElementById('acDays').textContent = days;
+    document.getElementById('acTotalDays').textContent = totalDays.toLocaleString();
+
+    var nextBday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
+    if(nextBday < now) nextBday.setFullYear(now.getFullYear() + 1);
+    var daysLeft = Math.ceil((nextBday - now) / (1000*60*60*24));
+    document.getElementById('acNextBday').textContent =
+      daysLeft === 0 ? 'Happy birthday! 🎉' : daysLeft + ' day' + (daysLeft===1?'':'s') + ' until your next birthday.';
+  });
+
+  /* ================= TOOL 9: Discount calculator ================= */
+  var dcPrice = document.getElementById('dcPrice');
+  var dcDiscount = document.getElementById('dcDiscount');
+  var dcTax = document.getElementById('dcTax');
+  function computeDC(){
+    var price = parseFloat(dcPrice.value) || 0;
+    var discount = parseFloat(dcDiscount.value) || 0;
+    var tax = parseFloat(dcTax.value) || 0;
+    var afterDiscount = price - (price * discount / 100);
+    var final = afterDiscount + (afterDiscount * tax / 100);
+    var saved = price - afterDiscount;
+    document.getElementById('dcSaved').textContent = saved.toFixed(2);
+    document.getElementById('dcFinal').textContent = final.toFixed(2);
+  }
+  [dcPrice, dcDiscount, dcTax].forEach(function(el){ el.addEventListener('input', computeDC); });
+  computeDC();
+
+  /* ================= TOOL 10: Aggregate calculator ================= */
+  var agRows = document.getElementById('agRows');
+  var agResult = document.getElementById('agResult');
+  var agCount = 0;
+  function addAgRow(name){
+    agCount++;
+    var row = document.createElement('div');
+    row.className = 'subject-row';
+    row.innerHTML =
+      '<input type="text" class="ag-name" placeholder="Subject name" value="' + (name || 'Subject ' + agCount) + '">' +
+      '<input type="number" class="ag-obtained" placeholder="Obtained" value="0">' +
+      '<input type="number" class="ag-total" placeholder="Total" value="100">' +
+      '<button class="remove-row" type="button">Remove</button>';
+    row.querySelector('.remove-row').addEventListener('click', function(){ row.remove(); computeAG(); });
+    row.querySelectorAll('input').forEach(function(inp){ inp.addEventListener('input', computeAG); });
+    agRows.appendChild(row);
+  }
+  document.getElementById('agAddRow').addEventListener('click', function(){ addAgRow(); computeAG(); });
+  function computeAG(){
+    var obtainedTotal = 0, maxTotal = 0;
+    agRows.querySelectorAll('.subject-row').forEach(function(row){
+      var o = parseFloat(row.querySelector('.ag-obtained').value) || 0;
+      var t = parseFloat(row.querySelector('.ag-total').value) || 0;
+      obtainedTotal += o; maxTotal += t;
+    });
+    agResult.textContent = maxTotal > 0 ? ((obtainedTotal / maxTotal) * 100).toFixed(2) + '%' : '—';
+  }
+  addAgRow('Subject 1'); addAgRow('Subject 2'); addAgRow('Subject 3');
+  computeAG();
+
+})();
+</script>
+</body>
+</html>
