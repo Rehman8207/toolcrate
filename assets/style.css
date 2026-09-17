@@ -293,3 +293,20 @@
     transform: translateY(0);
   }
 }
+/* --- Ambient Background Upgrade --- */
+body {
+  background-color: #0d0f12 !important;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px !important;
+  color: #e4e4e7;
+}
+
+.tool-row, .calc-card, .upload-card, .upload-box {
+  background: rgba(22, 27, 34, 0.75) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
