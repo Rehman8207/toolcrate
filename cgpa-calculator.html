@@ -1,141 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="application/ld+json">
+    <!-- Primary Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGPA Calculator & GPA Calculator — Extract Semester GPA Online</title>
+<meta name="title" content="CGPA Calculator & GPA Calculator — Extract Semester GPA Online">
+<meta name="description" content="Free online CGPA Calculator & GPA Calculator. Extract your individual semester GPA from result card CGPA, calculate course-wise GPA, and plan target CGPA on a 4.0 scale. 100% free and private.">
+<meta name="keywords" content="cgpa calculator, gpa calculator, semester gpa calculator, extract semester gpa from cgpa, calculate semester gpa, target cgpa planner, university gpa calculator, college cgpa calculator, 4.0 gpa scale calculator, how to calculate gpa from cgpa">
+<meta name="author" content="ToolCrate">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://toolcrate.netlify.app/cgpa-calculator.html">
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolcrate.netlify.app/cgpa-calculator.html">
+<meta property="og:title" content="CGPA Calculator & GPA Calculator — Extract Semester GPA Online">
+<meta property="og:description" content="Calculate semester GPA, extract individual semester GPA from new result card CGPA, and plan your target grade average online.">
+<meta property="og:image" content="https://toolcrate.netlify.app/assets/preview.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://toolcrate.netlify.app/cgpa-calculator.html">
+<meta property="twitter:title" content="CGPA Calculator & GPA Calculator — Extract Semester GPA Online">
+<meta property="twitter:description" content="Calculate semester GPA, extract individual semester GPA from new result card CGPA, and plan your target grade average online.">
+<meta property="twitter:image" content="https://toolcrate.netlify.app/assets/preview.png">
+
+<!-- Structured Data (Google Schema Markup for Rich Search Snippets) -->
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How is CGPA calculated on a 4.0 scale?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Multiply each course grade point by its credit hours, add all products together, and divide the total by total credit hours."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my grade data uploaded to any external server?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. ToolCrate operates 100% client-side inside your browser. None of your marks or files leave your device."
-      }
-    }
-  ]
+  "@type": "WebApplication",
+  "name": "ToolCrate CGPA & GPA Calculator Suite",
+  "url": "https://toolcrate.netlify.app/cgpa-calculator.html",
+  "description": "Free web application to calculate semester GPA, extract individual semester GPA from overall result CGPA, and estimate required target GPA.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
 }
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CGPA & GPA Calculator — ToolCrate</title>
-  <meta name="description" content="Calculate semester GPA and overall CGPA on a 4.0 scale. Free, browser-based, no uploads or signup.">
+  <title>CGPA & Semester GPA Calculator — ToolCrate</title>
+  <meta name="description" content="Extract individual semester GPA from result card CGPA, estimate target GPA, and calculate course-wise GPA & CGPA instantly.">
   <link rel="canonical" href="https://toolcrate.netlify.app/cgpa-calculator.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <style>
-    .calc-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 8px;
-      padding: 20px;
-      margin: 20px 0;
-    }
-    .course-row {
+    .tab-buttons {
       display: flex;
       gap: 10px;
-      margin-bottom: 12px;
-      align-items: center;
-      flex-wrap: wrap;
+      margin: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 10px;
+      overflow-x: auto;
     }
-    .course-row input, .course-row select {
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ccc;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: #3b82f6;
+      color: #60a5fa;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .calc-card {
+      background: rgba(22, 27, 34, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .input-group label {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+    .input-group input, .input-group select {
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #fff;
-      padding: 10px 12px;
-      border-radius: 6px;
+      padding: 12px;
+      border-radius: 8px;
       font-family: inherit;
-      font-size: 14px;
-    }
-    .c-name { flex: 2; min-width: 140px; }
-    .c-credits { flex: 1; min-width: 90px; }
-    .c-grade { flex: 1; min-width: 110px; }
-    .btn-action {
-      background: #3b82f6;
-      color: #fff;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .btn-del {
-      background: #ef4444;
-      color: #fff;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 6px;
-      cursor: pointer;
+      font-size: 15px;
     }
     .result-box {
-      background: rgba(59, 130, 246, 0.15);
+      background: rgba(59, 130, 246, 0.12);
       border: 1px solid #3b82f6;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       text-align: center;
       margin-top: 20px;
     }
-    .result-score { font-size: 38px; font-weight: bold; color: #60a5fa; margin: 10px 0; }
-    .info-text { margin-top: 30px; line-height: 1.6; opacity: 0.85; }
+    .result-score { font-size: 34px; font-weight: bold; color: #60a5fa; margin: 8px 0; font-family: 'IBM Plex Mono', monospace; }
+    .result-details { font-size: 13px; opacity: 0.8; line-height: 1.5; }
+
+    .course-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 40px;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 600px) {
+      .course-row { grid-template-columns: 1fr 1fr 1fr 35px; }
+      .course-row input[type="text"] { display: none; }
+    }
+    .btn-action {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .btn-action:hover { background: rgba(59, 130, 246, 0.2); border-color: #3b82f6; }
+    .btn-danger { color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
+    .btn-danger:hover { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; }
   </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <p style="margin-bottom: 15px;"><a href="index.html" style="color: #60a5fa; text-decoration: none;">← Back to All Tools</a></p>
-    <h1>CGPA & GPA Calculator</h1>
-    <p class="tagline">Calculate semester GPA and overall CGPA instantly. 100% private, browser-based, no signup needed.</p>
+    <h1>GPA & CGPA Calculator Suite</h1>
+    <p class="tagline">Extract individual semester GPA from result CGPA, plan target GPA, or calculate course-wise GPA.</p>
   </header>
 
   <main>
-    <div class="calc-card">
-      <div id="courseList">
-        <div class="course-row">
-          <input type="text" placeholder="Course Name (Optional)" class="c-name">
-          <input type="number" placeholder="Credit Hours" class="c-credits" min="1" max="6" value="3">
-          <select class="c-grade">
-            <option value="4.0">A+ / A (4.0)</option>
-            <option value="3.67">A- (3.67)</option>
-            <option value="3.33">B+ (3.33)</option>
-            <option value="3.0">B (3.0)</option>
-            <option value="2.67">B- (2.67)</option>
-            <option value="2.33">C+ (2.33)</option>
-            <option value="2.0">C (2.0)</option>
-            <option value="1.67">C- (1.67)</option>
-            <option value="1.0">D (1.0)</option>
-            <option value="0.0">F (0.0)</option>
-          </select>
-          <button class="btn-del" onclick="removeRow(this)">✕</button>
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab('extractor')">🔍 Extract Semester GPA from CGPA</button>
+      <button class="tab-btn" onclick="switchTab('coursewise')">🎓 Course-wise GPA & CGPA</button>
+      <button class="tab-btn" onclick="switchTab('planner')">🎯 Target CGPA Planner</button>
+    </div>
+
+    <!-- TAB 1: EXTRACT SEMESTER GPA FROM RESULT CARD -->
+    <div id="tab-extractor" class="tab-content active">
+      <div class="calc-card">
+        <h3>Find Exact Semester GPA from New Result CGPA</h3>
+        <p style="font-size: 13px; opacity: 0.8; margin-bottom: 20px;">
+          When your result card shows the new overall CGPA, use this tool to extract what your individual GPA was for that specific semester.
+        </p>
+
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="prevCGPA">Previous CGPA (Before this semester)</label>
+            <input type="number" id="prevCGPA" placeholder="e.g. 3.20" step="0.01" min="0" max="4.0" oninput="calcExtractedGPA()">
+          </div>
+          <div class="input-group">
+            <label for="prevCredits">Previous Total Credit Hours Completed</label>
+            <input type="number" id="prevCredits" placeholder="e.g. 75 (15 cr x 5 sem)" step="1" min="0" oninput="calcExtractedGPA()">
+          </div>
+          <div class="input-group">
+            <label for="newCGPA">New Result CGPA (Written on new result card)</label>
+            <input type="number" id="newCGPA" placeholder="e.g. 3.32" step="0.01" min="0" max="4.0" oninput="calcExtractedGPA()">
+          </div>
+          <div class="input-group">
+            <label for="currCredits">Current Semester Credit Hours</label>
+            <input type="number" id="currCredits" placeholder="e.g. 15 or 16" step="1" min="1" oninput="calcExtractedGPA()">
+          </div>
         </div>
-      </div>
 
-      <div style="margin-top: 15px; display: flex; gap: 10px;">
-        <button class="btn-action" onclick="addCourseRow()">+ Add Course</button>
-        <button class="btn-action" style="background:#10b981;" onclick="calculateCGPA()">Calculate GPA</button>
-      </div>
-
-      <div class="result-box" id="resultBox" style="display:none;">
-        <h3>Your Calculated GPA / CGPA</h3>
-        <div class="result-score" id="gpaVal">0.00</div>
-        <p id="creditsVal">Total Credit Hours: 0</p>
+        <div class="result-box">
+          <div style="font-size: 14px; opacity: 0.85;">This Semester's Individual GPA</div>
+          <div class="result-score" id="extractedResult">0.00</div>
+          <div class="result-details" id="extractedDetails">Enter your values above to calculate.</div>
+        </div>
       </div>
     </div>
 
-    <section class="info-text">
-      <h2>How CGPA is Calculated</h2>
-      <p>CGPA (Cumulative Grade Point Average) is calculated by multiplying the grade point of each course by its credit hours, summing all the grade points, and dividing by the total credit hours.</p>
-    </section>
+    <!-- TAB 2: COURSE WISE CALCULATOR -->
+    <div id="tab-coursewise" class="tab-content">
+      <div class="calc-card">
+        <h3>Course-wise GPA & CGPA Calculator</h3>
+        <p style="font-size: 13px; opacity: 0.8; margin-bottom: 20px;">Enter your course grades and credit hours for the semester.</p>
+        
+        <div id="courseRowsContainer"></div>
+
+        <div style="margin-top: 15px; display: flex; gap: 10px;">
+          <button class="btn-action" onclick="addCourseRow()">➕ Add Course</button>
+          <button class="btn-action btn-danger" onclick="resetCourseRows()">🗑️ Reset</button>
+        </div>
+
+        <div class="result-box">
+          <div style="font-size: 14px; opacity: 0.85;">Calculated Semester GPA</div>
+          <div class="result-score" id="coursewiseGPA">0.00</div>
+          <div class="result-details" id="coursewiseDetails">Total Credits: 0 | Total Grade Points: 0.00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: TARGET CGPA PLANNER -->
+    <div id="tab-planner" class="tab-content">
+      <div class="calc-card">
+        <h3>Target CGPA Planner</h3>
+        <p style="font-size: 13px; opacity: 0.8; margin-bottom: 20px;">Calculate what GPA you need in your upcoming semester to achieve your target CGPA.</p>
+
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="planCurrCGPA">Current CGPA</label>
+            <input type="number" id="planCurrCGPA" placeholder="e.g. 3.00" step="0.01" min="0" max="4.0" oninput="calcTargetGPA()">
+          </div>
+          <div class="input-group">
+            <label for="planCompletedCredits">Total Credits Completed So Far</label>
+            <input type="number" id="planCompletedCredits" placeholder="e.g. 75" step="1" min="0" oninput="calcTargetGPA()">
+          </div>
+          <div class="input-group">
+            <label for="planTargetCGPA">Desired Target CGPA</label>
+            <input type="number" id="planTargetCGPA" placeholder="e.g. 3.30" step="0.01" min="0" max="4.0" oninput="calcTargetGPA()">
+          </div>
+          <div class="input-group">
+            <label for="planUpcomingCredits">Upcoming Semester Credit Hours</label>
+            <input type="number" id="planUpcomingCredits" placeholder="e.g. 15" step="1" min="1" oninput="calcTargetGPA()">
+          </div>
+        </div>
+
+        <div class="result-box">
+          <div style="font-size: 14px; opacity: 0.85;">Required GPA in Upcoming Semester</div>
+          <div class="result-score" id="targetResult">0.00</div>
+          <div class="result-details" id="targetDetails">Enter your values above to calculate.</div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -151,58 +274,159 @@
 
 <script src="assets/common.js"></script>
 <script>
-  function addCourseRow() {
-    const div = document.createElement('div');
-    div.className = 'course-row';
-    div.innerHTML = `
-      <input type="text" placeholder="Course Name (Optional)" class="c-name">
-      <input type="number" placeholder="Credit Hours" class="c-credits" min="1" max="6" value="3">
-      <select class="c-grade">
-        <option value="4.0">A+ / A (4.0)</option>
-        <option value="3.67">A- (3.67)</option>
-        <option value="3.33">B+ (3.33)</option>
-        <option value="3.0">B (3.0)</option>
-        <option value="2.67">B- (2.67)</option>
-        <option value="2.33">C+ (2.33)</option>
-        <option value="2.0">C (2.0)</option>
-        <option value="1.67">C- (1.67)</option>
-        <option value="1.0">D (1.0)</option>
-        <option value="0.0">F (0.0)</option>
-      </select>
-      <button class="btn-del" onclick="removeRow(this)">✕</button>
-    `;
-    document.getElementById('courseList').appendChild(div);
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    
+    event.target.classList.add('active');
+    document.getElementById('tab-' + tabId).classList.add('active');
   }
 
-  function removeRow(btn) {
-    const rows = document.querySelectorAll('.course-row');
-    if(rows.length > 1) {
-      btn.parentElement.remove();
+  // TAB 1: EXTRACT SEMESTER GPA
+  function calcExtractedGPA() {
+    const prevCGPA = parseFloat(document.getElementById('prevCGPA').value);
+    const prevCredits = parseFloat(document.getElementById('prevCredits').value);
+    const newCGPA = parseFloat(document.getElementById('newCGPA').value);
+    const currCredits = parseFloat(document.getElementById('currCredits').value);
+
+    const resultScore = document.getElementById('extractedResult');
+    const resultDetails = document.getElementById('extractedDetails');
+
+    if (isNaN(prevCGPA) || isNaN(prevCredits) || isNaN(newCGPA) || isNaN(currCredits) || currCredits <= 0) {
+      resultScore.innerText = "0.00";
+      resultDetails.innerText = "Please fill in all 4 fields correctly.";
+      return;
+    }
+
+    const totalCredits = prevCredits + currCredits;
+    const prevPoints = prevCGPA * prevCredits;
+    const totalPoints = newCGPA * totalCredits;
+    const semPoints = totalPoints - prevPoints;
+    const semGPA = semPoints / currCredits;
+
+    if (semGPA < 0) {
+      resultScore.innerText = "Error";
+      resultDetails.innerText = "Calculated GPA is negative. Please re-check your input values.";
+    } else if (semGPA > 4.0) {
+      resultScore.innerText = semGPA.toFixed(2);
+      resultDetails.innerHTML = `<span style="color:#ef4444;">Warning: Calculated GPA (${semGPA.toFixed(2)}) exceeds 4.0. Verify your result card values.</span>`;
+    } else {
+      resultScore.innerText = semGPA.toFixed(2);
+      resultDetails.innerText = `Points Earned This Semester: ${semPoints.toFixed(2)} / ${currCredits} Cr Hrs | Total Combined Credits: ${totalCredits}`;
     }
   }
 
-  function calculateCGPA() {
-    const credits = document.querySelectorAll('.c-credits');
-    const grades = document.querySelectorAll('.c-grade');
+  // TAB 2: COURSEWISE CALCULATOR
+  const gradePoints = {
+    "A+": 4.0, "A": 4.0, "A-": 3.7,
+    "B+": 3.3, "B": 3.0, "B-": 2.7,
+    "C+": 2.3, "C": 2.0, "C-": 1.7,
+    "D+": 1.3, "D": 1.0, "F": 0.0
+  };
+
+  let courses = [
+    { name: "Course 1", credits: 3, grade: "A" },
+    { name: "Course 2", credits: 3, grade: "B+" },
+    { name: "Course 3", credits: 4, grade: "A-" },
+    { name: "Course 4", credits: 3, grade: "B" }
+  ];
+
+  function renderCourses() {
+    const container = document.getElementById('courseRowsContainer');
+    container.innerHTML = '';
+
+    courses.forEach((c, idx) => {
+      const row = document.createElement('div');
+      row.className = 'course-row';
+      row.innerHTML = `
+        <input type="text" value="${c.name}" placeholder="Course Name" onchange="updateCourse(${idx}, 'name', this.value)">
+        <input type="number" value="${c.credits}" min="1" max="6" placeholder="Credits" onchange="updateCourse(${idx}, 'credits', this.value)">
+        <select onchange="updateCourse(${idx}, 'grade', this.value)">
+          ${Object.keys(gradePoints).map(g => `<option value="${g}" ${c.grade === g ? 'selected' : ''}>${g} (${gradePoints[g]})</option>`).join('')}
+        </select>
+        <button class="btn-action btn-danger" onclick="removeCourse(${idx})">✕</button>
+      `;
+      container.appendChild(row);
+    });
+
+    calcCoursewiseGPA();
+  }
+
+  function addCourseRow() {
+    courses.push({ name: `Course ${courses.length + 1}`, credits: 3, grade: "A" });
+    renderCourses();
+  }
+
+  function removeCourse(idx) {
+    if (courses.length <= 1) return;
+    courses.splice(idx, 1);
+    renderCourses();
+  }
+
+  function updateCourse(idx, field, val) {
+    if (field === 'credits') val = parseFloat(val) || 0;
+    courses[idx][field] = val;
+    calcCoursewiseGPA();
+  }
+
+  function resetCourseRows() {
+    courses = [
+      { name: "Course 1", credits: 3, grade: "A" },
+      { name: "Course 2", credits: 3, grade: "B" }
+    ];
+    renderCourses();
+  }
+
+  function calcCoursewiseGPA() {
     let totalPoints = 0;
     let totalCredits = 0;
 
-    for (let i = 0; i < credits.length; i++) {
-      let ch = parseFloat(credits[i].value) || 0;
-      let gp = parseFloat(grades[i].value) || 0;
-      if (ch > 0) {
-        totalPoints += (ch * gp);
-        totalCredits += ch;
-      }
+    courses.forEach(c => {
+      const pts = (gradePoints[c.grade] || 0) * c.credits;
+      totalPoints += pts;
+      totalCredits += c.credits;
+    });
+
+    const gpa = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : "0.00";
+    document.getElementById('coursewiseGPA').innerText = gpa;
+    document.getElementById('coursewiseDetails').innerText = `Total Credit Hours: ${totalCredits} | Total Quality Points: ${totalPoints.toFixed(2)}`;
+  }
+
+  // TAB 3: TARGET PLANNER
+  function calcTargetGPA() {
+    const currCGPA = parseFloat(document.getElementById('planCurrCGPA').value);
+    const compCredits = parseFloat(document.getElementById('planCompletedCredits').value);
+    const targetCGPA = parseFloat(document.getElementById('planTargetCGPA').value);
+    const upCredits = parseFloat(document.getElementById('planUpcomingCredits').value);
+
+    const resultScore = document.getElementById('targetResult');
+    const resultDetails = document.getElementById('targetDetails');
+
+    if (isNaN(currCGPA) || isNaN(compCredits) || isNaN(targetCGPA) || isNaN(upCredits) || upCredits <= 0) {
+      resultScore.innerText = "0.00";
+      resultDetails.innerText = "Please fill in all 4 fields correctly.";
+      return;
     }
 
-    if (totalCredits > 0) {
-      let finalGPA = (totalPoints / totalCredits).toFixed(2);
-      document.getElementById('gpaVal').innerText = finalGPA;
-      document.getElementById('creditsVal').innerText = "Total Credit Hours: " + totalCredits;
-      document.getElementById('resultBox').style.display = 'block';
+    const totalCredits = compCredits + upCredits;
+    const targetPoints = targetCGPA * totalCredits;
+    const currentPoints = currCGPA * compCredits;
+    const reqPoints = targetPoints - currentPoints;
+    const reqGPA = reqPoints / upCredits;
+
+    if (reqGPA > 4.0) {
+      resultScore.innerText = reqGPA.toFixed(2);
+      resultDetails.innerHTML = `<span style="color:#ef4444;">Not mathematically possible on a 4.0 max scale. Try lowering your target CGPA or increasing credit hours.</span>`;
+    } else if (reqGPA <= 0) {
+      resultScore.innerText = "0.00";
+      resultDetails.innerText = "You have already achieved or exceeded this target CGPA!";
+    } else {
+      resultScore.innerText = reqGPA.toFixed(2);
+      resultDetails.innerText = `You need a minimum ${reqGPA.toFixed(2)} GPA in the next ${upCredits} credit hours.`;
     }
   }
+
+  renderCourses();
 </script>
 </body>
 </html>
