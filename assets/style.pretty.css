@@ -287,3 +287,25 @@
 .tool .tool-arrow, .tool .arrow {
   opacity: 0.6;
 }
+/* Fix input & select visibility */
+.input-group input, 
+.input-group select, 
+.course-row input, 
+.course-row select {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+/* Placeholder text visibility fix */
+.course-row input::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Select option dropdown text color fix */
+.course-row select option {
+  background-color: #161b22;
+  color: #ffffff;
+}
