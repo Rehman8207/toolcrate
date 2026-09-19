@@ -2,50 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/</loc>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/about.html</loc>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/contact.html</loc>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/privacy.html</loc>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/word-counter.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/case-converter.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/unit-converter.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/qr-generator.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/password-generator.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/image-compressor.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/json-formatter.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/age-calculator.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/discount-calculator.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/aggregate-calculator.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/meta-tag-generator.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://site.toolcrate-tools.workers.dev/cgpa-calculator.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://site.toolcrate-tools.workers.dev/currency-converter.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://site.toolcrate-tools.workers.dev/image-to-pdf.html</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://site.toolcrate-tools.workers.dev/watermark-tool.html</loc>
+    <priority>0.9</priority>
   </url>
 </urlset>
