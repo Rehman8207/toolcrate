@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- SEO & Primary Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Bulk Watermark Tool — Add Watermark to Images & PDFs Online</title>
+  <meta name="title" content="Free Bulk Watermark Tool — Add Watermark to Images & PDFs Online">
+  <meta name="description" content="Add custom text or logo watermarks to single or 500+ bulk images (JPG, PNG, WebP) and PDF documents online for free. Private, browser-based batch processing with zip download.">
+  <meta name="keywords" content="bulk watermark images online, batch pdf watermark tool, add logo to pdf online, free bulk image watermark, batch watermark folder, private image watermark generator, fast online PDF watermark">
+  <meta name="author" content="ToolCrate">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://toolcrate.netlify.app/watermark-tool.html">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toolcrate.netlify.app/watermark-tool.html">
+  <meta property="og:title" content="Free Bulk Watermark Tool — Add Watermark to Images & PDFs Online">
+  <meta property="og:description" content="Add text or logo watermarks to single or 500+ bulk images and PDFs right in your browser. Zero server uploads.">
+  <meta property="og:image" content="https://toolcrate.netlify.app/assets/preview.png">
+
+  <!-- Schema Markup for Google Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ToolCrate Bulk Image & PDF Watermark Tool",
+    "url": "https://toolcrate.netlify.app/watermark-tool.html",
+    "description": "Browser-based batch watermarking utility for images and PDF files with custom text, images, opacity, tile patterns, and positioning controls.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+
+  <!-- External Processing JS Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <style>
+    :root {
+      --accent-glow: rgba(59, 130, 246, 0.25);
+      --card-bg: rgba(22, 27, 34, 0.85);
+      --border-glow: rgba(255, 255, 255, 0.12);
+    }
+
+    body { font-family: 'Inter', sans-serif; }
+
+    .tool-hero {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .tool-hero h1 {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #60a5fa 0%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 24px;
+      margin: 20px 0;
+    }
+    @media (max-width: 900px) { .panel-grid { grid-template-columns: 1fr; } }
+
+    .modern-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glow);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    .upload-zone {
+      border: 2px dashed rgba(96, 165, 250, 0.4);
+      border-radius: 16px;
+      padding: 35px 20px;
+      text-align: center;
+      background: rgba(30, 41, 59, 0.4);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .upload-zone:hover {
+      border-color: #60a5fa;
+      background: rgba(59, 130, 246, 0.08);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .upload-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 12px;
+      color: #60a5fa;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .field-group label {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    input[type="text"], input[type="number"], select, input[type="color"] {
+      background: #0d1117 !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      color: #ffffff !important;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    input[type="text"]:focus, input[type="number"]:focus, select:focus {
+      border-color: #3b82f6 !important;
+      box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+
+    .range-flex {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-gradient {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    }
+    .btn-gradient:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+    .btn-gradient:disabled {
+      background: #374151;
+      box-shadow: none;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .preview-box {
+      width: 100%;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #090d11;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .progress-bar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      height: 8px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 12px;
+      display: none;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+      width: 0%;
+      transition: width 0.15s ease;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p style="margin-bottom: 15px;"><a href="index.html" style="color: #60a5fa; text-decoration: none;">← Back to All Tools</a></p>
+    <div class="tool-hero">
+      <h1>Bulk Image & PDF Watermark Suite</h1>
+      <p class="tagline">Watermark single photos, PDFs, or complete folders (500+ files) locally in your browser with text or custom logos.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
+      <svg class="upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+      <h3 style="font-size: 18px; margin-bottom: 4px;">Click or Drag Single/Folder Images or PDFs Here</h3>
+      <p style="font-size: 13px; opacity: 0.7;">Supports JPG, PNG, WebP, PDF (Supports Batch Folder Upload)</p>
+      <input type="file" id="fileInput" multiple webkitdirectory directory accept="image/*,.pdf" style="display:none;" onchange="handleFileSelect(this.files)">
+    </div>
+
+    <div class="panel-grid">
+      <!-- Control Panel -->
+      <div class="modern-card">
+        <h3 style="font-size: 16px; margin-bottom: 16px;">Watermark Customization</h3>
+
+        <div class="field-group">
+          <label>Watermark Type</label>
+          <select id="wmType" onchange="toggleWmType()">
+            <option value="text">Custom Text</option>
+            <option value="image">Custom Image / Logo</option>
+          </select>
+        </div>
+
+        <!-- Text Controls -->
+        <div id="textControls">
+          <div class="field-group">
+            <label>Watermark Text</label>
+            <input type="text" id="wmText" value="CONFIDENTIAL" oninput="updatePreview()">
+          </div>
+          <div class="field-group">
+            <label>Text Color</label>
+            <input type="color" id="wmColor" value="#ffffff" onchange="updatePreview()">
+          </div>
+          <div class="field-group">
+            <label>Font Size (px)</label>
+            <input type="number" id="wmSize" value="36" min="10" max="200" oninput="updatePreview()">
+          </div>
+        </div>
+
+        <!-- Image Controls -->
+        <div id="imageControls" style="display:none;">
+          <div class="field-group">
+            <label>Upload Logo / Graphic</label>
+            <input type="file" id="wmImgInput" accept="image/*" onchange="loadLogoImage(this.files)">
+          </div>
+        </div>
+
+        <!-- Shared Settings -->
+        <div class="field-group">
+          <label>Position Pattern</label>
+          <select id="wmPosition" onchange="updatePreview()">
+            <option value="center">Center</option>
+            <option value="tile">Tile Grid (Repeat Across Page)</option>
+            <option value="bottom-right">Bottom Right</option>
+            <option value="top-left">Top Left</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Opacity</label>
+          <div class="range-flex">
+            <input type="range" id="wmOpacity" min="0.05" max="1" step="0.05" value="0.4" oninput="updatePreview()">
+            <span id="opacityVal" style="font-size: 12px; font-family: 'IBM Plex Mono', monospace;">40%</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Rotation Angle (°)</label>
+          <input type="number" id="wmRotation" value="-30" min="-180" max="180" oninput="updatePreview()">
+        </div>
+
+        <button class="btn-gradient" id="processBtn" disabled onclick="processBatch()">Apply & Download ZIP</button>
+        <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+        <p id="statusText" style="font-size: 12px; text-align: center; margin-top: 10px; opacity:0.8; font-family: 'IBM Plex Mono', monospace;"></p>
+      </div>
+
+      <!-- Live Preview -->
+      <div class="modern-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="font-size: 16px; margin: 0;">Real-time Live Preview</h3>
+          <span id="fileCountText" style="font-size: 12px; opacity: 0.7; font-family: 'IBM Plex Mono', monospace;">0 Files Selected</span>
+        </div>
+        <div class="preview-box">
+          <canvas id="previewCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>ToolCrate — built for people, not ads.</span>
+    <nav class="footer-links">
+      <a href="index.html">All tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+  </footer>
+</div>
+
+<script src="assets/common.js"></script>
+<script>
+  let filesList = [];
+  let logoImgObj = null;
+  let sampleImage = null;
+
+  function toggleWmType() {
+    const type = document.getElementById('wmType').value;
+    document.getElementById('textControls').style.display = type === 'text' ? 'block' : 'none';
+    document.getElementById('imageControls').style.display = type === 'image' ? 'block' : 'none';
+    updatePreview();
+  }
+
+  function handleFileSelect(files) {
+    filesList = Array.from(files).filter(f => f.type.startsWith('image/') || f.type === 'application/pdf');
+    if (filesList.length === 0) return;
+
+    document.getElementById('fileCountText').innerText = `${filesList.length} File(s) Selected`;
+    document.getElementById('processBtn').disabled = false;
+
+    const first = filesList[0];
+    if (first.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        sampleImage = new Image();
+        sampleImage.onload = updatePreview;
+        sampleImage.src = e.target.result;
+      };
+      reader.readAsDataURL(first);
+    } else {
+      sampleImage = null;
+      updatePreview();
+    }
+  }
+
+  function loadLogoImage(files) {
+    if (!files || !files[0]) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      logoImgObj = new Image();
+      logoImgObj.onload = updatePreview;
+      logoImgObj.src = e.target.result;
+    };
+    reader.readAsDataURL(files[0]);
+  }
+
+  function updatePreview() {
+    const opacity = document.getElementById('wmOpacity').value;
+    document.getElementById('opacityVal').innerText = Math.round(opacity * 100) + '%';
+
+    const canvas = document.getElementById('previewCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const width = sampleImage ? sampleImage.width : 600;
+    const height = sampleImage ? sampleImage.height : 800;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    if (sampleImage) {
+      ctx.drawImage(sampleImage, 0, 0);
+    } else {
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = '#60a5fa';
+      ctx.font = '22px sans-serif';
+      ctx.fillText("PDF Document Preview", 40, 60);
+    }
+
+    ctx.save();
+    ctx.globalAlpha = parseFloat(opacity);
+
+    const type = document.getElementById('wmType').value;
+    const pos = document.getElementById('wmPosition').value;
+    const angle = (parseFloat(document.getElementById('wmRotation').value) * Math.PI) / 180;
+
+    if (type === 'text') {
+      const text = document.getElementById('wmText').value || 'WATERMARK';
+      const size = parseInt(document.getElementById('wmSize').value);
+      const color = document.getElementById('wmColor').value;
+
+      ctx.font = `bold ${size}px sans-serif`;
+      ctx.fillStyle = color;
+      ctx.textAlign = 'center';
+
+      if (pos === 'center') {
+        ctx.translate(width / 2, height / 2);
+        ctx.rotate(angle);
+        ctx.fillText(text, 0, 0);
+      } else if (pos === 'tile') {
+        for (let x = 0; x < width; x += 220) {
+          for (let y = 0; y < height; y += 160) {
+            ctx.save();
+            ctx.translate(x + 50, y + 50);
+            ctx.rotate(angle);
+            ctx.fillText(text, 0, 0);
+            ctx.restore();
+          }
+        }
+      } else if (pos === 'bottom-right') {
+        ctx.translate(width - 150, height - 50);
+        ctx.rotate(angle);
+        ctx.fillText(text, 0, 0);
+      } else if (pos === 'top-left') {
+        ctx.translate(150, 50);
+        ctx.rotate(angle);
+        ctx.fillText(text, 0, 0);
+      }
+    } else if (type === 'image' && logoImgObj) {
+      const logoW = 160;
+      const logoH = (logoImgObj.height * logoW) / logoImgObj.width;
+
+      if (pos === 'center') {
+        ctx.translate(width / 2, height / 2);
+        ctx.rotate(angle);
+        ctx.drawImage(logoImgObj, -logoW / 2, -logoH / 2, logoW, logoH);
+      } else if (pos === 'bottom-right') {
+        ctx.drawImage(logoImgObj, width - logoW - 20, height - logoH - 20, logoW, logoH);
+      }
+    }
+
+    ctx.restore();
+  }
+
+  async function processBatch() {
+    if (filesList.length === 0) return;
+
+    const btn = document.getElementById('processBtn');
+    const pBar = document.getElementById('progressBar');
+    const pFill = document.getElementById('progressFill');
+    const status = document.getElementById('statusText');
+
+    btn.disabled = true;
+    pBar.style.display = 'block';
+
+    const zip = new JSZip();
+
+    for (let i = 0; i < filesList.length; i++) {
+      const file = filesList[i];
+      status.innerText = `Processing ${i + 1}/${filesList.length}: ${file.name}`;
+      pFill.style.width = `${((i + 1) / filesList.length) * 100}%`;
+
+      if (file.type.startsWith('image/')) {
+        const blob = await watermarkSingleImage(file);
+        zip.file(`watermarked_${file.name}`, blob);
+      } else if (file.type === 'application/pdf') {
+        const pdfBytes = await watermarkPDF(file);
+        zip.file(`watermarked_${file.name}`, pdfBytes);
+      }
+    }
+
+    status.innerText = "Packing ZIP file...";
+    const zipContent = await zip.generateAsync({ type: "blob" });
+
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(zipContent);
+    a.download = "toolcrate_watermarked_batch.zip";
+    a.click();
+
+    status.innerText = "Completed! Download started.";
+    btn.disabled = false;
+  }
+
+  function watermarkSingleImage(file) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+
+          ctx.save();
+          ctx.globalAlpha = parseFloat(document.getElementById('wmOpacity').value);
+          const type = document.getElementById('wmType').value;
+          const angle = (parseFloat(document.getElementById('wmRotation').value) * Math.PI) / 180;
+
+          if (type === 'text') {
+            const text = document.getElementById('wmText').value || 'WATERMARK';
+            const size = parseInt(document.getElementById('wmSize').value);
+            ctx.font = `bold ${size}px sans-serif`;
+            ctx.fillStyle = document.getElementById('wmColor').value;
+            ctx.textAlign = 'center';
+
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(angle);
+            ctx.fillText(text, 0, 0);
+          }
+          ctx.restore();
+
+          canvas.toBlob(blob => resolve(blob), file.type);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function watermarkPDF(file) {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+    const pages = pdfDoc.getPages();
+
+    const text = document.getElementById('wmText').value || 'WATERMARK';
+
+    pages.forEach(page => {
+      const { width, height } = page.getSize();
+      page.drawText(text, {
+        x: width / 3,
+        y: height / 2,
+        size: parseInt(document.getElementById('wmSize').value) || 30,
+        opacity: parseFloat(document.getElementById('wmOpacity').value) || 0.4,
+        rotate: PDFLib.degrees(parseFloat(document.getElementById('wmRotation').value) || -30)
+      });
+    });
+
+    return await pdfDoc.save();
+  }
+
+  updatePreview();
+</script>
+</body>
+</html>
