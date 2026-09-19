@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070B10">
 <title>Free Watermark Tool — Images & PDFs | ToolCrate</title>
 <meta name="description" content="Add a text or logo watermark to JPG, PNG, WebP images and PDF files — free, unlimited PDF pages, batch and folder upload, and 100% processed in your browser. Nothing is ever uploaded to a server.">
 <meta name="keywords" content="watermark tool, add watermark to image, add watermark to pdf, free watermark online, batch watermark, bulk watermark images, pdf watermark no limit, text watermark, logo watermark, browser watermark tool, private watermark tool">
 <meta name="robots" content="index, follow">
+<meta name="author" content="ToolCrate">
 <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/watermark-tool.html">
 
 <meta property="og:type" content="website">
@@ -19,10 +21,11 @@
 <meta name="twitter:description" content="Batch-watermark images and PDFs locally in your browser. Free, private, unlimited pages.">
 
 <!-- Fonts: system fonts for maximum performance -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <script>
-  // Fallback: agar cdnjs fail ho jaye to unpkg se load karo
+  // Fallback: load pdf-lib from unpkg if cdnjs is unavailable
   window.addEventListener('DOMContentLoaded', function() {
     if (typeof PDFLib === 'undefined') {
       var s = document.createElement('script');

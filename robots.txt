@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://toolcrate.netlify.app/sitemap.xml
+Sitemap: https://site.toolcrate-tools.workers.dev/sitemap.xml
