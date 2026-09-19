@@ -2,251 +2,77 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ToolCrate — Free Tools. No Signup. Nothing Leaves Your Device.</title>
-<meta name="description" content="Free online tools with no signup, no file limits and no uploads — word counter, case converter, unit converter, QR code generator, password generator, image compressor, JSON formatter, age calculator, discount calculator, image to PDF converter and percentage calculator. Everything runs in your browser.">
+<title>ToolCrate — 100% Free Online Browser Tools (No Signup, No Server Uploads)</title>
+<meta name="description" content="15 free privacy-first online tools that run entirely in your browser. Word counter, QR code generator, image compressor, watermark tool, unit converter and more. Nothing ever leaves your device.">
+<meta name="keywords" content="free online tools, browser tools, privacy tools, word counter, image compressor, qr generator, pdf watermark, no upload tools">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/">
-<meta name="google-site-verification" content="g_QKxSjkoVl5a6lDFR0Q_1VsVPLD1Tfxfxv2R370bi4" />
-<meta property="og:title" content="ToolCrate — Free Tools. No Signup. Nothing Leaves Your Device.">
-<meta property="og:description" content="Free online tools with no signup, no file limits and no uploads — word counter, case converter, unit converter, QR code generator, password generator, image compressor, JSON formatter, age calculator, discount calculator, image to PDF converter and percentage calculator. Everything runs in your browser.">
+
 <meta property="og:type" content="website">
+<meta property="og:title" content="ToolCrate — Free Browser Tools. Nothing Uploaded.">
+<meta property="og:description" content="15 free online utilities that run 100% client-side in your browser. No signup, no limits, complete privacy.">
 <meta property="og:url" content="https://site.toolcrate-tools.workers.dev/">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ToolCrate — Free Tools. No Signup. Nothing Leaves Your Device.">
-<meta name="twitter:description" content="Free online tools with no signup, no file limits and no uploads — word counter, case converter, unit converter, QR code generator, password generator, image compressor, JSON formatter, age calculator, discount calculator, image to PDF converter and percentage calculator. Everything runs in your browser.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-H20HJWJQWV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-H20HJWJQWV');
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ToolCrate",
+  "url": "https://site.toolcrate-tools.workers.dev/",
+  "description": "Free browser-based online tools with zero server uploads."
+}
 </script>
+
+<style>
+  :root{
+    --wm-bg: #0c1712;
+    --wm-surface: #12211a;
+    --wm-surface-2: #17301f;
+    --wm-ink: #eef6ee;
+    --wm-muted: #9fb9a8;
+    --wm-rule: #29452f;
+    --wm-accent: #34d399;
+    --wm-accent-ink: #06241a;
+  }
+  body { background: var(--wm-bg); color: var(--wm-ink); font-family: 'IBM Plex Mono', monospace; }
+  .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 24px; }
+  .tool-card { background: var(--wm-surface); border: 1px solid var(--wm-rule); border-radius: 12px; padding: 20px; text-decoration: none; color: inherit; transition: border-color 0.2s; }
+  .tool-card:hover { border-color: var(--wm-accent); }
+  .tool-card h3 { font-family: 'Fraunces', serif; margin: 0 0 8px; color: var(--wm-ink); }
+  .tool-card p { font-size: 0.85rem; color: var(--wm-muted); margin: 0; line-height: 1.5; }
+  .tag { display: inline-block; font-size: 0.7rem; color: var(--wm-accent); background: rgba(52,211,153,0.1); padding: 2px 8px; border-radius: 4px; margin-bottom: 12px; }
+</style>
 </head>
 <body>
-<div class="wrap">
-  <header class="masthead">
-    <div class="row">
-      <div class="brand-block">
-        <div class="hero-illus" aria-hidden="true">
-          <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="60" cy="60" r="58" stroke="var(--rule)" stroke-width="1"/>
-            <g stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M40 78 L74 44a8 8 0 0 0 0-11.3l-1.7-1.7a8 8 0 0 0-11.3 0L27 65"/>
-              <circle cx="33" cy="72" r="7"/>
-              <path d="M62 33 L67 28" />
-            </g>
-            <g stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7">
-              <rect x="66" y="60" width="30" height="9" rx="1.5" transform="rotate(35 66 60)"/>
-              <circle cx="88" cy="82" r="3" fill="var(--ink)" stroke="none"/>
-            </g>
-            <g stroke="var(--ink)" stroke-width="2" opacity="0.5">
-              <path d="M78 34 h14 M85 27 v14" stroke-linecap="round"/>
-            </g>
-          </svg>
-        </div>
-        <div>
-          <div class="brand"><h1>ToolCrate</h1></div>
-          <p class="tagline">Fifteen free tools that run entirely in your browser. Nothing you type or upload is ever sent to a server — no signup, no file limits, no waiting.</p>
-        </div>
-      </div>
-      <button class="theme-toggle" id="themeToggle" type="button">Dark mode</button>
-    </div>
-    <div class="search-row">
-      <input id="toolSearch" type="text" placeholder="Search a tool — word counter, QR code, watermark, unit convert…" autocomplete="off">
-    </div>
-    <div class="feature-strip">
-      <div class="feature-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
-        <div><h2>Nothing is uploaded</h2><p>Every tool runs in your browser. Your files and text never touch a server.</p></div>
-      </div>
-      <div class="feature-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        <div><h2>No signup, no waiting</h2><p>Open a tool and use it immediately. No account, no email, no queue.</p></div>
-      </div>
-      <div class="feature-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 12l4-4M4 12l4 4"/></svg>
-        <div><h2>No file-size traps</h2><p>No hidden caps pushing you toward a paid plan. Free means free.</p></div>
-      </div>
-    </div>
+<div class="wrap" style="max-width:900px;margin:0 auto;padding:24px;">
+  <header style="margin-bottom:32px;">
+    <h1 style="font-family:'Fraunces',serif;font-size:2.5rem;margin:0 0 12px;color:var(--wm-ink);">ToolCrate</h1>
+    <p style="color:var(--wm-muted);font-size:1.05rem;">15 free tools that run entirely in your browser. Nothing you type or upload is ever sent to a server.</p>
   </header>
 
-  <main>
-  <nav class="category-rail" id="categoryRail">
-    <button class="chip active" data-cat="all">All tools</button>
-    <button class="chip" data-cat="text">Text</button>
-    <button class="chip" data-cat="image">Image</button>
-    <button class="chip" data-cat="numbers">Numbers</button>
-    <button class="chip" data-cat="dev">Dev &amp; utility</button>
-    <button class="chip" data-cat="seo">SEO</button>
-  </nav>
-
-  <section class="tool-list" id="toolList">
-      <a class="tool-row" data-cat="text" data-name="word & character counter" data-desc="paste or type text below. counts update as you type — nothing is stored or uploaded." href="word-counter.html">
-        <div class="idx">01</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
-        <div class="info"><h3>Word & Character Counter</h3><p>Paste or type text below. Counts update as you type — nothing is stored or uploaded.</p></div>
-        <div class="tag">text</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="text" data-name="case converter" data-desc="switch text between uppercase, lowercase, title case and sentence case." href="case-converter.html">
-        <div class="idx">02</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
-        <div class="info"><h3>Case Converter</h3><p>Switch text between UPPERCASE, lowercase, Title Case and Sentence case.</p></div>
-        <div class="tag">text</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="numbers" data-name="unit converter" data-desc="convert length, weight, temperature and volume between common units." href="unit-converter.html">
-        <div class="idx">03</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
-        <div class="info"><h3>Unit Converter</h3><p>Convert length, weight, temperature and volume between common units.</p></div>
-        <div class="tag">numbers</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="dev" data-name="qr code generator" data-desc="turn any link or text into a downloadable qr code. generated locally in your browser." href="qr-generator.html">
-        <div class="idx">04</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg></div>
-        <div class="info"><h3>QR Code Generator</h3><p>Turn any link or text into a downloadable QR code. Generated locally in your browser.</p></div>
-        <div class="tag">dev</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="dev" data-name="password generator" data-desc="create a strong random password. generated on your device, never transmitted." href="password-generator.html">
-        <div class="idx">05</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg></div>
-        <div class="info"><h3>Password Generator</h3><p>Create a strong random password. Generated on your device, never transmitted.</p></div>
-        <div class="tag">dev</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="image" data-name="image compressor" data-desc="shrink a photo's file size before emailing or uploading it. processed locally — the image never leaves your device." href="image-compressor.html">
-        <div class="idx">06</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="1"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg></div>
-        <div class="info"><h3>Image Compressor</h3><p>Shrink a photo's file size before emailing or uploading it. Processed locally — the image never leaves your device.</p></div>
-        <div class="tag">image</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="dev" data-name="json formatter & validator" data-desc="paste json to pretty-print, validate or minify it." href="json-formatter.html">
-        <div class="idx">07</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg></div>
-        <div class="info"><h3>JSON Formatter & Validator</h3><p>Paste JSON to pretty-print, validate or minify it.</p></div>
-        <div class="tag">dev</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="numbers" data-name="age calculator" data-desc="find exact age in years, months and days from a date of birth." href="age-calculator.html">
-        <div class="idx">08</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
-        <div class="info"><h3>Age Calculator</h3><p>Find exact age in years, months and days from a date of birth.</p></div>
-        <div class="tag">numbers</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="numbers" data-name="discount & tax calculator" data-desc="work out a final price after a discount and tax, and see exactly how much you save." href="discount-calculator.html">
-        <div class="idx">09</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
-        <div class="info"><h3>Discount & Tax Calculator</h3><p>Work out a final price after a discount and tax, and see exactly how much you save.</p></div>
-        <div class="tag">numbers</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="numbers" data-name="percentage & aggregate calculator" data-desc="add each subject's obtained and total marks to get your overall percentage." href="aggregate-calculator.html">
-        <div class="idx">10</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div>
-        <div class="info"><h3>Percentage & Aggregate Calculator</h3><p>Add each subject's obtained and total marks to get your overall percentage.</p></div>
-        <div class="tag">numbers</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="seo" data-name="meta tag generator" data-desc="fill in the fields below and click generate to get ready-to-paste meta tags for your web page." href="meta-tag-generator.html">
-        <div class="idx">11</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="6"/><path d="M20 20l-5.5-5.5"/></svg></div>
-        <div class="info"><h3>Meta Tag Generator</h3><p>Fill in the fields below and click Generate to get ready-to-paste meta tags for your web page.</p></div>
-        <div class="tag">seo</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="numbers" data-name="cgpa & gpa calculator" data-desc="extract semester gpa from result card, plan target cgpa, or calculate course-wise gpa." href="cgpa-calculator.html">
-        <div class="idx">12</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-        <div class="info"><h3>CGPA & GPA Calculator</h3><p>Extract semester GPA from result card, plan target CGPA, or calculate course-wise GPA.</p></div>
-        <div class="tag">numbers</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="numbers" data-name="live currency converter" data-desc="convert real-time exchange rates across 150+ world currencies instantly." href="currency-converter.html">
-        <div class="idx">13</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
-        <div class="info"><h3>Live Currency Converter</h3><p>Convert real-time exchange rates across 150+ world currencies instantly.</p></div>
-        <div class="tag">numbers</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="image" data-name="image to pdf converter" data-desc="convert jpg, png, and webp images into a single pdf document locally in your browser." href="image-to-pdf.html">
-        <div class="idx">14</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-        <div class="info"><h3>Image to PDF Converter</h3><p>Convert JPG, PNG, and WebP images into a single PDF document locally in your browser.</p></div>
-        <div class="tag">image</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-      <a class="tool-row" data-cat="image" data-name="watermark tool" data-desc="add custom text or image watermarks to your photos easily and locally." href="watermark-tool.html">
-        <div class="idx">15</div>
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/><path d="M12 12l3 3"/></svg></div>
-        <div class="info"><h3>Watermark Tool</h3><p>Add custom text or image watermarks to your photos easily. Processed locally in your browser.</p></div>
-        <div class="tag">image</div>
-        <div class="arrow">&#8594;</div>
-      </a>
-
-    <div class="empty-note" id="emptyNote" style="display:none;">No tools match that search.</div>
-  </section>
-  </main>
-
-  <footer>
-    <span>ToolCrate — built for people, not ads.</span>
-    <nav class="footer-links">
-      <a href="index.html">All tools</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy Policy</a>
-    </nav>
-  </footer>
+  <div class="grid-container">
+    <a href="word-counter.html" class="tool-card"><span class="tag">Text</span><h3>Word & Character Counter</h3><p>Real-time word, character, and sentence counting.</p></a>
+    <a href="case-converter.html" class="tool-card"><span class="tag">Text</span><h3>Case Converter</h3><p>Convert text to UPPERCASE, lowercase, Title Case & more.</p></a>
+    <a href="unit-converter.html" class="tool-card"><span class="tag">Numbers</span><h3>Unit Converter</h3><p>Convert length, weight, temperature, and volume instantly.</p></a>
+    <a href="qr-generator.html" class="tool-card"><span class="tag">Dev</span><h3>QR Code Generator</h3><p>Generate downloadable custom QR codes locally.</p></a>
+    <a href="password-generator.html" class="tool-card"><span class="tag">Dev</span><h3>Password Generator</h3><p>Create high-security random passwords on your device.</p></a>
+    <a href="image-compressor.html" class="tool-card"><span class="tag">Image</span><h3>Image Compressor</h3><p>Reduce image file size locally without losing quality.</p></a>
+    <a href="json-formatter.html" class="tool-card"><span class="tag">Dev</span><h3>JSON Formatter</h3><p>Validate, format, and minify JSON data browser-side.</p></a>
+    <a href="age-calculator.html" class="tool-card"><span class="tag">Numbers</span><h3>Age Calculator</h3><p>Calculate exact age in years, months, days, and hours.</p></a>
+    <a href="discount-calculator.html" class="tool-card"><span class="tag">Numbers</span><h3>Discount Calculator</h3><p>Calculate final price, savings, and taxes instantly.</p></a>
+    <a href="aggregate-calculator.html" class="tool-card"><span class="tag">Numbers</span><h3>Aggregate Calculator</h3><p>Calculate aggregate marks and percentage scores.</p></a>
+    <a href="meta-tag-generator.html" class="tool-card"><span class="tag">SEO</span><h3>Meta Tag Generator</h3><p>Generate SEO and OpenGraph meta tags for web pages.</p></a>
+    <a href="cgpa-calculator.html" class="tool-card"><span class="tag">Numbers</span><h3>CGPA & GPA Calculator</h3><p>Calculate semester GPA and cumulative CGPA effortlessly.</p></a>
+    <a href="currency-converter.html" class="tool-card"><span class="tag">Numbers</span><h3>Live Currency Converter</h3><p>Real-time currency exchange rate conversion.</p></a>
+    <a href="image-to-pdf.html" class="tool-card"><span class="tag">Image</span><h3>Image to PDF Converter</h3><p>Convert multiple JPG, PNG, WebP images to a single PDF.</p></a>
+    <a href="watermark-tool.html" class="tool-card"><span class="tag">Image & PDF</span><h3>Watermark Tool</h3><p>Batch watermark images and PDF documents with zero uploads.</p></a>
+  </div>
 </div>
-<script src="assets/common.js"></script>
-<script>
-(function(){
-  "use strict";
-  var rows = Array.prototype.slice.call(document.querySelectorAll('.tool-row'));
-  var emptyNote = document.getElementById('emptyNote');
-  var currentCat = 'all';
-  var currentQuery = '';
-
-  rows.forEach(function(r, i){ r.style.animationDelay = (Math.min(i, 10) * 0.04) + 's'; });
-
-  function applyFilter(){
-    var q = currentQuery.trim().toLowerCase();
-    var anyVisible = false;
-    rows.forEach(function(row){
-      var cat = row.getAttribute('data-cat');
-      var name = row.getAttribute('data-name');
-      var desc = row.getAttribute('data-desc');
-      var catOk = currentCat === 'all' || cat === currentCat;
-      var qOk = !q || name.indexOf(q) > -1 || desc.indexOf(q) > -1;
-      var show = catOk && qOk;
-      row.style.display = show ? '' : 'none';
-      if(show) anyVisible = true;
-    });
-    emptyNote.style.display = anyVisible ? 'none' : 'block';
-  }
-
-  document.getElementById('categoryRail').addEventListener('click', function(e){
-    var btn = e.target.closest('.chip');
-    if(!btn) return;
-    document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
-    btn.classList.add('active');
-    currentCat = btn.getAttribute('data-cat');
-    applyFilter();
-  });
-  document.getElementById('toolSearch').addEventListener('input', function(e){
-    currentQuery = e.target.value;
-    applyFilter();
-  });
-})();
-</script>
 </body>
 </html>
