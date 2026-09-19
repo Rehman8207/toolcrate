@@ -1,241 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "How often are live exchange rates updated?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Exchange rates are updated automatically in real-time fetching directly from global financial markets."
-    }
-  },{
-    "@type": "Question",
-    "name": "Are currency conversions private and secure?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Yes, all currency calculations happen locally inside your client browser. No financial data is sent or logged to any server."
-    }
-  }]
-}
-</script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Currency Converter — ToolCrate</title>
-  <meta name="description" content="Convert live exchange rates across 150+ currencies instantly. Free, fast, private browser-based tool.">
-  <link rel="canonical" href="https://toolcrate.netlify.app/currency-converter.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
-  <style>
-    .calc-card {
-      background: rgba(22, 27, 34, 0.75);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      padding: 24px;
-      margin: 20px 0;
-    }
-    .converter-grid {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 12px;
-      align-items: center;
-      margin-top: 15px;
-    }
-    @media (max-width: 600px) {
-      .converter-grid { grid-template-columns: 1fr; }
-    }
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .input-group label {
-      font-size: 13px;
-      opacity: 0.8;
-    }
-    .input-group input, .input-group select {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      padding: 12px;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 15px;
-    }
-    .btn-swap {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      padding: 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 18px;
-      margin-top: 20px;
-      transition: all 0.2s;
-    }
-    .btn-swap:hover {
-      background: rgba(59, 130, 246, 0.2);
-      border-color: #3b82f6;
-    }
-    .result-box {
-      background: rgba(59, 130, 246, 0.12);
-      border: 1px solid #3b82f6;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      margin-top: 25px;
-    }
-    .result-score { font-size: 32px; font-weight: bold; color: #60a5fa; margin: 8px 0; }
-    .rate-info { font-size: 13px; opacity: 0.75; }
-    .info-text { margin-top: 30px; line-height: 1.6; opacity: 0.85; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Currency Converter — ToolCrate</title>
+<link rel="canonical" href="https://site.toolcrate-tools.workers.dev/currency-converter.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .converter-card {
+    background: var(--surface, #18181b);
+    border: 1px solid var(--rule, #27272a);
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 650px;
+    margin: 20px auto;
+  }
+  .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .input-group label { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; color: var(--ink-muted, #a1a1aa); }
+  .input-group input, .input-group select {
+    background: #09090b;
+    border: 1px solid var(--rule, #27272a);
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+  }
+  .currency-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; margin-bottom: 20px; }
+  .swap-btn {
+    background: #27272a;
+    border: 1px solid var(--rule, #3f3f46);
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .result-box {
+    background: #09090b;
+    border: 1px solid var(--accent, #3b82f6);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+  }
+  .result-val { font-size: 1.6rem; font-weight: 600; font-family: 'IBM Plex Mono', monospace; color: #fff; }
+  .result-rate { font-size: 0.85rem; color: var(--ink-muted, #a1a1aa); margin-top: 6px; font-family: 'IBM Plex Mono', monospace; }
+</style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <p style="margin-bottom: 15px;"><a href="index.html" style="color: #60a5fa; text-decoration: none;">← Back to All Tools</a></p>
+  <header class="masthead">
+    <a href="index.html" class="back-link">&larr; Back to All Tools</a>
     <h1>Live Currency Converter</h1>
-    <p class="tagline">Convert real-time exchange rates across 150+ world currencies. Instant, accurate, and 100% private.</p>
+    <p class="tagline">Convert real-time exchange rates across 150+ world currencies instantly.</p>
   </header>
 
   <main>
-    <div class="calc-card">
+    <div class="converter-card">
       <div class="input-group">
-        <label for="amount">Amount</label>
-        <input type="number" id="amount" value="1" min="0" step="any" oninput="convertCurrency()">
+        <label for="amountInput">Amount</label>
+        <input type="number" id="amountInput" value="1" min="0" step="any">
       </div>
 
-      <div class="converter-grid">
-        <div class="input-group">
-          <label for="fromCurrency">From</label>
-          <select id="fromCurrency" onchange="convertCurrency()"></select>
+      <div class="currency-row">
+        <div class="input-group" style="margin-bottom:0;">
+          <label for="fromSelect">From</label>
+          <select id="fromSelect"></select>
         </div>
-
-        <button class="btn-swap" onclick="swapCurrencies()" title="Swap Currencies">⇄</button>
-
-        <div class="input-group">
-          <label for="toCurrency">To</label>
-          <select id="toCurrency" onchange="convertCurrency()"></select>
+        <button class="swap-btn" id="swapBtn" type="button">&#8646;</button>
+        <div class="input-group" style="margin-bottom:0;">
+          <label for="toSelect">To</label>
+          <select id="toSelect"></select>
         </div>
       </div>
 
-      <div class="result-box" id="resultBox">
-        <div class="rate-info" id="rateInfo">Fetching live rates...</div>
-        <div class="result-score" id="resultVal">---</div>
+      <div class="result-box">
+        <div class="result-val" id="resultVal">Loading rates...</div>
+        <div class="result-rate" id="resultRate">Fetching latest exchange rates</div>
       </div>
     </div>
-
-    <section class="info-text">
-      <h2>Live Real-Time Exchange Rates</h2>
-      <p>Rates are fetched directly from global financial exchange APIs. All calculations happen locally inside your browser.</p>
-    </section>
-    <section class="seo-guide-content" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); line-height: 1.7; opacity: 0.9;">
-  <h2>Real-Time Live Currency Converter Online</h2>
-  <p>Convert global foreign exchange rates instantly with our free online Currency Converter. Whether traveling, shopping internationally, or tracking global money markets, calculate precise currency values across 150+ world currencies without signups or hidden transaction fees.</p>
-
-  <h3>Major World Currency Exchange Rates Reference</h3>
-  <ul style="padding-left: 20px; margin: 15px 0;">
-    <li><strong>USD (US Dollar):</strong> Primary global benchmark currency for international trade and finance.</li>
-    <li><strong>EUR (Euro):</strong> Official currency used across European Union member states.</li>
-    <li><strong>GBP (British Pound):</strong> High-value global currency used in the United Kingdom.</li>
-    <li><strong>PKR / INR:</strong> Key South Asian regional currencies updated live daily.</li>
-  </ul>
-
-  <h3>Frequently Asked Questions (FAQs)</h3>
-  <details style="margin-bottom: 10px; cursor: pointer;">
-    <summary style="font-weight: bold;">How often are live exchange rates updated?</summary>
-    <p style="padding-top: 8px;">Exchange rates update automatically in real-time fetching directly from global financial exchange APIs.</p>
-  </details>
-  <details style="margin-bottom: 10px; cursor: pointer;">
-    <summary style="font-weight: bold;">Are currency calculations private?</summary>
-    <p style="padding-top: 8px;">Yes, calculations run 100% client-side in your browser. Nothing is logged or saved on external servers.</p>
-  </details>
-</section>
   </main>
-
-  <footer>
-    <span>ToolCrate — built for people, not ads.</span>
-    <nav class="footer-links">
-      <a href="index.html">All tools</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy Policy</a>
-    </nav>
-  </footer>
 </div>
 
 <script src="assets/common.js"></script>
 <script>
+(function() {
+  "use strict";
+
+  const amountInput = document.getElementById('amountInput');
+  const fromSelect = document.getElementById('fromSelect');
+  const toSelect = document.getElementById('toSelect');
+  const swapBtn = document.getElementById('swapBtn');
+  const resultVal = document.getElementById('resultVal');
+  const resultRate = document.getElementById('resultRate');
+
   let ratesData = {};
+  const defaultCurrencies = ["USD", "EUR", "GBP", "PKR", "INR", "CAD", "AUD", "AED", "SAR", "JPY", "CNY"];
 
   async function fetchRates() {
     try {
+      resultVal.textContent = "Loading rates...";
       const res = await fetch('https://open.er-api.com/v6/latest/USD');
+      if (!res.ok) throw new Error('Network error');
       const data = await res.json();
-      if (data && data.rates) {
-        ratesData = data.rates;
-        populateDropdowns();
-        convertCurrency();
-      } else {
-        document.getElementById('rateInfo').innerText = "Failed to load exchange rates.";
-      }
+      ratesData = data.rates;
+      populateDropdowns(Object.keys(ratesData));
+      calculate();
     } catch (err) {
-      document.getElementById('rateInfo').innerText = "Network error loading live rates.";
+      resultVal.textContent = "Error loading live rates";
+      resultRate.textContent = "Please check your network connection.";
     }
   }
 
-  function populateDropdowns() {
-    const fromSel = document.getElementById('fromCurrency');
-    const toSel = document.getElementById('toCurrency');
-    const currencies = Object.keys(ratesData).sort();
-
-    currencies.forEach(curr => {
-      const opt1 = document.createElement('option');
-      opt1.value = curr;
-      opt1.innerText = curr;
-      if (curr === 'USD') opt1.selected = true;
-      fromSel.appendChild(opt1);
-
-      const opt2 = document.createElement('option');
-      opt2.value = curr;
-      opt2.innerText = curr;
-      if (curr === 'PKR') opt2.selected = true;
-      toSel.appendChild(opt2);
+  function populateDropdowns(currencies) {
+    fromSelect.innerHTML = '';
+    toSelect.innerHTML = '';
+    currencies.sort().forEach(curr => {
+      const opt1 = new Option(curr, curr);
+      const opt2 = new Option(curr, curr);
+      fromSelect.add(opt1);
+      toSelect.add(opt2);
     });
+
+    fromSelect.value = "USD";
+    toSelect.value = currencies.includes("PKR") ? "PKR" : "EUR";
   }
 
-  function convertCurrency() {
-    const amount = parseFloat(document.getElementById('amount').value) || 0;
-    const from = document.getElementById('fromCurrency').value;
-    const to = document.getElementById('toCurrency').value;
+  function calculate() {
+    if (!ratesData || Object.keys(ratesData).length === 0) return;
+    const amount = parseFloat(amountInput.value) || 0;
+    const from = fromSelect.value;
+    const to = toSelect.value;
 
-    if (!ratesData[from] || !ratesData[to]) return;
+    const rateFromUSD = ratesData[from];
+    const rateToUSD = ratesData[to];
 
-    const amountInUSD = amount / ratesData[from];
-    const converted = amountInUSD * ratesData[to];
+    if (!rateFromUSD || !rateToUSD) return;
 
-    const rateStr = (1 / ratesData[from] * ratesData[to]).toFixed(4);
+    const converted = (amount / rateFromUSD) * rateToUSD;
+    const singleRate = (1 / rateFromUSD) * rateToUSD;
 
-    document.getElementById('rateInfo').innerText = `1 ${from} = ${rateStr} ${to}`;
-    document.getElementById('resultVal').innerText = `${converted.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${to}`;
+    resultVal.textContent = `${converted.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 4})} ${to}`;
+    resultRate.textContent = `1 ${from} = ${singleRate.toFixed(4)} ${to}`;
   }
 
-  function swapCurrencies() {
-    const fromSel = document.getElementById('fromCurrency');
-    const toSel = document.getElementById('toCurrency');
-    const temp = fromSel.value;
-    fromSel.value = toSel.value;
-    toSel.value = temp;
-    convertCurrency();
-  }
+  amountInput.addEventListener('input', calculate);
+  fromSelect.addEventListener('change', calculate);
+  toSelect.addEventListener('change', calculate);
+
+  swapBtn.addEventListener('click', function() {
+    const temp = fromSelect.value;
+    fromSelect.value = toSelect.value;
+    toSelect.value = temp;
+    calculate();
+  });
 
   fetchRates();
+})();
 </script>
 </body>
 </html>
