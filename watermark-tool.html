@@ -42,167 +42,96 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
-  <style>
-    :root {
-      --accent-glow: rgba(59, 130, 246, 0.25);
-      --card-bg: rgba(22, 27, 34, 0.85);
-      --border-glow: rgba(255, 255, 255, 0.12);
-    }
+  <script>
+(function() {
+  "use strict";
 
-    body { font-family: 'Inter', sans-serif; }
+  // Elements
+  const imageInput = document.getElementById('imageInput');
+  const watermarkText = document.getElementById('watermarkText');
+  const opacityInput = document.getElementById('opacityInput');
+  const fontSizeInput = document.getElementById('fontSizeInput');
+  const colorInput = document.getElementById('colorInput');
+  const previewCanvas = document.getElementById('previewCanvas');
+  const downloadBtn = document.getElementById('downloadBtn');
 
-    .tool-hero {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+  let currentImage = null;
+  let renderTimeout = null;
 
-    .tool-hero h1 {
-  font-size: 32px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #60a5fa 0%, #a7f3d0 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
-}
+  // Optimized Instant Render Function
+  function renderWatermark() {
+    if (!currentImage) return;
 
-    .panel-grid {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 24px;
-      margin: 20px 0;
-    }
-    @media (max-width: 900px) { .panel-grid { grid-template-columns: 1fr; } }
+    const ctx = previewCanvas.getContext('2d', { alpha: false, willReadFrequently: false });
+    
+    // Canvas dimensions set karein
+    previewCanvas.width = currentImage.naturalWidth;
+    previewCanvas.height = currentImage.naturalHeight;
 
-    .modern-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-glow);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    }
+    // Fast image draw
+    ctx.drawImage(currentImage, 0, 0);
 
-    .upload-zone {
-      border: 2px dashed rgba(96, 165, 250, 0.4);
-      border-radius: 16px;
-      padding: 35px 20px;
-      text-align: center;
-      background: rgba(30, 41, 59, 0.4);
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      margin-bottom: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-    .upload-zone:hover {
-      border-color: #60a5fa;
-      background: rgba(59, 130, 246, 0.08);
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
+    // Text configuration
+    const text = watermarkText.value || 'ToolCrate';
+    const fontSize = parseInt(fontSizeInput.value, 10) || 48;
+    const opacity = parseFloat(opacityInput.value) || 0.5;
 
-    .upload-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 12px;
-      color: #60a5fa;
-    }
+    ctx.font = `bold ${fontSize}px sans-serif`;
+    ctx.fillStyle = colorInput.value || '#ffffff';
+    ctx.globalAlpha = opacity;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
 
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-    .field-group label {
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.85);
-    }
+    // Apply watermark at center (0ms latency)
+    ctx.fillText(text, previewCanvas.width / 2, previewCanvas.height / 2);
+  }
 
-    input[type="text"], input[type="number"], select, input[type="color"] {
-      background: #0d1117 !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      color: #ffffff !important;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      outline: none;
-      transition: border 0.2s;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    input[type="text"]:focus, input[type="number"]:focus, select:focus {
-      border-color: #3b82f6 !important;
-      box-shadow: 0 0 0 2px var(--accent-glow);
-    }
+  // Debounce for smooth typing/sliding input
+  function scheduleRender() {
+    if (renderTimeout) cancelAnimationFrame(renderTimeout);
+    renderTimeout = requestAnimationFrame(renderWatermark);
+  }
 
-    .range-flex {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+  // Event Listeners for Instant Live Updates
+  imageInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
 
-    .btn-gradient {
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-      color: #ffffff;
-      border: none;
-      padding: 14px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 15px;
-      width: 100%;
-      cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-    }
-    .btn-gradient:hover:not(:disabled) {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-    }
-    .btn-gradient:disabled {
-      background: #374151;
-      box-shadow: none;
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const img = new Image();
+      img.onload = function() {
+        currentImage = img;
+        renderWatermark();
+        downloadBtn.disabled = false;
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
 
-    .preview-box {
-      width: 100%;
-      min-height: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #090d11;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      overflow: hidden;
-      padding: 10px;
-    }
+  watermarkText.addEventListener('input', scheduleRender);
+  opacityInput.addEventListener('input', scheduleRender);
+  fontSizeInput.addEventListener('input', scheduleRender);
+  colorInput.addEventListener('input', scheduleRender);
 
-    canvas {
-      max-width: 100%;
-      height: auto;
-      border-radius: 6px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    }
+  // Lightning Fast Async Image Export
+  downloadBtn.addEventListener('click', function() {
+    if (!currentImage) return;
 
-    .progress-bar {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      height: 8px;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: 12px;
-      display: none;
-    }
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
-      width: 0%;
-      transition: width 0.15s ease;
-    }
-  </style>
+    previewCanvas.toBlob(function(blob) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'watermarked-image.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 'image/png');
+  });
+})();
+</script>
 </head>
 <body>
 <div class="wrap">
