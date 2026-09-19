@@ -151,6 +151,7 @@ a:hover{color:var(--cyan)}
 .tool-row .info h3{font-family:var(--font-display);font-size:1rem;font-weight:600;margin-bottom:3px;color:var(--ink)}
 .tool-row .info p{font-size:0.82rem;color:var(--ink-3);line-height:1.5;
   display:-webkit-box;-webkit-line-clamp:2;
+  line-clamp: 2;
   line-clamp: 2;-webkit-box-orient:vertical;overflow:hidden}
 .tool-row .tag{font-family:var(--font-mono);font-size:0.68rem;font-weight:600;text-transform:uppercase;
   letter-spacing:0.06em;padding:5px 12px;border-radius:var(--radius-full);
@@ -311,6 +312,9 @@ footer{margin-top:64px;padding:32px 0;border-top:1px solid var(--border);display
   .row3,.row2{grid-template-columns:1fr}.img-compare{grid-template-columns:1fr}
   .tool-row{grid-template-columns:32px 40px 1fr 28px;gap:10px;padding:14px}
   .tool-row .tag{display:none}.tool-row .info p{-webkit-line-clamp:1}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}.brand h1{font-size:1.45rem}
+  .hero-illus{width:44px;
+  line-clamp: 1}
   .stat-grid{grid-template-columns:repeat(2,1fr)}.brand h1{font-size:1.45rem}
   .hero-illus{width:44px;
   line-clamp: 1}
