@@ -10,10 +10,23 @@
 <meta name="theme-color" content="#070B10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-H20HJWJQWV"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H20HJWJQWV');</script>
+<!-- Google tag (gtag.js) — deferred for performance -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H20HJWJQWV');
+  // Load gtag.js after page is interactive
+  window.addEventListener('load', function(){
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-H20HJWJQWV';
+    document.head.appendChild(s);
+  });
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -59,6 +72,7 @@
 <button class="chip" data-cat="seo">🔎 SEO</button>
 </nav>
 
+<h2 style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">Available Tools</h2>
 <section class="tool-list" id="toolList">
 <a class="tool-row" data-cat="text" data-name="word character counter" data-desc="count words characters sentences" href="word-counter.html"><div class="idx">01</div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><div class="info"><h3>Word & Character Counter</h3><p>Count words, characters, sentences, paragraphs and reading time as you type.</p></div><div class="tag">text</div><div class="arrow">→</div></a>
 <a class="tool-row" data-cat="text" data-name="case converter" data-desc="uppercase lowercase title" href="case-converter.html"><div class="idx">02</div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><div class="info"><h3>Case Converter</h3><p>Switch text between UPPERCASE, lowercase, Title Case and Sentence case.</p></div><div class="tag">text</div><div class="arrow">→</div></a>
