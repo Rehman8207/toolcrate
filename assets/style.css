@@ -39,10 +39,10 @@ a:hover{color:var(--cyan)}
 .masthead .row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .brand-block{display:flex;align-items:center;gap:14px}
 .hero-illus{width:52px;height:52px;flex-shrink:0}
-.brand h1{font-family:var(--font-display);font-size:1.75rem;font-weight:700;letter-spacing:-0.03em;
+.brand h1,.brand h2,.brand-h1{font-family:var(--font-display);font-size:1.75rem;font-weight:700;letter-spacing:-0.03em;
   background:var(--grad-a);-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;line-height:1.1}
-.brand a{color:inherit;-webkit-text-fill-color:inherit}
+.brand a,.brand h2 a{color:inherit;-webkit-text-fill-color:inherit}
 .tagline{font-size:0.86rem;color:var(--ink-2);margin-top:3px;max-width:560px;line-height:1.5}
 .theme-toggle{background:var(--surface);backdrop-filter:blur(20px);
   border:1px solid var(--border-2);border-radius:var(--radius-full);padding:9px 18px;
@@ -312,11 +312,11 @@ footer{margin-top:64px;padding:32px 0;border-top:1px solid var(--border);display
   .row3,.row2{grid-template-columns:1fr}.img-compare{grid-template-columns:1fr}
   .tool-row{grid-template-columns:32px 40px 1fr 28px;gap:10px;padding:14px}
  .tool-row .info p{-webkit-line-clamp:1;line-clamp:1}
-.stat-grid{grid-template-columns:repeat(2,1fr)}.brand h1{font-size:1.45rem}
+.stat-grid{grid-template-columns:repeat(2,1fr)}.brand h1,.brand h2,.brand-h1{font-size:1.45rem}
 .hero-illus{width:44px}
   .hero-illus{width:44px;
   line-clamp: 1}
-  .stat-grid{grid-template-columns:repeat(2,1fr)}.brand h1{font-size:1.45rem}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}.brand h1,.brand h2,.brand-h1{font-size:1.45rem}
   .hero-illus{width:44px;height:44px}.hero-title{font-size:1.5rem}}
   @media (max-width:768px){
   .wrap{padding:0 16px}.tool-panel{padding:22px}.panel-head h2{font-size:1.25rem}
@@ -325,7 +325,7 @@ footer{margin-top:64px;padding:32px 0;border-top:1px solid var(--border);display
   .tool-row .tag{display:none}
   .tool-row .info p{-webkit-line-clamp:1;line-clamp:1}
   .stat-grid{grid-template-columns:repeat(2,1fr)}
-  .brand h1{font-size:1.45rem}
+  .brand h1,.brand h2,.brand-h1{font-size:1.45rem}
   .hero-illus{width:44px}
   .feature-strip{grid-template-columns:1fr}
   footer{flex-direction:column;align-items:flex-start}
