@@ -5,7 +5,7 @@
 <meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ToolCrate — 15+ Free Browser Tools. No Signup. Nothing Leaves Your Device.</title>
-<meta name="description" content="Free online tools that run entirely in your browser — word counter, QR generator, image compressor, JSON formatter, PDF tools, watermark, CGPA calculator and more.">
+<meta name="description" content="Free online tools that run entirely in your browser — word counter, QR generator, image compressor, JSON formatter, PDF tools, watermark, CGPA calculator and more. No signup, no uploads, no file limits.">
 <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/">
 <meta name="theme-color" content="#070B10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,25 +21,34 @@
 <div class="row">
 <div class="brand-block">
 <div class="hero-illus" aria-hidden="true">
-<svg viewBox="0 0 120 120" fill="none"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#22D3EE"/></linearGradient></defs>
-<circle cx="60" cy="60" r="58" stroke="url(#g1)" stroke-width="1" opacity="0.3"/>
+<svg viewBox="0 0 120 120" fill="none"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF4ECD"/><stop offset="50%" stop-color="#A855F7"/><stop offset="100%" stop-color="#22D3EE"/></linearGradient></defs>
+<circle cx="60" cy="60" r="58" stroke="url(#g1)" stroke-width="1" opacity="0.35"/>
 <g stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
 <path d="M40 78 L74 44a8 8 0 0 0 0-11.3l-1.7-1.7a8 8 0 0 0-11.3 0L27 65"/><circle cx="33" cy="72" r="7"/></g></svg>
 </div>
 <div>
 <div class="brand"><h1>ToolCrate</h1></div>
-<p class="tagline">15+ free tools that run entirely in your browser. No signup, no uploads, no file limits.</p>
+<p class="tagline">15+ free tools that run entirely in your browser. Nothing leaves your device.</p>
 </div>
 </div>
 <button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
 </div>
-<div class="search-row"><input id="toolSearch" type="text" placeholder="🔍  Search a tool…" autocomplete="off"></div>
-<div class="feature-strip">
-<div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/><path d="M9 12l2 2 4-4"/></svg><div><h2>Nothing is uploaded</h2><p>Every tool runs in your browser.</p></div></div>
-<div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><div><h2>No signup, no waiting</h2><p>Open a tool and use it immediately.</p></div></div>
-<div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 12l4-4M4 12l4 4"/></svg><div><h2>No file-size traps</h2><p>Upload folders, multiple files, PDFs of any length.</p></div></div>
+
+<div class="badge-row">
+<span class="badge pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/></svg>Nothing uploaded</span>
+<span class="badge violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Private by design</span>
+<span class="badge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>No signup, no waiting</span>
+<span class="badge lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5Z"/></svg>No file-size traps</span>
+</div>
+
+<h1 class="hero-title">15+ free tools that run <span class="grad-word">entirely in your browser</span></h1>
+<p class="hero-sub">Word counter, QR generator, PDF tools, image compressor, JSON formatter, watermark, CGPA calculator and more — all local, fast, and completely private.</p>
+
+<div class="search-row">
+<input id="toolSearch" type="text" placeholder="🔍  Search a tool — word counter, QR code, PDF, watermark…" autocomplete="off">
 </div>
 </header>
+
 <main>
 <nav class="category-rail" id="categoryRail">
 <button class="chip active" data-cat="all">✨ All tools</button>
@@ -49,8 +58,9 @@
 <button class="chip" data-cat="dev">⚙️ Dev</button>
 <button class="chip" data-cat="seo">🔎 SEO</button>
 </nav>
+
 <section class="tool-list" id="toolList">
-<a class="tool-row" data-cat="text" data-name="word character counter" data-desc="count words characters" href="word-counter.html"><div class="idx">01</div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><div class="info"><h3>Word & Character Counter</h3><p>Count words, characters, sentences, paragraphs and reading time as you type.</p></div><div class="tag">text</div><div class="arrow">→</div></a>
+<a class="tool-row" data-cat="text" data-name="word character counter" data-desc="count words characters sentences" href="word-counter.html"><div class="idx">01</div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><div class="info"><h3>Word & Character Counter</h3><p>Count words, characters, sentences, paragraphs and reading time as you type.</p></div><div class="tag">text</div><div class="arrow">→</div></a>
 <a class="tool-row" data-cat="text" data-name="case converter" data-desc="uppercase lowercase title" href="case-converter.html"><div class="idx">02</div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><div class="info"><h3>Case Converter</h3><p>Switch text between UPPERCASE, lowercase, Title Case and Sentence case.</p></div><div class="tag">text</div><div class="arrow">→</div></a>
 <a class="tool-row" data-cat="numbers" data-name="unit converter" data-desc="length weight temperature" href="unit-converter.html"><div class="idx">03</div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8M8 13h5M8 17h8"/></svg></div><div class="info"><h3>Unit Converter</h3><p>Convert length, weight, temperature and volume between common units.</p></div><div class="tag">numbers</div><div class="arrow">→</div></a>
 <a class="tool-row" data-cat="dev" data-name="qr code generator" data-desc="link text qr code" href="qr-generator.html"><div class="idx">04</div><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg></div><div class="info"><h3>QR Code Generator</h3><p>Turn any link or text into a downloadable QR code. Generated locally.</p></div><div class="tag">dev</div><div class="arrow">→</div></a>
