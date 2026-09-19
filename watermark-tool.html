@@ -3,247 +3,1142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Watermark Tool — ToolCrate</title>
+<title>Free Watermark Tool — Add Text & Logo Watermarks to Images and PDFs (No Upload, No Page Limit) | ToolCrate</title>
+<meta name="description" content="Add a text or logo watermark to JPG, PNG, WebP images and PDF files — free, unlimited PDF pages, batch and folder upload, and 100% processed in your browser. Nothing is ever uploaded to a server.">
+<meta name="keywords" content="watermark tool, add watermark to image, add watermark to pdf, free watermark online, batch watermark, bulk watermark images, pdf watermark no limit, text watermark, logo watermark, browser watermark tool, private watermark tool">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/watermark-tool.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Watermark Tool — Images & PDFs, No Upload, No Page Limit">
+<meta property="og:description" content="Watermark unlimited PDF pages and batches of images entirely in your browser. Free, private, and fast — nothing leaves your device.">
+<meta property="og:url" content="https://site.toolcrate-tools.workers.dev/watermark-tool.html">
+<meta property="og:site_name" content="ToolCrate">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Watermark Tool — Images & PDFs, No Upload, No Page Limit">
+<meta name="twitter:description" content="Batch-watermark images and PDFs locally in your browser. Free, private, unlimited pages.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ToolCrate Watermark Tool",
+  "url": "https://site.toolcrate-tools.workers.dev/watermark-tool.html",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free browser-based tool to add text or logo watermarks to JPG, PNG, WebP images and PDF files in bulk. No uploads, no page limit, no account.",
+  "featureList": [
+    "Text and logo watermarks",
+    "Unlimited PDF pages",
+    "Batch and folder upload",
+    "9-position and tiled placement",
+    "Adjustable rotation, opacity, size and color",
+    "Runs entirely in the browser — no server upload"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there a page limit for PDF watermarking?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Every page of every PDF you add is watermarked — there is no artificial page cap, whether your document has 5 pages or 500." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my files uploaded to a server?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Watermarking happens locally in your browser using JavaScript. Your images and PDFs never leave your device." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I watermark a whole folder of images at once?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use 'Choose folder' to select every image and PDF inside a folder, or 'Choose files' to multi-select individually. All matching files are processed and packaged into one ZIP download." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use a logo instead of text?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Upload a PNG, JPG or WebP logo and it can be applied alongside or instead of a text watermark, with its own position, size and opacity." }
+    },
+    {
+      "@type": "Question",
+      "name": "What file formats are supported?",
+      "acceptedAnswer": { "@type": "Answer", "text": "JPG, PNG and WebP images, and PDF documents. You can mix formats in a single batch." }
+    }
+  ]
+}
+</script>
+
 <style>
-  .wm-container {
-    max-width: 720px;
-    margin: 24px auto;
+  :root{
+    --wm-bg: #0c1712;
+    --wm-surface: #12211a;
+    --wm-surface-2: #17301f;
+    --wm-ink: #eef6ee;
+    --wm-muted: #9fb9a8;
+    --wm-rule: #29452f;
+    --wm-accent: #34d399;
+    --wm-accent-ink: #06241a;
+    --wm-amber: #f2b632;
+    --wm-sky: #62b0e8;
+    --wm-coral: #ef8a6b;
+    --wm-radius: 12px;
   }
-  .wm-field {
-    margin-bottom: 20px;
+
+  .wm-page{
+    background: var(--wm-bg);
+    color: var(--wm-ink);
   }
+
+  /* ---------- Hero ---------- */
+  .wm-hero{
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 8px 24px 0;
+  }
+  .wm-eyebrow-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 6px;
+  }
+  .wm-badge{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--wm-rule);
+    color: var(--wm-muted);
+    background: var(--wm-surface);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .wm-badge svg{ width: 13px; height: 13px; flex: none; }
+  .wm-badge.leaf{ color: var(--wm-accent); border-color: #1f4a34; }
+  .wm-badge.lock{ color: var(--wm-sky); border-color: #1e3a4c; }
+  .wm-badge.stack{ color: var(--wm-amber); border-color: #4a3a1a; }
+
+  .wm-h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 4.4vw, 2.9rem);
+    line-height: 1.08;
+    margin: 10px 0 12px;
+    max-width: 14ch;
+  }
+  .wm-h1 em{ font-style: italic; font-weight: 500; color: var(--wm-accent); }
+  .wm-sub{
+    color: var(--wm-muted);
+    font-size: 1.05rem;
+    line-height: 1.55;
+    max-width: 62ch;
+    margin-bottom: 4px;
+  }
+
+  /* ---------- Layout shell ---------- */
+  .wm-container{
+    max-width: 860px;
+    margin: 28px auto 0;
+    padding: 0 24px;
+  }
+  .wm-panel{
+    background: var(--wm-surface);
+    border: 1px solid var(--wm-rule);
+    border-radius: var(--wm-radius);
+    padding: 22px;
+    margin-bottom: 18px;
+  }
+  .wm-panel h2, .wm-panel h3{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+  .wm-panel h2{ font-size: 1.25rem; }
+  .wm-panel h3{ font-size: 1rem; color: var(--wm-ink); }
+  .wm-hint{ color: var(--wm-muted); font-size: 0.85rem; margin: -6px 0 14px; line-height: 1.5; }
+
+  /* ---------- Dropzone ---------- */
+  .wm-dropzone{
+    border: 1.5px dashed var(--wm-rule);
+    border-radius: var(--wm-radius);
+    padding: 28px 18px;
+    text-align: center;
+    transition: border-color .15s ease, background .15s ease;
+    cursor: pointer;
+  }
+  .wm-dropzone.drag-over{
+    border-color: var(--wm-accent);
+    background: rgba(52, 211, 153, 0.06);
+  }
+  .wm-dropzone svg{ width: 30px; height: 30px; color: var(--wm-accent); margin-bottom: 8px; }
+  .wm-dropzone p{ margin: 4px 0; color: var(--wm-muted); font-size: 0.9rem; }
+  .wm-dropzone .wm-drop-title{ color: var(--wm-ink); font-weight: 600; font-size: 0.98rem; }
+  .wm-browse-row{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .wm-browse-btn{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--wm-rule);
+    background: var(--wm-surface-2);
+    color: var(--wm-ink);
+    cursor: pointer;
+  }
+  .wm-browse-btn:hover{ border-color: var(--wm-accent); }
+  .wm-formats{ margin-top: 12px; font-size: 0.78rem; color: var(--wm-muted); }
+
+  /* ---------- File list ---------- */
+  .wm-filelist{ margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .wm-file-row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    background: var(--wm-surface-2);
+    border-radius: 8px;
+    border: 1px solid var(--wm-rule);
+  }
+  .wm-file-row.is-active{ border-color: var(--wm-accent); }
+  .wm-thumb{
+    width: 38px; height: 38px; border-radius: 6px; object-fit: cover;
+    background: var(--wm-bg); flex: none; border: 1px solid var(--wm-rule);
+  }
+  .wm-thumb-icon{
+    width: 38px; height: 38px; border-radius: 6px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--wm-bg); border: 1px solid var(--wm-rule); color: var(--wm-coral);
+  }
+  .wm-thumb-icon svg{ width: 18px; height: 18px; }
+  .wm-file-meta{ flex: 1; min-width: 0; }
+  .wm-file-name{ font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .wm-file-size{ font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--wm-muted); }
+  .wm-file-actions{ display: flex; gap: 6px; flex: none; }
+  .wm-icon-btn{
+    background: transparent; border: 1px solid var(--wm-rule); color: var(--wm-muted);
+    border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem;
+  }
+  .wm-icon-btn:hover{ color: var(--wm-ink); border-color: var(--wm-accent); }
+
+  /* ---------- Preview ---------- */
+  .preview-box {
+    width: 100%;
+    min-height: 240px;
+    max-height: 420px;
+    background:
+      linear-gradient(45deg, var(--wm-surface-2) 25%, transparent 25%) -8px 0/16px 16px,
+      linear-gradient(-45deg, var(--wm-surface-2) 25%, transparent 25%) -8px 0/16px 16px,
+      var(--wm-bg);
+    border: 1px dashed var(--wm-rule);
+    border-radius: var(--wm-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 4px 0 6px;
+  }
+  #previewCanvas {
+    max-width: 100%;
+    max-height: 410px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .preview-empty{ color: var(--wm-muted); font-size: 0.85rem; text-align: center; padding: 0 20px; }
+  .preview-note{ font-size: 0.76rem; color: var(--wm-muted); text-align: right; margin-bottom: 10px; }
+
+  /* ---------- Fields ---------- */
+  .wm-field { margin-bottom: 16px; }
+  .wm-field:last-child{ margin-bottom: 0; }
   .wm-field label {
     display: block;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
-    margin-bottom: 8px;
-    opacity: 0.8;
+    font-size: 0.8rem;
+    margin-bottom: 7px;
+    color: var(--wm-muted);
   }
   .wm-field input[type="text"],
   .wm-field input[type="number"],
-  .wm-field input[type="file"] {
+  .wm-field input[type="file"],
+  .wm-field select {
     width: 100%;
-    padding: 12px;
-    border-radius: 6px;
-    border: 1px solid var(--rule, #3f3f46);
-    background: var(--surface, #18181b);
-    color: var(--ink, #fff);
+    padding: 11px;
+    border-radius: 8px;
+    border: 1px solid var(--wm-rule);
+    background: var(--wm-bg);
+    color: var(--wm-ink);
     font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.88rem;
     box-sizing: border-box;
   }
+  .wm-field select{ cursor: pointer; }
   .wm-field input[type="color"] {
     width: 100%;
-    height: 45px;
-    border-radius: 6px;
-    border: 1px solid var(--rule, #3f3f46);
-    background: var(--surface, #18181b);
+    height: 44px;
+    border-radius: 8px;
+    border: 1px solid var(--wm-rule);
+    background: var(--wm-bg);
     cursor: pointer;
     padding: 4px;
     box-sizing: border-box;
   }
   .wm-field input[type="range"] {
     width: 100%;
-    accent-color: var(--accent, #3b82f6);
+    accent-color: var(--wm-accent);
     cursor: pointer;
   }
-  .preview-box {
-    width: 100%;
-    min-height: 280px;
-    max-height: 450px;
-    background: var(--surface, #18181b);
-    border: 1px dashed var(--rule, #3f3f46);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin: 20px 0;
-  }
-  #previewCanvas {
-    max-width: 100%;
-    max-height: 420px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-  }
+  .wm-range-value{ font-family: 'IBM Plex Mono', monospace; font-size: 0.76rem; color: var(--wm-accent); }
   .wm-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 14px;
   }
-  @media (max-width: 600px) {
-    .wm-grid { grid-template-columns: 1fr; }
+  .wm-grid-3{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media (max-width: 640px) {
+    .wm-grid, .wm-grid-3 { grid-template-columns: 1fr; }
   }
+  .wm-check-row{
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; color: var(--wm-muted);
+    margin-bottom: 16px;
+  }
+  .wm-check-row input{ accent-color: var(--wm-accent); width: 16px; height: 16px; }
+
+  .wm-divider{ border: none; border-top: 1px solid var(--wm-rule); margin: 18px 0; }
+
   .action-btn {
     width: 100%;
-    padding: 14px;
-    background: var(--accent, #3b82f6);
-    color: #fff;
+    padding: 15px;
+    background: var(--wm-accent);
+    color: var(--wm-accent-ink);
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 6px;
   }
+  .action-btn:hover:not(:disabled){ filter: brightness(1.08); }
   .action-btn:disabled {
-    opacity: 0.4;
+    opacity: 0.35;
     cursor: not-allowed;
   }
   .status-text {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--accent, #3b82f6);
+    font-size: 0.82rem;
+    color: var(--wm-muted);
+    margin-top: 10px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .status-text .ok{ color: var(--wm-accent); }
+
+  /* ---------- Feature grid ---------- */
+  .wm-features{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
     margin-top: 8px;
+  }
+  @media (max-width: 700px){ .wm-features{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 460px){ .wm-features{ grid-template-columns: 1fr; } }
+  .wm-feature{
+    background: var(--wm-surface-2);
+    border: 1px solid var(--wm-rule);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .wm-feature svg{ width: 20px; height: 20px; margin-bottom: 10px; }
+  .wm-feature h4{ font-family: 'Fraunces', serif; font-size: 0.98rem; font-weight: 600; margin: 0 0 6px; }
+  .wm-feature p{ font-size: 0.83rem; color: var(--wm-muted); line-height: 1.5; margin: 0; }
+  .wm-feature.c-leaf svg{ color: var(--wm-accent); }
+  .wm-feature.c-amber svg{ color: var(--wm-amber); }
+  .wm-feature.c-sky svg{ color: var(--wm-sky); }
+  .wm-feature.c-coral svg{ color: var(--wm-coral); }
+
+  /* ---------- Steps ---------- */
+  .wm-steps{ counter-reset: wm-step; display: flex; flex-direction: column; gap: 4px; }
+  .wm-step{
+    display: flex; gap: 14px; padding: 14px 0;
+    border-bottom: 1px solid var(--wm-rule);
+  }
+  .wm-step:last-child{ border-bottom: none; }
+  .wm-step-num{
+    counter-increment: wm-step;
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    color: var(--wm-accent);
+    flex: none; width: 30px;
+  }
+  .wm-step-num::before{ content: counter(wm-step); }
+  .wm-step h4{ margin: 0 0 4px; font-size: 0.95rem; font-family: 'Fraunces', serif; font-weight: 600; }
+  .wm-step p{ margin: 0; font-size: 0.85rem; color: var(--wm-muted); line-height: 1.5; }
+
+  /* ---------- FAQ ---------- */
+  .wm-faq details{
+    border-bottom: 1px solid var(--wm-rule);
+    padding: 14px 0;
+  }
+  .wm-faq details:last-child{ border-bottom: none; }
+  .wm-faq summary{
+    cursor: pointer;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 0.98rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .wm-faq summary::-webkit-details-marker{ display: none; }
+  .wm-faq summary::after{
+    content: '+';
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--wm-accent);
+    font-size: 1.2rem;
+    flex: none;
+  }
+  .wm-faq details[open] summary::after{ content: '−'; }
+  .wm-faq p{ color: var(--wm-muted); font-size: 0.88rem; line-height: 1.6; margin: 10px 0 0; }
+
+  .wm-seo-note{
+    font-size: 0.8rem; color: var(--wm-muted); line-height: 1.6; margin-top: 8px;
+  }
+
+  .wm-section-title{
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .wm-section-lead{ color: var(--wm-muted); font-size: 0.92rem; margin: 0 0 18px; }
+
+  .wm-footer-note{
+    max-width: 860px; margin: 8px auto 40px; padding: 0 24px;
+    font-size: 0.78rem; color: var(--wm-muted); line-height: 1.6;
   }
 </style>
 </head>
-<body>
+<body class="wm-page">
 <div class="wrap">
-  <header class="masthead">
+  <header class="masthead wm-hero">
     <a href="index.html" class="back-link">&larr; Back to All Tools</a>
-    <h1>Watermark Tool</h1>
-    <p class="tagline">Add custom text watermarks to photos and PDFs locally in your browser.</p>
+
+    <div class="wm-eyebrow-row">
+      <span class="wm-badge leaf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-2-8-6-8-12a8 8 0 0 1 16 0c0 6-4 10-8 12Z"/><path d="M12 21V9"/></svg>
+        Runs on your device — nothing uploaded
+      </span>
+      <span class="wm-badge lock">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        Private by design
+      </span>
+      <span class="wm-badge stack">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="m2 13 10 5 10-5"/></svg>
+        No PDF page limit
+      </span>
+    </div>
+
+    <h1 class="wm-h1">Watermark images and PDFs <em>without leaving your browser</em></h1>
+    <p class="wm-sub">Add a text or logo watermark to as many images and PDFs as you need — every page, every file, one batch. Nothing is uploaded to a server, so processing is quick and your files stay yours.</p>
   </header>
 
   <main class="wm-container">
-    <div class="wm-field">
-      <label for="fileInput">Select Image(s) or PDF</label>
-      <input type="file" id="fileInput" multiple accept="image/*,.pdf">
+
+    <!-- Upload -->
+    <section class="wm-panel">
+      <h2>1. Add your files</h2>
+      <p class="wm-hint">Drop files or a whole folder below. Mix JPG, PNG, WebP and PDF freely — everything is watermarked in one pass and packaged for download.</p>
+
+      <div class="wm-dropzone" id="dropzone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M12 4 7 9M12 4l5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+        <p class="wm-drop-title">Drag files here</p>
+        <p>or use a button below</p>
+        <div class="wm-browse-row">
+          <button type="button" class="wm-browse-btn" id="chooseFilesBtn">Choose files</button>
+          <button type="button" class="wm-browse-btn" id="chooseFolderBtn">Choose folder</button>
+        </div>
+        <p class="wm-formats">Supported: JPG · PNG · WebP · PDF — any number of files, any number of PDF pages</p>
+      </div>
+      <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/webp,application/pdf" style="display:none">
+      <input type="file" id="folderInput" multiple webkitdirectory directory style="display:none">
+
       <div id="statusText" class="status-text" style="display:none;"></div>
-    </div>
+      <div class="wm-filelist" id="fileList"></div>
+    </section>
 
-    <div class="preview-box">
-      <canvas id="previewCanvas"></canvas>
-    </div>
-
-    <div class="wm-field">
-      <label for="watermarkText">Watermark Text</label>
-      <input type="text" id="watermarkText" value="ToolCrate" placeholder="Type text...">
-    </div>
-
-    <div class="wm-grid">
-      <div class="wm-field">
-        <label for="fontSizeInput">Font Size (px)</label>
-        <input type="number" id="fontSizeInput" value="48" min="10" max="200">
+    <!-- Preview -->
+    <section class="wm-panel">
+      <h2>2. Preview</h2>
+      <p class="preview-note" id="previewNote"></p>
+      <div class="preview-box">
+        <canvas id="previewCanvas" style="display:none;"></canvas>
+        <p class="preview-empty" id="previewEmpty">Add an image or PDF above to see a live preview of your watermark.</p>
       </div>
+    </section>
+
+    <!-- Text watermark -->
+    <section class="wm-panel">
+      <h2>3. Text watermark</h2>
       <div class="wm-field">
-        <label for="colorInput">Text Color</label>
-        <input type="color" id="colorInput" value="#ffffff">
+        <label for="watermarkText">Watermark text (leave empty to skip)</label>
+        <input type="text" id="watermarkText" value="ToolCrate" placeholder="e.g. CONFIDENTIAL, DRAFT, your brand name...">
       </div>
-    </div>
 
-    <div class="wm-field">
-      <label for="opacityInput">Opacity</label>
-      <input type="range" id="opacityInput" min="0.1" max="1" step="0.05" value="0.5">
-    </div>
+      <div class="wm-grid-3">
+        <div class="wm-field">
+          <label for="fontSizeInput">Font size (px)</label>
+          <input type="number" id="fontSizeInput" value="48" min="8" max="400">
+        </div>
+        <div class="wm-field">
+          <label for="colorInput">Color</label>
+          <input type="color" id="colorInput" value="#ffffff">
+        </div>
+        <div class="wm-field">
+          <label for="positionSelect">Position</label>
+          <select id="positionSelect">
+            <option value="top-left">Top left</option>
+            <option value="top-center">Top center</option>
+            <option value="top-right">Top right</option>
+            <option value="middle-left">Middle left</option>
+            <option value="center" selected>Center</option>
+            <option value="middle-right">Middle right</option>
+            <option value="bottom-left">Bottom left</option>
+            <option value="bottom-center">Bottom center</option>
+            <option value="bottom-right">Bottom right</option>
+          </select>
+        </div>
+      </div>
 
-    <button class="action-btn" id="downloadBtn" disabled>Download Watermarked File(s)</button>
+      <div class="wm-grid">
+        <div class="wm-field">
+          <label for="opacityInput">Opacity — <span class="wm-range-value" id="opacityValue">0.50</span></label>
+          <input type="range" id="opacityInput" min="0.05" max="1" step="0.05" value="0.5">
+        </div>
+        <div class="wm-field">
+          <label for="rotationInput">Rotation — <span class="wm-range-value" id="rotationValue">-30°</span></label>
+          <input type="range" id="rotationInput" min="-90" max="90" step="1" value="-30">
+        </div>
+      </div>
+
+      <div class="wm-check-row">
+        <input type="checkbox" id="tileCheckbox">
+        <label for="tileCheckbox" style="margin:0;">Repeat as a tiled pattern across the whole page (ignores position above)</label>
+      </div>
+    </section>
+
+    <!-- Logo watermark -->
+    <section class="wm-panel">
+      <h3>Optional: logo / image watermark</h3>
+      <p class="wm-hint">Layer a PNG, JPG or WebP logo on top of (or instead of) the text watermark.</p>
+      <div class="wm-field">
+        <label for="logoInput">Logo image</label>
+        <input type="file" id="logoInput" accept="image/png,image/jpeg,image/webp">
+      </div>
+      <div class="wm-grid-3">
+        <div class="wm-field">
+          <label for="logoPositionSelect">Logo position</label>
+          <select id="logoPositionSelect">
+            <option value="top-left">Top left</option>
+            <option value="top-center">Top center</option>
+            <option value="top-right" selected>Top right</option>
+            <option value="middle-left">Middle left</option>
+            <option value="center">Center</option>
+            <option value="middle-right">Middle right</option>
+            <option value="bottom-left">Bottom left</option>
+            <option value="bottom-center">Bottom center</option>
+            <option value="bottom-right">Bottom right</option>
+          </select>
+        </div>
+        <div class="wm-field">
+          <label for="logoScaleInput">Size — <span class="wm-range-value" id="logoScaleValue">18%</span> of width</label>
+          <input type="range" id="logoScaleInput" min="5" max="60" step="1" value="18">
+        </div>
+        <div class="wm-field">
+          <label for="logoOpacityInput">Opacity — <span class="wm-range-value" id="logoOpacityValue">0.85</span></label>
+          <input type="range" id="logoOpacityInput" min="0.05" max="1" step="0.05" value="0.85">
+        </div>
+      </div>
+    </section>
+
+    <!-- Output -->
+    <section class="wm-panel">
+      <h2>4. Download</h2>
+      <p class="wm-hint">A single file downloads directly; multiple files are packaged into one ZIP. Every PDF page is watermarked — there's no page cap.</p>
+      <button class="action-btn" id="downloadBtn" disabled>Watermark &amp; download</button>
+      <p class="status-text" id="processStatus"></p>
+    </section>
+
+    <!-- Why this tool -->
+    <section class="wm-panel" style="background:transparent;border:none;padding:8px 0 0;">
+      <h2 class="wm-section-title">Built to be fast, private and eco-friendly</h2>
+      <p class="wm-section-lead">Because every image and PDF is processed on your own device, no file ever travels to a server — that means less network traffic, less server compute, and a lighter footprint than upload-based watermarking tools, on top of being quicker for you.</p>
+      <div class="wm-features">
+        <div class="wm-feature c-leaf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-2-8-6-8-12a8 8 0 0 1 16 0c0 6-4 10-8 12Z"/><path d="M12 21V9"/></svg>
+          <h4>Lighter on the planet</h4>
+          <p>No upload, no server rendering — your device does the work, so each watermark costs less energy than a round trip to the cloud.</p>
+        </div>
+        <div class="wm-feature c-sky">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          <h4>Private by default</h4>
+          <p>Files never leave your browser tab. Close the page and everything is gone — nothing was ever stored anywhere else.</p>
+        </div>
+        <div class="wm-feature c-amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="m2 13 10 5 10-5"/></svg>
+          <h4>No PDF page limit</h4>
+          <p>Ten pages or a thousand — every single page in every PDF you add gets the same watermark, automatically.</p>
+        </div>
+        <div class="wm-feature c-coral">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <h4>Folder &amp; batch upload</h4>
+          <p>Select individual files or an entire folder in one go. Everything is watermarked and zipped into a single download.</p>
+        </div>
+        <div class="wm-feature c-leaf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+          <h4>Text and logo, together</h4>
+          <p>Stack a text watermark with a logo image, each with its own position, size, rotation and opacity.</p>
+        </div>
+        <div class="wm-feature c-sky">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+          <h4>9-position placement &amp; tiling</h4>
+          <p>Pin the watermark to any corner or edge, or tile it diagonally across the whole page for stronger protection.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="wm-panel" style="background:transparent;border:none;padding:8px 0 0;">
+      <h2 class="wm-section-title">How it works</h2>
+      <div class="wm-steps">
+        <div class="wm-step">
+          <span class="wm-step-num"></span>
+          <div><h4>Add your files</h4><p>Drag in images or PDFs, or choose an entire folder — no limit on how many.</p></div>
+        </div>
+        <div class="wm-step">
+          <span class="wm-step-num"></span>
+          <div><h4>Style your watermark</h4><p>Set your text or logo, pick a position or tile it, and preview the result instantly.</p></div>
+        </div>
+        <div class="wm-step">
+          <span class="wm-step-num"></span>
+          <div><h4>Download</h4><p>Get a single watermarked file, or a ZIP of the whole batch — processed on your device, in seconds.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="wm-panel wm-faq" style="background:transparent;border:none;padding:8px 0 0;">
+      <h2 class="wm-section-title">Frequently asked questions</h2>
+      <details open>
+        <summary>Is there a page limit for PDF watermarking?</summary>
+        <p>No. Every page of every PDF you add is watermarked — there's no artificial page cap, whether your document has 5 pages or 500.</p>
+      </details>
+      <details>
+        <summary>Are my files uploaded to a server?</summary>
+        <p>No. Watermarking happens locally in your browser using JavaScript. Your images and PDFs never leave your device.</p>
+      </details>
+      <details>
+        <summary>Can I watermark a whole folder of images at once?</summary>
+        <p>Yes. Use "Choose folder" to select every image and PDF inside a folder, or "Choose files" to multi-select individually. Everything is processed and packaged into one ZIP download.</p>
+      </details>
+      <details>
+        <summary>Can I use a logo instead of text?</summary>
+        <p>Yes. Upload a PNG, JPG or WebP logo — it can be applied alongside or instead of a text watermark, with its own position, size and opacity.</p>
+      </details>
+      <details>
+        <summary>What file formats are supported?</summary>
+        <p>JPG, PNG and WebP images, and PDF documents. You can mix formats in a single batch.</p>
+      </details>
+      <details>
+        <summary>Is this really free?</summary>
+        <p>Yes — no account, no watermark on the watermark, no page or file-count limits enforced by us.</p>
+      </details>
+    </section>
+
   </main>
+
+  <p class="wm-footer-note">Free online watermark tool for photographers, designers, freelancers and businesses who need to add text or logo watermarks to images and PDF documents — batch watermarking, unlimited PDF pages, and private, browser-based processing with no sign-up required.</p>
 </div>
 
 <script src="assets/common.js"></script>
 <script>
-(function() {
+(function () {
   "use strict";
 
+  /* ---------------- Shared state ---------------- */
   const fileInput = document.getElementById('fileInput');
+  const folderInput = document.getElementById('folderInput');
+  const dropzone = document.getElementById('dropzone');
+  const chooseFilesBtn = document.getElementById('chooseFilesBtn');
+  const chooseFolderBtn = document.getElementById('chooseFolderBtn');
+  const fileListEl = document.getElementById('fileList');
+  const statusText = document.getElementById('statusText');
+  const processStatus = document.getElementById('processStatus');
+
   const watermarkText = document.getElementById('watermarkText');
   const fontSizeInput = document.getElementById('fontSizeInput');
   const opacityInput = document.getElementById('opacityInput');
+  const opacityValue = document.getElementById('opacityValue');
   const colorInput = document.getElementById('colorInput');
+  const positionSelect = document.getElementById('positionSelect');
+  const rotationInput = document.getElementById('rotationInput');
+  const rotationValue = document.getElementById('rotationValue');
+  const tileCheckbox = document.getElementById('tileCheckbox');
+
+  const logoInput = document.getElementById('logoInput');
+  const logoPositionSelect = document.getElementById('logoPositionSelect');
+  const logoScaleInput = document.getElementById('logoScaleInput');
+  const logoScaleValue = document.getElementById('logoScaleValue');
+  const logoOpacityInput = document.getElementById('logoOpacityInput');
+  const logoOpacityValue = document.getElementById('logoOpacityValue');
+
   const previewCanvas = document.getElementById('previewCanvas');
+  const previewEmpty = document.getElementById('previewEmpty');
+  const previewNote = document.getElementById('previewNote');
   const downloadBtn = document.getElementById('downloadBtn');
-  const statusText = document.getElementById('statusText');
 
-  let selectedFiles = [];
-  let currentPreviewImg = null;
+  let selectedFiles = [];   // { file, id, thumbUrl }
+  let previewIndex = -1;
+  let previewImgCache = null;
+  let logoImg = null;       // decoded HTMLImageElement for preview + drawing
+  let logoFile = null;
 
-  fileInput.addEventListener('change', function(e) {
-    selectedFiles = Array.from(e.target.files);
-    if (selectedFiles.length === 0) return;
+  const ACCEPTED = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'];
+
+  /* 0 = top/left edge, 0.5 = middle/center, 1 = bottom/right edge */
+  const POSITIONS = {
+    'top-left':      { x: 0,   y: 0 },
+    'top-center':    { x: 0.5, y: 0 },
+    'top-right':     { x: 1,   y: 0 },
+    'middle-left':   { x: 0,   y: 0.5 },
+    'center':        { x: 0.5, y: 0.5 },
+    'middle-right':  { x: 1,   y: 0.5 },
+    'bottom-left':   { x: 0,   y: 1 },
+    'bottom-center': { x: 0.5, y: 1 },
+    'bottom-right':  { x: 1,   y: 1 }
+  };
+
+  function isAccepted(file) {
+    if (ACCEPTED.indexOf(file.type) !== -1) return true;
+    return /\.(jpe?g|png|webp|pdf)$/i.test(file.name);
+  }
+
+  function fileKey(f) {
+    return f.name + '|' + f.size + '|' + f.lastModified;
+  }
+
+  function fmtBytes(n) {
+    if (n < 1024) return n + ' B';
+    if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+    return (n / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function isPdf(file) {
+    return file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
+  }
+
+  /* ---------------- File intake ---------------- */
+  function addFiles(fileListLike) {
+    const incoming = Array.from(fileListLike).filter(isAccepted);
+    if (incoming.length === 0) return;
+
+    const existingKeys = new Set(selectedFiles.map(e => fileKey(e.file)));
+    let addedCount = 0;
+
+    incoming.forEach(file => {
+      const key = fileKey(file);
+      if (existingKeys.has(key)) return;
+      existingKeys.add(key);
+      selectedFiles.push({ file: file, id: key, thumbUrl: null });
+      addedCount++;
+    });
+
+    if (selectedFiles.length > 0 && previewIndex === -1) previewIndex = 0;
+
+    renderFileList();
+    updatePreview();
+    downloadBtn.disabled = selectedFiles.length === 0;
 
     statusText.style.display = 'block';
-    statusText.textContent = `${selectedFiles.length} file(s) selected.`;
+    statusText.innerHTML = '<span class="ok">' + selectedFiles.length + ' file(s) ready.</span>' +
+      (addedCount < incoming.length ? ' Some duplicates were skipped.' : '');
+  }
 
-    const firstImage = selectedFiles.find(f => f.type.startsWith('image/'));
-    if (firstImage) {
+  function removeFile(id) {
+    const idx = selectedFiles.findIndex(e => e.id === id);
+    if (idx === -1) return;
+    selectedFiles.splice(idx, 1);
+    if (previewIndex === idx) {
+      previewIndex = selectedFiles.length ? 0 : -1;
+    } else if (previewIndex > idx) {
+      previewIndex -= 1;
+    }
+    renderFileList();
+    updatePreview();
+    downloadBtn.disabled = selectedFiles.length === 0;
+    if (selectedFiles.length === 0) {
+      statusText.style.display = 'none';
+    }
+  }
+
+  function renderFileList() {
+    fileListEl.innerHTML = '';
+    selectedFiles.forEach((entry, idx) => {
+      const row = document.createElement('div');
+      row.className = 'wm-file-row' + (idx === previewIndex ? ' is-active' : '');
+
+      let thumbEl;
+      if (entry.file.type.startsWith('image/')) {
+        thumbEl = document.createElement('img');
+        thumbEl.className = 'wm-thumb';
+        if (!entry.thumbUrl) entry.thumbUrl = URL.createObjectURL(entry.file);
+        thumbEl.src = entry.thumbUrl;
+        thumbEl.alt = '';
+      } else {
+        thumbEl = document.createElement('div');
+        thumbEl.className = 'wm-thumb-icon';
+        thumbEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>';
+      }
+
+      const meta = document.createElement('div');
+      meta.className = 'wm-file-meta';
+      meta.innerHTML =
+        '<div class="wm-file-name">' + escapeHtml(entry.file.name) + '</div>' +
+        '<div class="wm-file-size">' + fmtBytes(entry.file.size) + (isPdf(entry.file) ? ' · PDF' : '') + '</div>';
+
+      const actions = document.createElement('div');
+      actions.className = 'wm-file-actions';
+
+      const previewBtn = document.createElement('button');
+      previewBtn.type = 'button';
+      previewBtn.className = 'wm-icon-btn';
+      previewBtn.title = 'Preview this file';
+      previewBtn.textContent = '👁';
+      previewBtn.addEventListener('click', () => { previewIndex = idx; renderFileList(); updatePreview(); });
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'wm-icon-btn';
+      removeBtn.title = 'Remove';
+      removeBtn.textContent = '✕';
+      removeBtn.addEventListener('click', () => removeFile(entry.id));
+
+      actions.appendChild(previewBtn);
+      actions.appendChild(removeBtn);
+
+      row.appendChild(thumbEl);
+      row.appendChild(meta);
+      row.appendChild(actions);
+      fileListEl.appendChild(row);
+    });
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  /* ---------------- Drag & drop / browse ---------------- */
+  chooseFilesBtn.addEventListener('click', () => fileInput.click());
+  chooseFolderBtn.addEventListener('click', () => folderInput.click());
+  fileInput.addEventListener('change', e => { addFiles(e.target.files); fileInput.value = ''; });
+  folderInput.addEventListener('change', e => { addFiles(e.target.files); folderInput.value = ''; });
+
+  ['dragenter', 'dragover'].forEach(evt => {
+    dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+  });
+  ['dragleave', 'drop'].forEach(evt => {
+    dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.remove('drag-over'); });
+  });
+  dropzone.addEventListener('drop', e => {
+    if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files);
+  });
+  dropzone.addEventListener('click', e => {
+    if (e.target === chooseFilesBtn || e.target === chooseFolderBtn) return;
+    fileInput.click();
+  });
+
+  /* ---------------- Logo intake ---------------- */
+  logoInput.addEventListener('change', () => {
+    const f = logoInput.files[0];
+    if (!f) { logoImg = null; logoFile = null; updatePreview(); return; }
+    logoFile = f;
+    const reader = new FileReader();
+    reader.onload = evt => {
+      const img = new Image();
+      img.onload = () => { logoImg = img; updatePreview(); };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(f);
+  });
+
+  /* ---------------- Live control readouts ---------------- */
+  opacityInput.addEventListener('input', () => { opacityValue.textContent = parseFloat(opacityInput.value).toFixed(2); updatePreview(); });
+  rotationInput.addEventListener('input', () => { rotationValue.textContent = rotationInput.value + '°'; updatePreview(); });
+  logoScaleInput.addEventListener('input', () => { logoScaleValue.textContent = logoScaleInput.value + '%'; updatePreview(); });
+  logoOpacityInput.addEventListener('input', () => { logoOpacityValue.textContent = parseFloat(logoOpacityInput.value).toFixed(2); updatePreview(); });
+  [watermarkText, fontSizeInput, colorInput, positionSelect, logoPositionSelect, tileCheckbox].forEach(el => {
+    el.addEventListener('input', updatePreview);
+    el.addEventListener('change', updatePreview);
+  });
+
+  /* ---------------- Anchor math (shared by canvas) ---------------- */
+  function computeAnchor(posKey, W, H, pad) {
+    const frac = POSITIONS[posKey] || POSITIONS.center;
+    const alignX = frac.x === 0 ? 'left' : (frac.x === 1 ? 'right' : 'center');
+    const alignY = frac.y === 0 ? 'top' : (frac.y === 1 ? 'bottom' : 'middle');
+    const x = pad + frac.x * (W - 2 * pad);
+    const y = pad + frac.y * (H - 2 * pad);
+    return { x, y, alignX, alignY };
+  }
+
+  /* ---------------- Canvas drawing (shared by preview + export) ---------------- */
+  function drawWatermarks(ctx, W, H, opts) {
+    const pad = Math.max(12, Math.round(Math.min(W, H) * 0.03));
+
+    if (opts.text) {
+      ctx.font = 'bold ' + opts.fontSize + 'px sans-serif';
+      ctx.fillStyle = opts.color;
+      ctx.globalAlpha = opts.opacity;
+
+      if (opts.tile) {
+        const textWidth = ctx.measureText(opts.text).width || opts.fontSize * opts.text.length * 0.55;
+        const stepX = textWidth + opts.fontSize * 3;
+        const stepY = opts.fontSize * 4;
+        const diag = Math.sqrt(W * W + H * H);
+        ctx.save();
+        ctx.translate(W / 2, H / 2);
+        ctx.rotate(opts.rotation * Math.PI / 180);
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        for (let yy = -diag / 2; yy < diag / 2; yy += stepY) {
+          for (let xx = -diag / 2; xx < diag / 2; xx += stepX) {
+            ctx.fillText(opts.text, xx, yy);
+          }
+        }
+        ctx.restore();
+      } else {
+        const a = computeAnchor(opts.position, W, H, pad);
+        ctx.save();
+        ctx.translate(a.x, a.y);
+        ctx.rotate(opts.rotation * Math.PI / 180);
+        ctx.textAlign = a.alignX;
+        ctx.textBaseline = a.alignY;
+        ctx.fillText(opts.text, 0, 0);
+        ctx.restore();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    if (opts.logoImg) {
+      const logoW = W * (opts.logoScale / 100);
+      const logoH = logoW * (opts.logoImg.naturalHeight / opts.logoImg.naturalWidth || 1);
+      const a = computeAnchor(opts.logoPosition, W, H, pad);
+      let ox = 0, oy = 0;
+      if (a.alignX === 'center') ox = -logoW / 2; else if (a.alignX === 'right') ox = -logoW;
+      if (a.alignY === 'middle') oy = -logoH / 2; else if (a.alignY === 'bottom') oy = -logoH;
+
+      ctx.save();
+      ctx.globalAlpha = opts.logoOpacity;
+      ctx.translate(a.x, a.y);
+      ctx.drawImage(opts.logoImg, ox, oy, logoW, logoH);
+      ctx.restore();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  function currentOpts() {
+    return {
+      text: watermarkText.value.trim(),
+      fontSize: parseInt(fontSizeInput.value, 10) || 48,
+      color: colorInput.value || '#ffffff',
+      opacity: parseFloat(opacityInput.value) || 0.5,
+      position: positionSelect.value,
+      rotation: parseInt(rotationInput.value, 10) || 0,
+      tile: tileCheckbox.checked,
+      logoImg: logoImg,
+      logoPosition: logoPositionSelect.value,
+      logoScale: parseFloat(logoScaleInput.value) || 18,
+      logoOpacity: parseFloat(logoOpacityInput.value) || 0.85
+    };
+  }
+
+  /* ---------------- Preview ---------------- */
+  function updatePreview() {
+    if (previewIndex === -1 || !selectedFiles[previewIndex]) {
+      previewCanvas.style.display = 'none';
+      previewEmpty.style.display = 'block';
+      previewNote.textContent = '';
+      return;
+    }
+    const entry = selectedFiles[previewIndex];
+    previewNote.textContent = 'Previewing: ' + entry.file.name;
+
+    if (isPdf(entry.file)) {
+      previewCanvas.style.display = 'none';
+      previewEmpty.style.display = 'block';
+      previewEmpty.textContent = 'PDF preview isn\'t rendered here, but every page will be watermarked exactly like the settings above. Add an image to preview visually.';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = evt => {
+      const img = new Image();
+      img.onload = () => {
+        previewImgCache = img;
+        renderPreviewCanvas();
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(entry.file);
+  }
+
+  function renderPreviewCanvas() {
+    if (!previewImgCache) return;
+    previewCanvas.style.display = 'block';
+    previewEmpty.style.display = 'none';
+
+    // Downscale the preview for speed; full-resolution processing happens on export.
+    const MAX_DIM = 1100;
+    const scale = Math.min(1, MAX_DIM / Math.max(previewImgCache.naturalWidth, previewImgCache.naturalHeight));
+    const W = Math.round(previewImgCache.naturalWidth * scale);
+    const H = Math.round(previewImgCache.naturalHeight * scale);
+
+    previewCanvas.width = W;
+    previewCanvas.height = H;
+    const ctx = previewCanvas.getContext('2d');
+    ctx.clearRect(0, 0, W, H);
+    ctx.drawImage(previewImgCache, 0, 0, W, H);
+    drawWatermarks(ctx, W, H, currentOpts());
+  }
+
+  /* ---------------- Export: images ---------------- */
+  function processImageWatermark(file) {
+    return new Promise((resolve) => {
       const reader = new FileReader();
-      reader.onload = function(evt) {
+      reader.onload = evt => {
         const img = new Image();
-        img.onload = function() {
-          currentPreviewImg = img;
-          renderPreview();
-          downloadBtn.disabled = false;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          drawWatermarks(ctx, canvas.width, canvas.height, currentOpts());
+          canvas.toBlob(blob => resolve(blob), file.type || 'image/png', 0.95);
         };
         img.src = evt.target.result;
       };
-      reader.readAsDataURL(firstImage);
-    } else {
-      downloadBtn.disabled = false;
-    }
-  });
-
-  function renderPreview() {
-    if (!currentPreviewImg) return;
-    const ctx = previewCanvas.getContext('2d');
-    previewCanvas.width = currentPreviewImg.naturalWidth;
-    previewCanvas.height = currentPreviewImg.naturalHeight;
-
-    ctx.drawImage(currentPreviewImg, 0, 0);
-
-    const text = watermarkText.value || 'ToolCrate';
-    const fontSize = parseInt(fontSizeInput.value, 10) || 48;
-    const opacity = parseFloat(opacityInput.value) || 0.5;
-
-    ctx.font = `bold ${fontSize}px sans-serif`;
-    ctx.fillStyle = colorInput.value || '#ffffff';
-    ctx.globalAlpha = opacity;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-
-    ctx.fillText(text, previewCanvas.width / 2, previewCanvas.height / 2);
+      reader.readAsDataURL(file);
+    });
   }
 
-  [watermarkText, fontSizeInput, opacityInput, colorInput].forEach(el => {
-    el.addEventListener('input', renderPreview);
-  });
+  /* ---------------- Export: PDFs (no page limit) ---------------- */
+  function hexToRgb01(hex) {
+    const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || '#ffffff');
+    if (!m) return { r: 1, g: 1, b: 1 };
+    return { r: parseInt(m[1], 16) / 255, g: parseInt(m[2], 16) / 255, b: parseInt(m[3], 16) / 255 };
+  }
 
-  downloadBtn.addEventListener('click', async function() {
-    if (selectedFiles.length === 0) return;
-    downloadBtn.disabled = true;
-    downloadBtn.textContent = 'Processing...';
+  function pdfAnchorText(posKey, W, H, pad, font, text, fontSize) {
+    const frac = POSITIONS[posKey] || POSITIONS.center;
+    const textWidth = font.widthOfTextAtSize(text, fontSize);
+    let x;
+    if (frac.x === 0) x = pad; else if (frac.x === 1) x = W - pad - textWidth; else x = (W - textWidth) / 2;
+    let y;
+    if (frac.y === 0) y = H - pad - fontSize * 0.8; else if (frac.y === 1) y = pad; else y = (H - fontSize * 0.35) / 2;
+    return { x, y };
+  }
 
-    if (selectedFiles.length === 1 && selectedFiles[0].type.startsWith('image/')) {
-      const blob = await processImageWatermark(selectedFiles[0]);
-      triggerDownload(blob, `watermarked_${selectedFiles[0].name}`);
-    } else {
-      const zip = new JSZip();
-      for (let file of selectedFiles) {
-        if (file.type.startsWith('image/')) {
-          const blob = await processImageWatermark(file);
-          zip.file(`watermarked_${file.name}`, blob);
-        } else if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
-          const pdfBytes = await processPDFWatermark(file);
-          zip.file(`watermarked_${file.name}`, pdfBytes);
-        }
+  function pdfAnchorImage(posKey, W, H, pad, imgW, imgH) {
+    const frac = POSITIONS[posKey] || POSITIONS.center;
+    let x;
+    if (frac.x === 0) x = pad; else if (frac.x === 1) x = W - pad - imgW; else x = (W - imgW) / 2;
+    let y;
+    if (frac.y === 0) y = H - pad - imgH; else if (frac.y === 1) y = pad; else y = (H - imgH) / 2;
+    return { x, y };
+  }
+
+  async function processPDFWatermark(file) {
+    const opts = currentOpts();
+    const arrayBuffer = await file.arrayBuffer();
+    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+    const pages = pdfDoc.getPages(); // every page — no artificial cap
+
+    const font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+    const colorRgb = hexToRgb01(opts.color);
+    const pdfColor = PDFLib.rgb(colorRgb.r, colorRgb.g, colorRgb.b);
+
+    let embeddedLogo = null;
+    if (logoFile) {
+      const logoBytes = await logoFile.arrayBuffer();
+      try {
+        embeddedLogo = /png/i.test(logoFile.type) ? await pdfDoc.embedPng(logoBytes) : await pdfDoc.embedJpg(logoBytes);
+      } catch (e) {
+        embeddedLogo = null; // unsupported format for this file (e.g. webp) — skip logo for PDFs
       }
-      const zipBlob = await zip.generateAsync({ type: 'blob' });
-      triggerDownload(zipBlob, 'watermarked_files.zip');
     }
 
-    downloadBtn.disabled = false;
-    downloadBtn.textContent = 'Download Watermarked File(s)';
-  });
+    for (const page of pages) {
+      const { width, height } = page.getSize();
+      const pad = Math.max(12, Math.round(Math.min(width, height) * 0.03));
 
+      if (opts.text) {
+        if (opts.tile) {
+          const textWidth = font.widthOfTextAtSize(opts.text, opts.fontSize) || opts.fontSize * opts.text.length * 0.5;
+          const stepX = textWidth + opts.fontSize * 3;
+          const stepY = opts.fontSize * 4;
+          for (let yy = -stepY; yy < height + stepY; yy += stepY) {
+            for (let xx = -stepX; xx < width + stepX; xx += stepX) {
+              page.drawText(opts.text, {
+                x: xx, y: yy, size: opts.fontSize, font,
+                color: pdfColor, opacity: opts.opacity,
+                rotate: PDFLib.degrees(opts.rotation)
+              });
+            }
+          }
+        } else {
+          const a = pdfAnchorText(opts.position, width, height, pad, font, opts.text, opts.fontSize);
+          page.drawText(opts.text, {
+            x: a.x, y: a.y, size: opts.fontSize, font,
+            color: pdfColor, opacity: opts.opacity,
+            rotate: PDFLib.degrees(opts.rotation)
+          });
+        }
+      }
+
+      if (embeddedLogo) {
+        const logoW = width * (opts.logoScale / 100);
+        const logoH = logoW * (embeddedLogo.height / embeddedLogo.width);
+        const a = pdfAnchorImage(opts.logoPosition, width, height, pad, logoW, logoH);
+        page.drawImage(embeddedLogo, { x: a.x, y: a.y, width: logoW, height: logoH, opacity: opts.logoOpacity });
+      }
+    }
+
+    return await pdfDoc.save();
+  }
+
+  /* ---------------- Download orchestration ---------------- */
   function triggerDownload(blob, filename) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -255,59 +1150,60 @@
     URL.revokeObjectURL(url);
   }
 
-  function processImageWatermark(file) {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        const img = new Image();
-        img.onload = function() {
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-          canvas.width = img.naturalWidth;
-          canvas.height = img.naturalHeight;
+  downloadBtn.addEventListener('click', async function () {
+    if (selectedFiles.length === 0) return;
+    downloadBtn.disabled = true;
+    const originalLabel = downloadBtn.textContent;
+    const start = performance.now();
+    let processed = 0;
 
-          ctx.drawImage(img, 0, 0);
+    try {
+      if (selectedFiles.length === 1) {
+        const entry = selectedFiles[0];
+        downloadBtn.textContent = 'Processing ' + entry.file.name + '…';
+        processStatus.textContent = 'Watermarking ' + entry.file.name + '…';
+        if (isPdf(entry.file)) {
+          const bytes = await processPDFWatermark(entry.file);
+          triggerDownload(new Blob([bytes], { type: 'application/pdf' }), 'watermarked_' + entry.file.name);
+        } else {
+          const blob = await processImageWatermark(entry.file);
+          triggerDownload(blob, 'watermarked_' + entry.file.name);
+        }
+        processed = 1;
+      } else {
+        const zip = new JSZip();
+        for (let i = 0; i < selectedFiles.length; i++) {
+          const entry = selectedFiles[i];
+          downloadBtn.textContent = 'Processing ' + (i + 1) + '/' + selectedFiles.length + '…';
+          processStatus.textContent = 'Watermarking ' + (i + 1) + ' of ' + selectedFiles.length + ': ' + entry.file.name;
+          if (isPdf(entry.file)) {
+            const bytes = await processPDFWatermark(entry.file);
+            zip.file('watermarked_' + entry.file.name, bytes);
+          } else if (entry.file.type.startsWith('image/')) {
+            const blob = await processImageWatermark(entry.file);
+            zip.file('watermarked_' + entry.file.name, blob);
+          }
+          processed++;
+        }
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        triggerDownload(zipBlob, 'watermarked_files.zip');
+      }
 
-          const text = watermarkText.value || 'ToolCrate';
-          const fontSize = parseInt(fontSizeInput.value, 10) || 48;
-          const opacity = parseFloat(opacityInput.value) || 0.5;
-
-          ctx.font = `bold ${fontSize}px sans-serif`;
-          ctx.fillStyle = colorInput.value || '#ffffff';
-          ctx.globalAlpha = opacity;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-
-          ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-
-          canvas.toBlob((blob) => resolve(blob), file.type || 'image/png');
-        };
-        img.src = evt.target.result;
-      };
-      reader.readAsDataURL(file);
-    });
-  }
-
-  async function processPDFWatermark(file) {
-    const arrayBuffer = await file.arrayBuffer();
-    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
-    const pages = pdfDoc.getPages();
-
-    const text = watermarkText.value || 'ToolCrate';
-    const opacity = parseFloat(opacityInput.value) || 0.5;
-
-    for (const page of pages) {
-      const { width, height } = page.getSize();
-      page.drawText(text, {
-        x: width / 3,
-        y: height / 2,
-        size: parseInt(fontSizeInput.value, 10) || 36,
-        opacity: opacity,
-      });
+      const elapsed = ((performance.now() - start) / 1000).toFixed(2);
+      processStatus.innerHTML = '<span class="ok">Done.</span> ' + processed + ' file(s) watermarked in ' + elapsed + 's — processed entirely on your device.';
+    } catch (err) {
+      processStatus.textContent = 'Something went wrong processing one of the files: ' + (err && err.message ? err.message : err);
+    } finally {
+      downloadBtn.disabled = false;
+      downloadBtn.textContent = originalLabel;
     }
+  });
 
-    return await pdfDoc.save();
-  }
+  // Initial state
+  opacityValue.textContent = parseFloat(opacityInput.value).toFixed(2);
+  rotationValue.textContent = rotationInput.value + '°';
+  logoScaleValue.textContent = logoScaleInput.value + '%';
+  logoOpacityValue.textContent = parseFloat(logoOpacityInput.value).toFixed(2);
 })();
 </script>
 </body>
