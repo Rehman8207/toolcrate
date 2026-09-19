@@ -7,62 +7,59 @@
 <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/watermark-tool.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
-  .canvas-wrapper {
-    width: 100%;
-    max-width: 100%;
-    height: 380px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface, #18181b);
-    border-radius: 8px;
-    margin: 20px 0;
-    border: 1px dashed var(--rule, #3f3f46);
-    overflow: hidden;
-  }
-  #previewCanvas {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-  }
-  .controls-grid {
+  .wm-app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    margin-top: 20px;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+    margin-top: 24px;
+    align-items: start;
   }
-  .control-group {
+  @media (max-width: 860px) {
+    .wm-app-grid { grid-template-columns: 1fr; }
+  }
+  .wm-card {
+    background: var(--surface, #18181b);
+    border: 1px solid var(--rule, #27272a);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .wm-group {
     display: flex;
     flex-direction: column;
     gap: 6px;
   }
-  .control-group label {
-    font-size: 0.85rem;
+  .wm-group label {
     font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
     color: var(--ink-muted, #a1a1aa);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
-  .control-group input[type="text"],
-  .control-group input[type="number"],
-  .control-group select,
-  .control-group input[type="file"] {
-    background: var(--surface, #18181b);
+  .wm-group input[type="text"],
+  .wm-group input[type="number"],
+  .wm-group select,
+  .wm-group input[type="file"] {
+    background: #09090b;
     color: var(--ink, #fafafa);
     border: 1px solid var(--rule, #3f3f46);
     padding: 10px 12px;
     border-radius: 6px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
     outline: none;
   }
-  .control-group input[type="color"] {
-    background: transparent;
+  .wm-group input[type="color"] {
+    background: #09090b;
     border: 1px solid var(--rule, #3f3f46);
     height: 42px;
     width: 100%;
@@ -70,35 +67,62 @@
     cursor: pointer;
     padding: 4px;
   }
-  .control-group input[type="range"] {
+  .wm-group input[type="range"] {
     accent-color: var(--accent, #3b82f6);
     cursor: pointer;
-    margin-top: 8px;
   }
-  .action-btn {
-    width: 100%;
-    margin-top: 24px;
-    padding: 14px;
+  .wm-preview-container {
+    background: #09090b;
+    border: 1px dashed var(--rule, #3f3f46);
+    border-radius: 12px;
+    min-height: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 16px;
+  }
+  #previewCanvas {
+    max-width: 100% !important;
+    max-height: 420px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+  .wm-empty-state {
+    text-align: center;
+    color: var(--ink-muted, #71717a);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+  }
+  .wm-btn-primary {
     background: var(--accent, #3b82f6);
     color: #ffffff;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
+    padding: 14px;
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    width: 100%;
+    transition: opacity 0.2s;
   }
-  .action-btn:disabled {
-    opacity: 0.4;
+  .wm-btn-primary:disabled {
+    opacity: 0.35;
     cursor: not-allowed;
   }
-  .file-badge {
-    display: inline-block;
+  .wm-badge {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--accent, #3b82f6);
-    margin-top: 8px;
+    background: rgba(59, 130, 246, 0.1);
+    padding: 6px 10px;
+    border-radius: 4px;
+    display: inline-block;
   }
 </style>
 </head>
@@ -107,49 +131,59 @@
   <header class="masthead">
     <a href="index.html" class="back-link">&larr; Back to All Tools</a>
     <h1>Watermark Tool</h1>
-    <p class="tagline">Add custom text watermarks to single images, PDFs, or complete folders locally in your browser.</p>
+    <p class="tagline">Watermark single photos, multi-page PDFs, or complete folders locally on your device. Zero uploads.</p>
   </header>
 
   <main>
-    <div class="controls-grid">
-      <div class="control-group">
-        <label for="uploadMode">Upload Mode</label>
-        <select id="uploadMode">
-          <option value="files">Single / Multiple Files (Images, PDF)</option>
-          <option value="folder">Entire Folder (Bulk Mode)</option>
-        </select>
+    <div class="wm-app-grid">
+      <!-- Left Controls Panel -->
+      <div class="wm-card">
+        <div class="wm-group">
+          <label for="uploadMode">Input Mode</label>
+          <select id="uploadMode">
+            <option value="files">Single / Multiple Files (Images, PDF)</option>
+            <option value="folder">Entire Folder (Bulk)</option>
+          </select>
+        </div>
+
+        <div class="wm-group">
+          <label for="fileInput">Choose Source</label>
+          <input type="file" id="fileInput" multiple accept="image/*,.pdf">
+        </div>
+
+        <div id="fileBadge" class="wm-badge" style="display:none;"></div>
+
+        <div class="wm-group">
+          <label for="watermarkText">Watermark Text</label>
+          <input type="text" id="watermarkText" value="ToolCrate" placeholder="Enter text...">
+        </div>
+
+        <div class="wm-group">
+          <label for="fontSizeInput">Font Size (px)</label>
+          <input type="number" id="fontSizeInput" value="48" min="10" max="250">
+        </div>
+
+        <div class="wm-group">
+          <label for="opacityInput">Opacity</label>
+          <input type="range" id="opacityInput" min="0.05" max="1" step="0.05" value="0.5">
+        </div>
+
+        <div class="wm-group">
+          <label for="colorInput">Text Color</label>
+          <input type="color" id="colorInput" value="#ffffff">
+        </div>
+
+        <button class="wm-btn-primary" id="downloadBtn" disabled>Process & Download</button>
       </div>
-      <div class="control-group">
-        <label for="fileInput">Select File / Folder</label>
-        <input type="file" id="fileInput" multiple accept="image/*,.pdf">
+
+      <!-- Right Interactive Live Preview -->
+      <div class="wm-preview-container">
+        <canvas id="previewCanvas"></canvas>
+        <div id="emptyState" class="wm-empty-state">
+          Select an image or PDF to view live watermark preview
+        </div>
       </div>
     </div>
-
-    <div class="canvas-wrapper">
-      <canvas id="previewCanvas"></canvas>
-    </div>
-    <div id="fileInfo" class="file-badge" style="display:none;"></div>
-
-    <div class="controls-grid">
-      <div class="control-group">
-        <label for="watermarkText">Watermark Text</label>
-        <input type="text" id="watermarkText" value="ToolCrate" placeholder="Type text...">
-      </div>
-      <div class="control-group">
-        <label for="fontSizeInput">Font Size (px)</label>
-        <input type="number" id="fontSizeInput" value="48" min="10" max="200">
-      </div>
-      <div class="control-group">
-        <label for="opacityInput">Opacity</label>
-        <input type="range" id="opacityInput" min="0.1" max="1" step="0.1" value="0.5">
-      </div>
-      <div class="control-group">
-        <label for="colorInput">Text Color</label>
-        <input type="color" id="colorInput" value="#ffffff">
-      </div>
-    </div>
-
-    <button class="action-btn" id="downloadBtn" disabled>Download Watermarked File(s)</button>
   </main>
 </div>
 
@@ -166,14 +200,16 @@
   const colorInput = document.getElementById('colorInput');
   const previewCanvas = document.getElementById('previewCanvas');
   const downloadBtn = document.getElementById('downloadBtn');
-  const fileInfo = document.getElementById('fileInfo');
+  const fileBadge = document.getElementById('fileBadge');
+  const emptyState = document.getElementById('emptyState');
 
   let selectedFiles = [];
-  let currentPreviewImage = null;
+  let currentPreviewImg = null;
 
   uploadMode.addEventListener('change', function() {
     fileInput.value = '';
     selectedFiles = [];
+    fileBadge.style.display = 'none';
     if (this.value === 'folder') {
       fileInput.setAttribute('webkitdirectory', '');
       fileInput.setAttribute('directory', '');
@@ -187,8 +223,8 @@
     selectedFiles = Array.from(e.target.files);
     if (selectedFiles.length === 0) return;
 
-    fileInfo.style.display = 'block';
-    fileInfo.textContent = `${selectedFiles.length} file(s) loaded.`;
+    fileBadge.style.display = 'inline-block';
+    fileBadge.textContent = `${selectedFiles.length} file(s) loaded`;
 
     const firstImage = selectedFiles.find(f => f.type.startsWith('image/'));
     if (firstImage) {
@@ -196,7 +232,8 @@
       reader.onload = function(evt) {
         const img = new Image();
         img.onload = function() {
-          currentPreviewImage = img;
+          currentPreviewImg = img;
+          emptyState.style.display = 'none';
           renderPreview();
           downloadBtn.disabled = false;
         };
@@ -204,17 +241,19 @@
       };
       reader.readAsDataURL(firstImage);
     } else {
+      emptyState.style.display = 'block';
+      emptyState.textContent = 'PDF file(s) loaded. Ready for batch processing.';
       downloadBtn.disabled = false;
     }
   });
 
   function renderPreview() {
-    if (!currentPreviewImage) return;
+    if (!currentPreviewImg) return;
     const ctx = previewCanvas.getContext('2d');
-    previewCanvas.width = currentPreviewImage.naturalWidth;
-    previewCanvas.height = currentPreviewImage.naturalHeight;
+    previewCanvas.width = currentPreviewImg.naturalWidth;
+    previewCanvas.height = currentPreviewImg.naturalHeight;
 
-    ctx.drawImage(currentPreviewImage, 0, 0);
+    ctx.drawImage(currentPreviewImg, 0, 0);
 
     const text = watermarkText.value || 'ToolCrate';
     const fontSize = parseInt(fontSizeInput.value, 10) || 48;
@@ -236,7 +275,7 @@
   downloadBtn.addEventListener('click', async function() {
     if (selectedFiles.length === 0) return;
     downloadBtn.disabled = true;
-    downloadBtn.textContent = 'Processing... Please Wait';
+    downloadBtn.textContent = 'Processing...';
 
     if (selectedFiles.length === 1 && selectedFiles[0].type.startsWith('image/')) {
       const blob = await processImageWatermark(selectedFiles[0]);
@@ -257,7 +296,7 @@
     }
 
     downloadBtn.disabled = false;
-    downloadBtn.textContent = 'Download Watermarked File(s)';
+    downloadBtn.textContent = 'Process & Download';
   });
 
   function triggerDownload(blob, filename) {
