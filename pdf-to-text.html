@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free PDF to Text Converter — Extract Text from PDF | ToolCrate</title>
+  <meta name="description" content="Extract text from PDF files entirely in your browser. No limits, no uploads, 100% private and free PDF to Text converter.">
+  <meta name="keywords" content="pdf to text, extract text from pdf, pdf text extractor, free pdf to text, browser pdf to text, no upload">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="ToolCrate">
+  <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/pdf-to-text.html">
+  <meta name="theme-color" content="#070B10">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free PDF to Text Converter — Extract Text from PDF | ToolCrate">
+  <meta property="og:description" content="Extract text from PDF files entirely in your browser. No limits, no uploads, 100% private and free PDF to Text converter.">
+  <meta property="og:url" content="https://site.toolcrate-tools.workers.dev/pdf-to-text.html">
+  <meta property="og:image" content="https://site.toolcrate-tools.workers.dev/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ToolCrate — 18+ Free Browser Tools">
+  <meta property="og:site_name" content="ToolCrate">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free PDF to Text Converter — Extract Text from PDF | ToolCrate">
+  <meta name="twitter:description" content="Extract text from PDF files entirely in your browser. No limits, no uploads, 100% private and free PDF to Text converter.">
+  <meta name="twitter:image" content="https://site.toolcrate-tools.workers.dev/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ToolCrate PDF to Text",
+  "url": "https://site.toolcrate-tools.workers.dev/pdf-to-text.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free browser-based tool to extract text from PDF files. 100% processed in browser, no server upload required.",
+  "featureList": [
+    "Extract text from any PDF",
+    "No file size limit",
+    "100% processed in browser — nothing uploaded"
+  ]
+}
+</script>
+
+  <!-- Fonts: system fonts for maximum performance -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+  <!-- Google tag (gtag.js) — deferred for performance -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-H20HJWJQWV');
+    window.addEventListener('load', function(){
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-H20HJWJQWV';
+      document.head.appendChild(s);
+    });
+  </script>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+<div class="row">
+<div class="brand-block">
+<div><div class="brand"><h2 class="brand-h1"><a href="index.html">ToolCrate</a></h2></div></div>
+</div>
+<button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
+</div>
+<div class="badge-row">
+<span class="badge pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/></svg>Nothing uploaded</span>
+<span class="badge violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Private by design</span>
+<span class="badge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>100% free</span>
+<span class="badge lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5Z"/></svg>No file limit</span>
+</div>
+<h1 class="hero-title">Extract text from PDF <span class="grad-word">right in your browser</span></h1>
+<p class="hero-sub">Easily convert PDF documents to plain text. No limits, 100% private — nothing ever leaves your device.</p>
+</header>
+
+  <main>
+    <div class="tool-panel">
+      <div class="panel-head">
+        <div class="panel-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div>
+          <h2>PDF to Text</h2>
+          <p>Select a PDF file to instantly extract all readable text from it.</p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <p><strong>Click to choose a PDF</strong> or drag &amp; drop it here</p>
+          <p style="font-size:0.8rem;margin-top:6px;opacity:0.6">PDF only — processed entirely locally</p>
+          <input type="file" id="fileInput" accept="application/pdf" style="display:none;" onchange="handleFile(this.files[0])">
+        </div>
+
+        <div style="margin:18px 0;">
+          <textarea id="resultText" style="width:100%;height:300px;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--ink-1);font-family:monospace;resize:vertical;" placeholder="Extracted text will appear here..." readonly></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn" id="copyBtn" disabled onclick="copyText()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            Copy Text
+          </button>
+          <button class="btn secondary" id="downloadBtn" disabled onclick="downloadText()">Download .txt</button>
+        </div>
+        <p id="statusMsg" style="margin-top:12px;font-size:0.85rem;color:var(--ink-3);"></p>
+      </div>
+    </div>
+
+    <!-- SEO Content -->
+    <section class="seo-guide-content">
+      <h2>Free PDF to Text Extractor — No Upload</h2>
+      <p>ToolCrate's PDF to Text tool extracts plain text from your PDF documents entirely inside your browser. No files are ever sent to a server — everything runs locally.</p>
+    </section>
+  </main>
+
+  <footer><span>ToolCrate — built for people, not ads.</span>
+    <nav class="footer-links"><a href="index.html">All tools</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a></nav>
+  </footer>
+</div>
+
+<script src="assets/common.js"></script>
+<script>
+  function handleDrop(e) {
+    e.preventDefault();
+    document.getElementById('dropZone').classList.remove('drag');
+    if (e.dataTransfer.files.length > 0 && e.dataTransfer.files[0].type === 'application/pdf') {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  }
+
+  async function handleFile(file) {
+    if (!file) return;
+    const resultArea = document.getElementById('resultText');
+    const statusMsg = document.getElementById('statusMsg');
+    const copyBtn = document.getElementById('copyBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    
+    resultArea.value = '';
+    statusMsg.textContent = 'Extracting text... please wait.';
+    copyBtn.disabled = true;
+    downloadBtn.disabled = true;
+
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+      let fullText = '';
+      
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const textContent = await page.getTextContent();
+        const pageText = textContent.items.map(item => item.str).join(' ');
+        fullText += pageText + '\n\n';
+      }
+      
+      resultArea.value = fullText.trim();
+      statusMsg.textContent = `✓ Extracted text from ${pdf.numPages} page(s).`;
+      copyBtn.disabled = false;
+      downloadBtn.disabled = false;
+    } catch(err) {
+      statusMsg.textContent = 'Error: Could not extract text from this PDF. It may be an image-only PDF.';
+    }
+  }
+
+  function copyText() {
+    const text = document.getElementById('resultText').value;
+    navigator.clipboard.writeText(text).then(() => {
+      document.getElementById('statusMsg').textContent = '✓ Text copied to clipboard!';
+    });
+  }
+
+  function downloadText() {
+    const text = document.getElementById('resultText').value;
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'extracted-text.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+</script>
+</body>
+</html>

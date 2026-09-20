@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Text to PDF Converter — Create PDF from Text | ToolCrate</title>
+  <meta name="description" content="Convert plain text to a PDF document entirely in your browser. No limits, no uploads, 100% private and free Text to PDF converter.">
+  <meta name="keywords" content="text to pdf, txt to pdf, convert text to pdf, create pdf from text, free text to pdf, browser text to pdf, no upload">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="ToolCrate">
+  <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/text-to-pdf.html">
+  <meta name="theme-color" content="#070B10">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Text to PDF Converter — Create PDF from Text | ToolCrate">
+  <meta property="og:description" content="Convert plain text to a PDF document entirely in your browser. No limits, no uploads, 100% private and free Text to PDF converter.">
+  <meta property="og:url" content="https://site.toolcrate-tools.workers.dev/text-to-pdf.html">
+  <meta property="og:image" content="https://site.toolcrate-tools.workers.dev/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ToolCrate — 18+ Free Browser Tools">
+  <meta property="og:site_name" content="ToolCrate">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Text to PDF Converter — Create PDF from Text | ToolCrate">
+  <meta name="twitter:description" content="Convert plain text to a PDF document entirely in your browser. No limits, no uploads, 100% private and free Text to PDF converter.">
+  <meta name="twitter:image" content="https://site.toolcrate-tools.workers.dev/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ToolCrate Text to PDF",
+  "url": "https://site.toolcrate-tools.workers.dev/text-to-pdf.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free browser-based tool to convert plain text into a PDF file. 100% processed in browser, no server upload required.",
+  "featureList": [
+    "Convert any text to PDF",
+    "No length limit",
+    "100% processed in browser — nothing uploaded"
+  ]
+}
+</script>
+
+  <!-- Fonts: system fonts for maximum performance -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Google tag (gtag.js) — deferred for performance -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-H20HJWJQWV');
+    window.addEventListener('load', function(){
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-H20HJWJQWV';
+      document.head.appendChild(s);
+    });
+  </script>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+<div class="row">
+<div class="brand-block">
+<div><div class="brand"><h2 class="brand-h1"><a href="index.html">ToolCrate</a></h2></div></div>
+</div>
+<button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
+</div>
+<div class="badge-row">
+<span class="badge pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/></svg>Nothing uploaded</span>
+<span class="badge violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Private by design</span>
+<span class="badge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>100% free</span>
+<span class="badge lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5Z"/></svg>No file limit</span>
+</div>
+<h1 class="hero-title">Convert text to PDF <span class="grad-word">right in your browser</span></h1>
+<p class="hero-sub">Easily convert plain text into a PDF document. No limits, 100% private — nothing ever leaves your device.</p>
+</header>
+
+  <main>
+    <div class="tool-panel">
+      <div class="panel-head">
+        <div class="panel-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div>
+          <h2>Text to PDF</h2>
+          <p>Paste or type your text below to generate a PDF instantly.</p>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div style="margin:18px 0;">
+          <textarea id="inputText" style="width:100%;height:300px;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--ink-1);resize:vertical;" placeholder="Paste your text here..."></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn" id="convertBtn" onclick="generatePDF()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+          </button>
+          <button class="btn secondary" onclick="document.getElementById('inputText').value=''">Clear Text</button>
+        </div>
+        <p id="statusMsg" style="margin-top:12px;font-size:0.85rem;color:var(--ink-3);"></p>
+      </div>
+    </div>
+
+    <!-- SEO Content -->
+    <section class="seo-guide-content">
+      <h2>Free Text to PDF Converter — No Upload</h2>
+      <p>ToolCrate's Text to PDF tool converts your plain text into a PDF document entirely inside your browser. No files or text are ever sent to a server — everything runs locally.</p>
+    </section>
+  </main>
+
+  <footer><span>ToolCrate — built for people, not ads.</span>
+    <nav class="footer-links"><a href="index.html">All tools</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a></nav>
+  </footer>
+</div>
+
+<script src="assets/common.js"></script>
+<script>
+  function generatePDF() {
+    const text = document.getElementById('inputText').value;
+    if (!text.trim()) {
+      document.getElementById('statusMsg').textContent = 'Please enter some text first.';
+      return;
+    }
+
+    const btn = document.getElementById('convertBtn');
+    btn.disabled = true;
+    document.getElementById('statusMsg').textContent = 'Generating PDF...';
+
+    try {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF();
+      
+      const margin = 10;
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      
+      const splitText = pdf.splitTextToSize(text, pdfWidth - (margin * 2));
+      
+      let cursorY = margin + 5;
+      for (let i = 0; i < splitText.length; i++) {
+        if (cursorY > pdfHeight - margin) {
+          pdf.addPage();
+          cursorY = margin + 5;
+        }
+        pdf.text(splitText[i], margin, cursorY);
+        cursorY += 7; // line height
+      }
+
+      pdf.save('toolcrate-document.pdf');
+      document.getElementById('statusMsg').textContent = '✓ PDF downloaded successfully!';
+    } catch(err) {
+      document.getElementById('statusMsg').textContent = 'Error: ' + err.message;
+    }
+
+    btn.disabled = false;
+  }
+</script>
+</body>
+</html>

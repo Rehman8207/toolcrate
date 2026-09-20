@@ -38,7 +38,7 @@
     <rect x="52" y="82" width="24" height="8" rx="4" fill="#FFFFFF" opacity="0.95"/>
   </g>
   <text x="210" y="160" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="800" fill="#F3F0FF" letter-spacing="-2">ToolCrate</text>
-  <text x="80" y="345" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800" fill="url(#textGrad)" letter-spacing="-2">16+ Free Browser Tools</text>
+  <text x="80" y="345" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800" fill="url(#textGrad)" letter-spacing="-2">18+ Free Browser Tools</text>
   <text x="80" y="405" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="400" fill="#A9A3D0">Runs entirely in your browser — no signup, nothing uploaded.</text>
   <g transform="translate(80, 490)">
     <rect x="0" y="0" width="240" height="54" rx="27" fill="#FF4ECD" fill-opacity="0.15" stroke="#FF4ECD" stroke-width="1.5"/>
