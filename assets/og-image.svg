@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="pinkGlow" cx="15%" cy="10%" r="50%">
+      <stop offset="0%" stop-color="#FF4ECD" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FF4ECD" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="violetGlow" cx="85%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="#A855F7" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#A855F7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyanGlow" cx="50%" cy="110%" r="60%">
+      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="textGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF4ECD"/>
+      <stop offset="50%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
+    <linearGradient id="crateGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6EE7B7"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#070B10"/>
+  <rect width="1200" height="630" fill="url(#pinkGlow)"/>
+  <rect width="1200" height="630" fill="url(#violetGlow)"/>
+  <rect width="1200" height="630" fill="url(#cyanGlow)"/>
+  <g transform="translate(80, 90)">
+    <path d="M62 52 Q38 42 30 18 Q42 14 52 24 Q62 34 62 52 Z" fill="url(#leafGrad)"/>
+    <path d="M66 52 Q90 42 98 18 Q86 14 76 24 Q66 34 66 52 Z" fill="url(#leafGrad)"/>
+    <rect x="16" y="56" width="96" height="58" rx="10" fill="url(#crateGrad)"/>
+    <rect x="16" y="66" width="96" height="3" fill="#FFFFFF" opacity="0.18"/>
+    <rect x="52" y="82" width="24" height="8" rx="4" fill="#FFFFFF" opacity="0.95"/>
+  </g>
+  <text x="230" y="175" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="800" fill="#F3F0FF" letter-spacing="-2">ToolCrate</text>
+  <text x="80" y="345" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800" fill="url(#textGrad)" letter-spacing="-2">15+ Free Browser Tools</text>
+  <text x="80" y="405" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="400" fill="#A9A3D0">Runs entirely in your browser — no signup, nothing uploaded.</text>
+  <g transform="translate(80, 490)">
+    <rect x="0" y="0" width="230" height="54" rx="27" fill="#FF4ECD" fill-opacity="0.15" stroke="#FF4ECD" stroke-width="1.5"/>
+    <circle cx="35" cy="27" r="6" fill="#FF4ECD"/>
+    <text x="55" y="35" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#FFC7EE">Nothing Uploaded</text>
+    <rect x="250" y="0" width="200" height="54" rx="27" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1.5"/>
+    <circle cx="285" cy="27" r="6" fill="#A855F7"/>
+    <text x="305" y="35" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#D8B4FE">97 PageSpeed</text>
+    <rect x="470" y="0" width="180" height="54" rx="27" fill="#22D3EE" fill-opacity="0.15" stroke="#22D3EE" stroke-width="1.5"/>
+    <circle cx="505" cy="27" r="6" fill="#22D3EE"/>
+    <text x="525" y="35" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#A5F3FC">100% Free</text>
+  </g>
+  <text x="1120" y="590" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="500" fill="#6E7E8C" text-anchor="end">site.toolcrate-tools.workers.dev</text>
+</svg>
