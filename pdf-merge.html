@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free PDF Merger — Combine PDFs with Page Control | ToolCrate</title>
-  <meta name="description" content="Merge multiple PDFs into one with drag-to-reorder pages, rotate, and delete. 100% client-side, no signup, no uploads, no file limits.">
-  <meta name="keywords" content="pdf merge, merge pdf, combine pdf, reorder pdf pages, rotate pdf, delete pdf pages, free pdf merger, browser pdf merge, no upload pdf merger, pdf tools">
+  <meta name="description"
+    content="Merge multiple PDFs into one with drag-to-reorder pages, rotate, and delete. 100% client-side, no signup, no uploads, no file limits.">
+  <meta name="keywords"
+    content="pdf merge, merge pdf, combine pdf, reorder pdf pages, rotate pdf, delete pdf pages, free pdf merger, browser pdf merge, no upload pdf merger, pdf tools">
   <meta name="robots" content="index, follow">
   <meta name="author" content="ToolCrate">
   <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/pdf-merge.html">
   <meta name="theme-color" content="#070B10">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Free PDF Merger — Combine PDFs with Page Control | ToolCrate">
-  <meta property="og:description" content="Merge multiple PDFs into one with drag-to-reorder pages, rotate, and delete. 100% client-side, no signup, no uploads, no file limits.">
+  <meta property="og:description"
+    content="Merge multiple PDFs into one with drag-to-reorder pages, rotate, and delete. 100% client-side, no signup, no uploads, no file limits.">
   <meta property="og:url" content="https://site.toolcrate-tools.workers.dev/pdf-merge.html">
   <meta property="og:image" content="https://site.toolcrate-tools.workers.dev/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -22,7 +26,8 @@
   <meta property="og:site_name" content="ToolCrate">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free PDF Merger — Combine PDFs with Page Control | ToolCrate">
-  <meta name="twitter:description" content="Merge multiple PDFs into one with drag-to-reorder pages, rotate, and delete. 100% client-side, no signup, no uploads, no file limits.">
+  <meta name="twitter:description"
+    content="Merge multiple PDFs into one with drag-to-reorder pages, rotate, and delete. 100% client-side, no signup, no uploads, no file limits.">
   <meta name="twitter:image" content="https://site.toolcrate-tools.workers.dev/assets/og-image.png">
 
   <script type="application/ld+json">
@@ -88,10 +93,10 @@
   <!-- Google tag (gtag.js) — deferred for performance -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-H20HJWJQWV');
-    window.addEventListener('load', function(){
+    window.addEventListener('load', function () {
       var s = document.createElement('script');
       s.async = true;
       s.src = 'https://www.googletagmanager.com/gtag/js?id=G-H20HJWJQWV';
@@ -118,6 +123,7 @@
       border-radius: var(--radius-md);
       margin-bottom: 20px;
     }
+
     .pm-action-bar .left-group,
     .pm-action-bar .right-group {
       display: flex;
@@ -125,6 +131,7 @@
       align-items: center;
       gap: 10px;
     }
+
     .pm-pill-btn {
       display: inline-flex;
       align-items: center;
@@ -139,17 +146,20 @@
       cursor: pointer;
       transition: all var(--t);
     }
+
     .pm-pill-btn:hover {
       border-color: var(--pink);
       color: var(--pink);
       background: rgba(255, 78, 205, 0.1);
       transform: translateY(-1px);
     }
+
     .pm-pill-btn.danger:hover {
       border-color: #ef4444;
       color: #ef4444;
       background: rgba(239, 68, 68, 0.1);
     }
+
     .pm-counter-badge {
       display: inline-flex;
       align-items: center;
@@ -172,6 +182,7 @@
       padding: 14px 16px;
       margin-bottom: 20px;
     }
+
     .pm-file-summary-header {
       display: flex;
       align-items: center;
@@ -183,11 +194,13 @@
       letter-spacing: 0.02em;
       text-transform: uppercase;
     }
+
     .pm-file-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .pm-file-chip {
       display: inline-flex;
       align-items: center;
@@ -200,17 +213,20 @@
       color: var(--ink);
       max-width: 280px;
     }
+
     .pm-file-chip .chip-name {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
     .pm-file-chip .chip-meta {
       font-size: 0.72rem;
       color: var(--ink-3);
       font-family: var(--font-mono);
       flex-shrink: 0;
     }
+
     .pm-file-chip .chip-del {
       background: transparent;
       border: none;
@@ -221,6 +237,7 @@
       padding: 2px;
       transition: color var(--t);
     }
+
     .pm-file-chip .chip-del:hover {
       color: #ef4444;
     }
@@ -234,6 +251,7 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .pm-grid-title {
       font-family: var(--font-display);
       font-size: 1rem;
@@ -243,10 +261,12 @@
       align-items: center;
       gap: 8px;
     }
+
     .pm-grid-hint {
       font-size: 0.78rem;
       color: var(--ink-3);
     }
+
     .pm-thumbnail-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -270,11 +290,13 @@
       transition: border-color var(--t), box-shadow var(--t), transform var(--t);
       overflow: hidden;
     }
+
     .pm-page-card:hover {
       border-color: var(--pink);
       box-shadow: 0 8px 24px rgba(255, 78, 205, 0.2);
       transform: translateY(-3px);
     }
+
     .pm-page-card:active {
       cursor: grabbing;
     }
@@ -285,10 +307,12 @@
       border: 2px dashed var(--pink) !important;
       background: rgba(255, 78, 205, 0.08) !important;
     }
+
     .pm-page-card.sortable-chosen {
       border-color: var(--cyan);
       box-shadow: 0 0 25px rgba(34, 211, 238, 0.35);
     }
+
     .pm-page-card.sortable-drag {
       opacity: 0.95;
       transform: scale(1.03);
@@ -307,6 +331,7 @@
       z-index: 5;
       pointer-events: none;
     }
+
     .pm-action-btn {
       pointer-events: auto;
       width: 28px;
@@ -324,9 +349,11 @@
       transition: all var(--t);
       opacity: 0.85;
     }
+
     .pm-page-card:hover .pm-action-btn {
       opacity: 1;
     }
+
     .pm-action-btn.rotate-btn:hover {
       background: var(--violet);
       color: #fff;
@@ -334,6 +361,7 @@
       transform: rotate(90deg);
       box-shadow: 0 0 14px rgba(168, 85, 247, 0.5);
     }
+
     .pm-action-btn.del-btn:hover {
       background: #ef4444;
       color: #fff;
@@ -355,12 +383,13 @@
       margin-bottom: 8px;
       position: relative;
     }
+
     .pm-thumb-img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
       transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
 
     /* Card Details Footer */
@@ -370,6 +399,7 @@
       flex-direction: column;
       gap: 4px;
     }
+
     .pm-card-filename {
       font-size: 0.72rem;
       color: var(--ink-2);
@@ -378,6 +408,7 @@
       text-overflow: ellipsis;
       text-align: center;
     }
+
     .pm-card-badge-row {
       display: flex;
       align-items: center;
@@ -386,6 +417,7 @@
       color: var(--ink-3);
       font-family: var(--font-mono);
     }
+
     .pm-seq-badge {
       background: rgba(255, 78, 205, 0.15);
       color: var(--pink);
@@ -393,6 +425,7 @@
       border-radius: 4px;
       font-weight: 700;
     }
+
     .pm-rot-badge {
       background: rgba(168, 85, 247, 0.15);
       color: var(--violet);
@@ -409,6 +442,7 @@
       padding: 18px 20px;
       margin: 24px 0 20px;
     }
+
     .pm-preview-header {
       display: flex;
       align-items: center;
@@ -417,6 +451,7 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .pm-preview-title {
       font-family: var(--font-display);
       font-size: 0.94rem;
@@ -426,6 +461,7 @@
       align-items: center;
       gap: 8px;
     }
+
     .pm-preview-track {
       display: flex;
       gap: 12px;
@@ -434,13 +470,16 @@
       scrollbar-width: thin;
       scrollbar-color: var(--border-2) transparent;
     }
+
     .pm-preview-track::-webkit-scrollbar {
       height: 6px;
     }
+
     .pm-preview-track::-webkit-scrollbar-thumb {
       background: var(--border-2);
       border-radius: 3px;
     }
+
     .pm-preview-item {
       flex: 0 0 60px;
       height: 96px;
@@ -455,10 +494,12 @@
       position: relative;
       transition: all var(--t);
     }
+
     .pm-preview-item:hover {
       border-color: var(--pink);
       transform: translateY(-2px);
     }
+
     .pm-preview-thumb-box {
       width: 100%;
       height: 68px;
@@ -467,12 +508,14 @@
       justify-content: center;
       overflow: hidden;
     }
+
     .pm-preview-thumb-img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
       transition: transform 0.25s ease;
     }
+
     .pm-preview-idx {
       font-family: var(--font-mono);
       font-size: 0.65rem;
@@ -489,6 +532,7 @@
       border-radius: var(--radius-md);
       padding: 16px 20px;
     }
+
     .pm-progress-label-row {
       display: flex;
       justify-content: space-between;
@@ -498,6 +542,7 @@
       margin-bottom: 8px;
       font-weight: 500;
     }
+
     .pm-progress-bar-bg {
       width: 100%;
       height: 8px;
@@ -505,6 +550,7 @@
       border-radius: var(--radius-full);
       overflow: hidden;
     }
+
     .pm-progress-bar-fill {
       height: 100%;
       width: 0%;
@@ -525,6 +571,7 @@
       max-width: 380px;
       pointer-events: none;
     }
+
     .pm-toast {
       pointer-events: auto;
       padding: 12px 18px;
@@ -540,21 +587,32 @@
       gap: 10px;
       animation: pmToastIn 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
+
     .pm-toast.success {
       border-color: var(--mint);
       box-shadow: 0 0 25px rgba(52, 211, 153, 0.25);
     }
+
     .pm-toast.error {
       border-color: var(--coral);
       box-shadow: 0 0 25px rgba(251, 113, 133, 0.25);
     }
+
     .pm-toast.info {
       border-color: var(--cyan);
       box-shadow: 0 0 25px rgba(34, 211, 238, 0.25);
     }
+
     @keyframes pmToastIn {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Mobile Responsive Overrides */
@@ -563,492 +621,573 @@
         grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
         gap: 10px;
       }
+
       .pm-thumb-canvas-box {
         height: 140px;
       }
+
       .pm-preview-item {
         flex: 0 0 50px;
         height: 80px;
       }
+
       .pm-preview-thumb-box {
         height: 54px;
       }
+
       .pm-action-bar {
         flex-direction: column;
         align-items: stretch;
       }
+
       .pm-action-bar .left-group,
       .pm-action-bar .right-group {
         justify-content: center;
       }
+
       #convertBtn {
         width: 100%;
       }
     }
   </style>
 </head>
+
 <body>
-<div class="wrap">
-  <header class="masthead">
-    <div class="row">
-      <div class="brand-block">
-        <div><div class="brand"><h2 class="brand-h1"><a href="index.html">ToolCrate</a></h2></div></div>
+  <div class="wrap">
+    <header class="masthead">
+      <div class="row">
+        <div class="brand-block">
+          <div>
+            <div class="brand">
+              <h2 class="brand-h1"><a href="index.html">ToolCrate</a></h2>
+            </div>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
       </div>
-      <button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
-    </div>
-    <div class="badge-row">
-      <span class="badge pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/></svg>Nothing uploaded</span>
-      <span class="badge violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Private by design</span>
-      <span class="badge cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>100% free</span>
-      <span class="badge lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5Z"/></svg>No file limit</span>
-    </div>
-    <h1 class="hero-title">Merge PDF files <span class="grad-word">right in your browser</span></h1>
-    <p class="hero-sub">Combine multiple PDF files with page-level control. Drag to reorder, rotate individual pages, and delete unwanted pages — 100% private, client-side.</p>
-  </header>
-
-  <main>
-    <div class="tool-panel">
-      <div class="panel-head">
-        <div class="panel-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <div>
-          <h2>PDF Merger &amp; Page Organizer</h2>
-          <p>Drop PDF files or entire folders. Rearrange, rotate, or delete individual pages, then download your combined PDF.</p>
-        </div>
+      <div class="badge-row">
+        <span class="badge pink"><svg width="13" height="13" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z" />
+          </svg>Nothing uploaded</span>
+        <span class="badge violet"><svg width="13" height="13" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="10" width="16" height="10" rx="2" />
+            <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+          </svg>Private by design</span>
+        <span class="badge cyan"><svg width="13" height="13" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M2 12h20" />
+          </svg>100% free</span>
+        <span class="badge lime"><svg width="13" height="13" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+          </svg>No file limit</span>
       </div>
+      <h1 class="hero-title">Merge PDF files <span class="grad-word">right in your browser</span></h1>
+      <p class="hero-sub">Combine multiple PDF files with page-level control. Drag to reorder, rotate individual pages,
+        and delete unwanted pages — 100% private, client-side.</p>
+    </header>
 
-      <div class="panel-body">
-        <!-- Hidden file and folder inputs -->
-        <input type="file" id="fileInput" multiple accept="application/pdf" style="display:none;" onchange="handleFileInput(this.files)">
-        <input type="file" id="folderInput" webkitdirectory directory multiple style="display:none;" onchange="handleFileInput(this.files)">
-
-        <!-- Empty State Drop Zone -->
-        <div class="drop-zone" id="dropZone" onclick="triggerFileSelect()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          <p><strong>Click to choose files</strong> or drag &amp; drop PDFs here</p>
-          <p style="font-size:0.8rem;margin-top:6px;opacity:0.75">Supports multiple files &amp; whole folders • 100% private, runs entirely in your browser</p>
-          <div style="margin-top: 14px; display: flex; justify-content: center; gap: 10px;" onclick="event.stopPropagation();">
-            <button type="button" class="btn secondary" style="font-size: 0.78rem; padding: 8px 16px;" onclick="triggerFileSelect()">Select PDFs</button>
-            <button type="button" class="btn secondary" style="font-size: 0.78rem; padding: 8px 16px;" onclick="triggerFolderSelect()">Select Folder</button>
+    <main>
+      <div class="tool-panel">
+        <div class="panel-head">
+          <div class="panel-icon">
+            <svg width="26" height="26" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+          </div>
+          <div>
+            <h2>PDF Merger &amp; Page Organizer</h2>
+            <p>Drop PDF files or entire folders. Rearrange, rotate, or delete individual pages, then download your
+              combined PDF.</p>
           </div>
         </div>
 
-        <!-- Progress wrap -->
-        <div class="pm-progress-wrap" id="progressWrap">
-          <div class="pm-progress-label-row">
-            <span id="progressText">Processing PDFs...</span>
-            <span id="progressPercent" style="font-family: var(--font-mono); font-weight: 600;">0%</span>
-          </div>
-          <div class="pm-progress-bar-bg">
-            <div class="pm-progress-bar-fill" id="progressBarFill"></div>
-          </div>
-        </div>
+        <div class="panel-body">
+          <!-- Hidden file and folder inputs -->
+          <input type="file" id="fileInput" multiple accept="application/pdf" style="display:none;"
+            onchange="handleFileInput(this.files)">
+          <input type="file" id="folderInput" webkitdirectory directory multiple style="display:none;"
+            onchange="handleFileInput(this.files)">
 
-        <!-- Active Tool Section (Visible when files loaded) -->
-        <div id="activeToolSection" style="display:none;">
-          <!-- Action Bar -->
-          <div class="pm-action-bar">
-            <div class="left-group">
-              <button type="button" class="pm-pill-btn" onclick="triggerFileSelect()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M12 5v14M5 12h14"/></svg>
-                Add More PDFs
-              </button>
-              <button type="button" class="pm-pill-btn" onclick="triggerFolderSelect()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                Add Folder
-              </button>
-              <button type="button" class="pm-pill-btn" onclick="rotateAllPages()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                Rotate All
-              </button>
-            </div>
-            <div class="right-group">
-              <span class="pm-counter-badge" id="pageCounterBadge">0 pages</span>
-              <button type="button" class="pm-pill-btn danger" onclick="clearAll()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                Clear All
-              </button>
+          <!-- Empty State Drop Zone -->
+          <div class="drop-zone" id="dropZone" onclick="triggerFileSelect()" ondragover="handleDragOver(event)"
+            ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+            <svg width="42" height="42" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+            <p><strong>Click to choose files</strong> or drag &amp; drop PDFs here</p>
+            <p style="font-size:0.8rem;margin-top:6px;opacity:0.75">Supports multiple files &amp; whole folders • 100%
+              private, runs entirely in your browser</p>
+            <div style="margin-top: 14px; display: flex; justify-content: center; gap: 10px;"
+              onclick="event.stopPropagation();">
+              <button type="button" class="btn secondary" style="font-size: 0.78rem; padding: 8px 16px;"
+                onclick="triggerFileSelect()">Select PDFs</button>
+              <button type="button" class="btn secondary" style="font-size: 0.78rem; padding: 8px 16px;"
+                onclick="triggerFolderSelect()">Select Folder</button>
             </div>
           </div>
 
-          <!-- Source Files Summary List -->
-          <div class="pm-file-summary" id="fileSummaryBox">
-            <div class="pm-file-summary-header">
-              <span>Source Documents (<span id="sourceFileCount">0</span>)</span>
-              <span style="font-size: 0.72rem; color: var(--ink-3); font-weight: normal;">Click ✕ to remove all pages from a file</span>
+          <!-- Progress wrap -->
+          <div class="pm-progress-wrap" id="progressWrap">
+            <div class="pm-progress-label-row">
+              <span id="progressText">Processing PDFs...</span>
+              <span id="progressPercent" style="font-family: var(--font-mono); font-weight: 600;">0%</span>
             </div>
-            <div class="pm-file-chips" id="fileChipsContainer"></div>
+            <div class="pm-progress-bar-bg">
+              <div class="pm-progress-bar-fill" id="progressBarFill"></div>
+            </div>
           </div>
 
-          <!-- Grid Header -->
-          <div class="pm-grid-header">
-            <div class="pm-grid-title">
-              <span>Page Organizer</span>
-              <span class="badge violet" style="font-size:0.68rem;padding:3px 8px;">Drag to Reorder</span>
-            </div>
-            <span class="pm-grid-hint">Hover a page card to rotate (🔄) or delete (🗑️)</span>
-          </div>
-
-          <!-- Drag and Drop Thumbnail Grid -->
-          <div class="pm-thumbnail-grid" id="pageGrid"></div>
-
-          <!-- Live Preview Strip -->
-          <div class="pm-preview-container">
-            <div class="pm-preview-header">
-              <div class="pm-preview-title">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--pink);"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                Final Output Order Preview
+          <!-- Active Tool Section (Visible when files loaded) -->
+          <div id="activeToolSection" style="display:none;">
+            <!-- Action Bar -->
+            <div class="pm-action-bar">
+              <div class="left-group">
+                <button type="button" class="pm-pill-btn" onclick="triggerFileSelect()">
+                  <svg width="14" height="14" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                  Add More PDFs
+                </button>
+                <button type="button" class="pm-pill-btn" onclick="triggerFolderSelect()">
+                  <svg width="14" height="14" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                  </svg>
+                  Add Folder
+                </button>
+                <button type="button" class="pm-pill-btn" onclick="rotateAllPages()">
+                  <svg width="14" height="14" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                  </svg>
+                  Rotate All
+                </button>
               </div>
-              <span style="font-size:0.78rem;color:var(--ink-2);font-family:var(--font-mono);" id="previewCountLabel">0 pages ready to merge</span>
+              <div class="right-group">
+                <span class="pm-counter-badge" id="pageCounterBadge">0 pages</span>
+                <button type="button" class="pm-pill-btn danger" onclick="clearAll()">
+                  <svg width="14" height="14" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+                    <polyline points="3 6 5 6 21 6" />
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                  </svg>
+                  Clear All
+                </button>
+              </div>
             </div>
-            <div class="pm-preview-track" id="previewStrip"></div>
+
+            <!-- Source Files Summary List -->
+            <div class="pm-file-summary" id="fileSummaryBox">
+              <div class="pm-file-summary-header">
+                <span>Source Documents (<span id="sourceFileCount">0</span>)</span>
+                <span style="font-size: 0.72rem; color: var(--ink-3); font-weight: normal;">Click ✕ to remove all pages
+                  from a file</span>
+              </div>
+              <div class="pm-file-chips" id="fileChipsContainer"></div>
+            </div>
+
+            <!-- Grid Header -->
+            <div class="pm-grid-header">
+              <div class="pm-grid-title">
+                <span>Page Organizer</span>
+                <span class="badge violet" style="font-size:0.68rem;padding:3px 8px;">Drag to Reorder</span>
+              </div>
+              <span class="pm-grid-hint">Hover a page card to rotate (🔄) or delete (🗑️)</span>
+            </div>
+
+            <!-- Drag and Drop Thumbnail Grid -->
+            <div class="pm-thumbnail-grid" id="pageGrid"></div>
+
+            <!-- Live Preview Strip -->
+            <div class="pm-preview-container">
+              <div class="pm-preview-header">
+                <div class="pm-preview-title">
+                  <svg width="16" height="16" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--pink);">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  Final Output Order Preview
+                </div>
+                <span style="font-size:0.78rem;color:var(--ink-2);font-family:var(--font-mono);"
+                  id="previewCountLabel">0 pages ready to merge</span>
+              </div>
+              <div class="pm-preview-track" id="previewStrip"></div>
+            </div>
+
+            <!-- Bottom Action Row -->
+            <div class="btn-row" style="align-items: center; margin-top: 24px;">
+              <button class="btn" id="convertBtn" onclick="generatePDF()">
+                <svg width="18" height="18" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" style="width:18px;height:18px">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Merge PDFs
+              </button>
+              <button class="btn secondary" onclick="clearAll()">Reset</button>
+            </div>
           </div>
 
-          <!-- Bottom Action Row -->
-          <div class="btn-row" style="align-items: center; margin-top: 24px;">
-            <button class="btn" id="convertBtn" onclick="generatePDF()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Merge PDFs
-            </button>
-            <button class="btn secondary" onclick="clearAll()">Reset</button>
-          </div>
+          <p id="statusMsg" style="margin-top:14px;font-size:0.85rem;color:var(--ink-3);"></p>
         </div>
-
-        <p id="statusMsg" style="margin-top:14px;font-size:0.85rem;color:var(--ink-3);"></p>
       </div>
-    </div>
 
-    <!-- Floating Toast Notification System -->
-    <div class="pm-toast-container" id="toastContainer"></div>
+      <!-- Floating Toast Notification System -->
+      <div class="pm-toast-container" id="toastContainer"></div>
 
-    <!-- SEO Content & Guide -->
-    <section class="seo-guide-content">
-      <h2>Free PDF Merger — Page-Level Visual Reordering &amp; Control</h2>
-      <p>ToolCrate's PDF Merger gives you complete visual control over your documents. Merge multiple PDFs into one unified file, reorder pages intuitively with drag-and-drop, rotate pages by 90 degrees, and remove unneeded pages — all inside your browser. Your files never leave your computer, ensuring 100% privacy and security.</p>
+      <!-- SEO Content & Guide -->
+      <section class="seo-guide-content">
+        <h2>Free PDF Merger — Page-Level Visual Reordering &amp; Control</h2>
+        <p>ToolCrate's PDF Merger gives you complete visual control over your documents. Merge multiple PDFs into one
+          unified file, reorder pages intuitively with drag-and-drop, rotate pages by 90 degrees, and remove unneeded
+          pages — all inside your browser. Your files never leave your computer, ensuring 100% privacy and security.</p>
 
-      <h3>How to Merge &amp; Organize PDFs</h3>
-      <ol style="padding-left:22px;margin-bottom:18px;">
-        <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;"><strong>Upload your PDFs:</strong> Drag and drop single files, batches, or an entire folder into the drop zone.</li>
-        <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;"><strong>Visual Page Control:</strong> Every page is rendered as an interactive thumbnail. Drag cards across the grid to place pages in any order.</li>
-        <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;"><strong>Rotate or Delete:</strong> Use the 🔄 rotate button in the card's top-left corner to turn pages 90° clockwise, or click the 🗑️ delete button to remove pages.</li>
-        <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;"><strong>Preview &amp; Merge:</strong> Check the horizontal live preview strip to verify the exact final document sequence, then click <strong>Merge PDFs</strong> to download.</li>
-      </ol>
+        <h3>How to Merge &amp; Organize PDFs</h3>
+        <ol style="padding-left:22px;margin-bottom:18px;">
+          <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;"><strong>Upload your
+              PDFs:</strong> Drag and drop single files, batches, or an entire folder into the drop zone.</li>
+          <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;"><strong>Visual Page
+              Control:</strong> Every page is rendered as an interactive thumbnail. Drag cards across the grid to place
+            pages in any order.</li>
+          <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;"><strong>Rotate or
+              Delete:</strong> Use the 🔄 rotate button in the card's top-left corner to turn pages 90° clockwise, or
+            click the 🗑️ delete button to remove pages.</li>
+          <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;"><strong>Preview &amp;
+              Merge:</strong> Check the horizontal live preview strip to verify the exact final document sequence, then
+            click <strong>Merge PDFs</strong> to download.</li>
+        </ol>
 
-      <h3>Frequently Asked Questions</h3>
-      <details>
-        <summary>Are my PDF documents uploaded to a server?</summary>
-        <p>Never. The entire workflow — parsing, rendering thumbnails, reordering pages, rotating, and generating the final PDF — runs 100% client-side inside your browser using the open-source <strong>pdf-lib</strong> and <strong>pdf.js</strong> engines. No telemetry or file uploads occur.</p>
-      </details>
-      <details>
-        <summary>Can I combine pages from different PDF files in any order?</summary>
-        <p>Yes. Once you add multiple PDFs, all pages appear together in a single draggable grid. You can move any page from document A ahead of or between pages of document B seamlessly.</p>
-      </details>
-      <details>
-        <summary>Can I upload a folder containing multiple PDFs?</summary>
-        <p>Yes. Use the "Select Folder" button or drag a folder directly onto the drop area. ToolCrate scans and imports all valid PDF documents found inside.</p>
-      </details>
-      <details>
-        <summary>Is there a limit on file size or number of pages?</summary>
-        <p>There are no artificial software limits, paywalls, or watermarks. The only boundary is your computer or mobile device's available browser memory.</p>
-      </details>
-    </section>
-  </main>
+        <h3>Frequently Asked Questions</h3>
+        <details>
+          <summary>Are my PDF documents uploaded to a server?</summary>
+          <p>Never. The entire workflow — parsing, rendering thumbnails, reordering pages, rotating, and generating the
+            final PDF — runs 100% client-side inside your browser using the open-source <strong>pdf-lib</strong> and
+            <strong>pdf.js</strong> engines. No telemetry or file uploads occur.</p>
+        </details>
+        <details>
+          <summary>Can I combine pages from different PDF files in any order?</summary>
+          <p>Yes. Once you add multiple PDFs, all pages appear together in a single draggable grid. You can move any
+            page from document A ahead of or between pages of document B seamlessly.</p>
+        </details>
+        <details>
+          <summary>Can I upload a folder containing multiple PDFs?</summary>
+          <p>Yes. Use the "Select Folder" button or drag a folder directly onto the drop area. ToolCrate scans and
+            imports all valid PDF documents found inside.</p>
+        </details>
+        <details>
+          <summary>Is there a limit on file size or number of pages?</summary>
+          <p>There are no artificial software limits, paywalls, or watermarks. The only boundary is your computer or
+            mobile device's available browser memory.</p>
+        </details>
+      </section>
+    </main>
 
-  <footer>
-    <span>ToolCrate — built for people, not ads.</span>
-    <nav class="footer-links">
-      <a href="index.html">All tools</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy Policy</a>
-    </nav>
-  </footer>
-</div>
+    <footer>
+      <span>ToolCrate — built for people, not ads.</span>
+      <nav class="footer-links">
+        <a href="index.html">All tools</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </nav>
+    </footer>
+  </div>
 
-<script src="assets/common.js"></script>
-<script>
-  // Setup PDF.js worker
-  if (window.pdfjsLib) {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-  }
-
-  // Application State
-  let sourceFiles = []; // { id, name, size, pageCount, pdfLibDoc }
-  let pages = [];       // { id, fileId, fileName, sourcePageIndex, pageNumber, dataUrl, rotation, width, height }
-  let sortableInstance = null;
-  let isProcessing = false;
-
-  // File input triggers
-  function triggerFileSelect() {
-    if (isProcessing) return;
-    document.getElementById('fileInput').click();
-  }
-
-  function triggerFolderSelect() {
-    if (isProcessing) return;
-    document.getElementById('folderInput').click();
-  }
-
-  // Drag & Drop handlers
-  function handleDragOver(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    document.getElementById('dropZone').classList.add('drag');
-  }
-
-  function handleDragLeave(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    document.getElementById('dropZone').classList.remove('drag');
-  }
-
-  async function handleDrop(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    document.getElementById('dropZone').classList.remove('drag');
-    if (isProcessing) return;
-
-    const items = e.dataTransfer.items;
-    if (items && items.length > 0) {
-      const files = await extractFilesFromDataTransfer(items);
-      if (files.length > 0) {
-        processUploadedFiles(files);
-      } else {
-        showToast('No valid PDF files found in dropped items', 'error');
-      }
-    } else if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      handleFileInput(e.dataTransfer.files);
-    }
-  }
-
-  // Recursively extract files from dropped folders or files
-  async function extractFilesFromDataTransfer(items) {
-    const fileList = [];
-    const entriesQueue = [];
-
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-      if (item.webkitGetAsEntry) {
-        const entry = item.webkitGetAsEntry();
-        if (entry) entriesQueue.push(entry);
-      } else if (item.kind === 'file') {
-        const f = item.getAsFile();
-        if (f && isPdfFile(f)) fileList.push(f);
-      }
+  <script src="assets/common.js"></script>
+  <script>
+    // Setup PDF.js worker
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     }
 
-    while (entriesQueue.length > 0) {
-      const entry = entriesQueue.shift();
-      if (entry.isFile) {
-        const file = await new Promise(resolve => entry.file(resolve, () => resolve(null)));
-        if (file && isPdfFile(file)) {
-          fileList.push(file);
+    // Application State
+    let sourceFiles = []; // { id, name, size, pageCount, pdfLibDoc }
+    let pages = [];       // { id, fileId, fileName, sourcePageIndex, pageNumber, dataUrl, rotation, width, height }
+    let sortableInstance = null;
+    let isProcessing = false;
+
+    // File input triggers
+    function triggerFileSelect() {
+      if (isProcessing) return;
+      document.getElementById('fileInput').click();
+    }
+
+    function triggerFolderSelect() {
+      if (isProcessing) return;
+      document.getElementById('folderInput').click();
+    }
+
+    // Drag & Drop handlers
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      document.getElementById('dropZone').classList.add('drag');
+    }
+
+    function handleDragLeave(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      document.getElementById('dropZone').classList.remove('drag');
+    }
+
+    async function handleDrop(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      document.getElementById('dropZone').classList.remove('drag');
+      if (isProcessing) return;
+
+      const items = e.dataTransfer.items;
+      if (items && items.length > 0) {
+        const files = await extractFilesFromDataTransfer(items);
+        if (files.length > 0) {
+          processUploadedFiles(files);
+        } else {
+          showToast('No valid PDF files found in dropped items', 'error');
         }
-      } else if (entry.isDirectory) {
-        const reader = entry.createReader();
-        const readEntries = () => new Promise(resolve => {
-          reader.readEntries(entries => resolve(entries || []), () => resolve([]));
-        });
-        let batch = await readEntries();
-        while (batch.length > 0) {
-          entriesQueue.push(...batch);
-          batch = await readEntries();
+      } else if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleFileInput(e.dataTransfer.files);
+      }
+    }
+
+    // Recursively extract files from dropped folders or files
+    async function extractFilesFromDataTransfer(items) {
+      const fileList = [];
+      const entriesQueue = [];
+
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        if (item.webkitGetAsEntry) {
+          const entry = item.webkitGetAsEntry();
+          if (entry) entriesQueue.push(entry);
+        } else if (item.kind === 'file') {
+          const f = item.getAsFile();
+          if (f && isPdfFile(f)) fileList.push(f);
         }
       }
+
+      while (entriesQueue.length > 0) {
+        const entry = entriesQueue.shift();
+        if (entry.isFile) {
+          const file = await new Promise(resolve => entry.file(resolve, () => resolve(null)));
+          if (file && isPdfFile(file)) {
+            fileList.push(file);
+          }
+        } else if (entry.isDirectory) {
+          const reader = entry.createReader();
+          const readEntries = () => new Promise(resolve => {
+            reader.readEntries(entries => resolve(entries || []), () => resolve([]));
+          });
+          let batch = await readEntries();
+          while (batch.length > 0) {
+            entriesQueue.push(...batch);
+            batch = await readEntries();
+          }
+        }
+      }
+
+      return fileList;
     }
 
-    return fileList;
-  }
-
-  function isPdfFile(file) {
-    return file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
-  }
-
-  function handleFileInput(filesList) {
-    if (!filesList || filesList.length === 0) return;
-    const validPdfs = Array.from(filesList).filter(isPdfFile);
-    if (validPdfs.length === 0) {
-      showToast('Please select valid PDF documents (.pdf)', 'error');
-      return;
+    function isPdfFile(file) {
+      return file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
     }
-    processUploadedFiles(validPdfs);
-  }
 
-  // Process uploaded files sequentially
-  async function processUploadedFiles(filesArray) {
-    if (isProcessing) return;
-    isProcessing = true;
-    showProgress(true, 'Reading documents...', 0);
+    function handleFileInput(filesList) {
+      if (!filesList || filesList.length === 0) return;
+      const validPdfs = Array.from(filesList).filter(isPdfFile);
+      if (validPdfs.length === 0) {
+        showToast('Please select valid PDF documents (.pdf)', 'error');
+        return;
+      }
+      processUploadedFiles(validPdfs);
+    }
 
-    let loadedCount = 0;
-    const totalFiles = filesArray.length;
+    // Process uploaded files sequentially
+    async function processUploadedFiles(filesArray) {
+      if (isProcessing) return;
+      isProcessing = true;
+      showProgress(true, 'Reading documents...', 0);
 
-    for (let f = 0; f < totalFiles; f++) {
-      const file = filesArray[f];
-      const basePercent = (f / totalFiles) * 100;
-      showProgress(true, `Loading ${file.name} (${f + 1}/${totalFiles})...`, basePercent);
+      let loadedCount = 0;
+      const totalFiles = filesArray.length;
 
-      try {
-        const arrayBuffer = await file.arrayBuffer();
+      for (let f = 0; f < totalFiles; f++) {
+        const file = filesArray[f];
+        const basePercent = (f / totalFiles) * 100;
+        showProgress(true, `Loading ${file.name} (${f + 1}/${totalFiles})...`, basePercent);
 
-        // 1. Verify and parse with pdf-lib
-        let pdfLibDoc;
         try {
-          pdfLibDoc = await PDFLib.PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
-        } catch (libErr) {
-          showToast(`Skipped "${file.name}": password-protected or corrupt`, 'error');
-          continue;
-        }
+          const arrayBuffer = await file.arrayBuffer();
 
-        // 2. Parse with pdfjs for high-quality thumbnail generation
-        let pdfJsDoc;
-        try {
-          const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer.slice(0)) });
-          pdfJsDoc = await loadingTask.promise;
-        } catch (jsErr) {
-          showToast(`Skipped "${file.name}": unable to render thumbnails`, 'error');
-          continue;
-        }
-
-        const numPages = pdfJsDoc.numPages;
-        const fileId = 'file_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
-
-        const sourceFileObj = {
-          id: fileId,
-          name: file.name,
-          size: file.size,
-          pageCount: numPages,
-          pdfLibDoc: pdfLibDoc
-        };
-        sourceFiles.push(sourceFileObj);
-
-        // 3. Render thumbnails for all pages of this file
-        for (let p = 1; p <= numPages; p++) {
-          const pageProgress = basePercent + (p / numPages) * (100 / totalFiles);
-          showProgress(true, `Rendering thumbnail: ${file.name} (page ${p} of ${numPages})...`, pageProgress);
-
-          let dataUrl = '';
-          let width = 612;
-          let height = 792;
-
+          // 1. Verify and parse with pdf-lib
+          let pdfLibDoc;
           try {
-            const page = await pdfJsDoc.getPage(p);
-            const rawViewport = page.getViewport({ scale: 1 });
-            width = rawViewport.width;
-            height = rawViewport.height;
-
-            // Render onto an offscreen canvas at crisp 220px width
-            const renderScale = 220 / width;
-            const viewport = page.getViewport({ scale: renderScale });
-
-            const canvas = document.createElement('canvas');
-            canvas.width = Math.floor(viewport.width);
-            canvas.height = Math.floor(viewport.height);
-            const ctx = canvas.getContext('2d');
-
-            await page.render({
-              canvasContext: ctx,
-              viewport: viewport
-            }).promise;
-
-            dataUrl = canvas.toDataURL('image/jpeg', 0.85);
-          } catch (renderErr) {
-            console.warn(`Fallback placeholder for page ${p} of ${file.name}`, renderErr);
-            dataUrl = generateFallbackThumbnail(p);
+            pdfLibDoc = await PDFLib.PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+          } catch (libErr) {
+            showToast(`Skipped "${file.name}": password-protected or corrupt`, 'error');
+            continue;
           }
 
-          pages.push({
-            id: 'page_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8),
-            fileId: fileId,
-            fileName: file.name,
-            sourcePageIndex: p - 1, // 0-indexed for pdf-lib copyPages
-            pageNumber: p,
-            dataUrl: dataUrl,
-            rotation: 0,
-            width: width,
-            height: height
-          });
+          // 2. Parse with pdfjs for high-quality thumbnail generation
+          let pdfJsDoc;
+          try {
+            const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer.slice(0)) });
+            pdfJsDoc = await loadingTask.promise;
+          } catch (jsErr) {
+            showToast(`Skipped "${file.name}": unable to render thumbnails`, 'error');
+            continue;
+          }
 
-          // Yield briefly to event loop to keep UI responsive
-          await new Promise(res => setTimeout(res, 2));
+          const numPages = pdfJsDoc.numPages;
+          const fileId = 'file_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+
+          const sourceFileObj = {
+            id: fileId,
+            name: file.name,
+            size: file.size,
+            pageCount: numPages,
+            pdfLibDoc: pdfLibDoc
+          };
+          sourceFiles.push(sourceFileObj);
+
+          // 3. Render thumbnails for all pages of this file
+          for (let p = 1; p <= numPages; p++) {
+            const pageProgress = basePercent + (p / numPages) * (100 / totalFiles);
+            showProgress(true, `Rendering thumbnail: ${file.name} (page ${p} of ${numPages})...`, pageProgress);
+
+            let dataUrl = '';
+            let width = 612;
+            let height = 792;
+
+            try {
+              const page = await pdfJsDoc.getPage(p);
+              const rawViewport = page.getViewport({ scale: 1 });
+              width = rawViewport.width;
+              height = rawViewport.height;
+
+              // Render onto an offscreen canvas at crisp 220px width
+              const renderScale = 220 / width;
+              const viewport = page.getViewport({ scale: renderScale });
+
+              const canvas = document.createElement('canvas');
+              canvas.width = Math.floor(viewport.width);
+              canvas.height = Math.floor(viewport.height);
+              const ctx = canvas.getContext('2d');
+
+              await page.render({
+                canvasContext: ctx,
+                viewport: viewport
+              }).promise;
+
+              dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+            } catch (renderErr) {
+              console.warn(`Fallback placeholder for page ${p} of ${file.name}`, renderErr);
+              dataUrl = generateFallbackThumbnail(p);
+            }
+
+            pages.push({
+              id: 'page_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8),
+              fileId: fileId,
+              fileName: file.name,
+              sourcePageIndex: p - 1, // 0-indexed for pdf-lib copyPages
+              pageNumber: p,
+              dataUrl: dataUrl,
+              rotation: 0,
+              width: width,
+              height: height
+            });
+
+            // Yield briefly to event loop to keep UI responsive
+            await new Promise(res => setTimeout(res, 2));
+          }
+
+          loadedCount++;
+        } catch (err) {
+          console.error('Error processing file:', file.name, err);
+          showToast(`Failed to process "${file.name}": ${err.message}`, 'error');
         }
+      }
 
-        loadedCount++;
-      } catch (err) {
-        console.error('Error processing file:', file.name, err);
-        showToast(`Failed to process "${file.name}": ${err.message}`, 'error');
+      // Reset file inputs so user can pick the same files again if needed
+      document.getElementById('fileInput').value = '';
+      document.getElementById('folderInput').value = '';
+
+      showProgress(false);
+      isProcessing = false;
+
+      if (loadedCount > 0) {
+        showToast(`Added ${loadedCount} PDF${loadedCount > 1 ? 's' : ''} (${pages.length} total pages)`, 'success');
+        renderUI();
+      } else if (pages.length === 0) {
+        renderUI();
       }
     }
 
-    // Reset file inputs so user can pick the same files again if needed
-    document.getElementById('fileInput').value = '';
-    document.getElementById('folderInput').value = '';
-
-    showProgress(false);
-    isProcessing = false;
-
-    if (loadedCount > 0) {
-      showToast(`Added ${loadedCount} PDF${loadedCount > 1 ? 's' : ''} (${pages.length} total pages)`, 'success');
-      renderUI();
-    } else if (pages.length === 0) {
-      renderUI();
-    }
-  }
-
-  // Fallback SVG placeholder thumbnail when a page cannot be rendered
-  function generateFallbackThumbnail(pageNum) {
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="150" height="200" viewBox="0 0 150 200">
+    // Fallback SVG placeholder thumbnail when a page cannot be rendered
+    function generateFallbackThumbnail(pageNum) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="150" height="200" viewBox="0 0 150 200">
       <rect width="100%" height="100%" fill="#0D1117"/>
       <rect x="15" y="15" width="120" height="170" rx="8" fill="#161B22" stroke="rgba(255,255,255,0.12)"/>
       <text x="75" y="90" fill="#8B949E" font-family="sans-serif" font-size="12" text-anchor="middle">PDF Page</text>
       <text x="75" y="125" fill="#FF4ECD" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="middle">${pageNum}</text>
     </svg>`;
-    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
-  }
-
-  // Format file sizes
-  function formatBytes(bytes) {
-    if (!bytes || bytes === 0) return '0 B';
-    const k = 1024;
-    const sizes = ['B', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
-  }
-
-  // Main UI Render Controller
-  function renderUI() {
-    const hasPages = pages.length > 0;
-    const activeSection = document.getElementById('activeToolSection');
-    const dropZone = document.getElementById('dropZone');
-
-    if (!hasPages) {
-      activeSection.style.display = 'none';
-      dropZone.style.display = 'block';
-      document.getElementById('statusMsg').textContent = '';
-      return;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
     }
 
-    activeSection.style.display = 'block';
-    dropZone.style.display = 'none';
+    // Format file sizes
+    function formatBytes(bytes) {
+      if (!bytes || bytes === 0) return '0 B';
+      const k = 1024;
+      const sizes = ['B', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+    }
 
-    renderSourceFilesList();
-    renderThumbnailGrid();
-    renderPreviewStrip();
-    updateCounters();
-    initSortable();
-  }
+    // Main UI Render Controller
+    function renderUI() {
+      const hasPages = pages.length > 0;
+      const activeSection = document.getElementById('activeToolSection');
+      const dropZone = document.getElementById('dropZone');
 
-  // Render list of source files
-  function renderSourceFilesList() {
-    const container = document.getElementById('fileChipsContainer');
-    document.getElementById('sourceFileCount').textContent = sourceFiles.length;
-    container.innerHTML = '';
+      if (!hasPages) {
+        activeSection.style.display = 'none';
+        dropZone.style.display = 'block';
+        document.getElementById('statusMsg').textContent = '';
+        return;
+      }
 
-    sourceFiles.forEach(file => {
-      const chip = document.createElement('div');
-      chip.className = 'pm-file-chip';
-      chip.innerHTML = `
+      activeSection.style.display = 'block';
+      dropZone.style.display = 'none';
+
+      renderSourceFilesList();
+      renderThumbnailGrid();
+      renderPreviewStrip();
+      updateCounters();
+      initSortable();
+    }
+
+    // Render list of source files
+    function renderSourceFilesList() {
+      const container = document.getElementById('fileChipsContainer');
+      document.getElementById('sourceFileCount').textContent = sourceFiles.length;
+      container.innerHTML = '';
+
+      sourceFiles.forEach(file => {
+        const chip = document.createElement('div');
+        chip.className = 'pm-file-chip';
+        chip.innerHTML = `
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;color:var(--pink);flex-shrink:0;">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
         </svg>
@@ -1056,30 +1195,30 @@
         <span class="chip-meta">(${file.pageCount}p • ${formatBytes(file.size)})</span>
         <button type="button" class="chip-del" title="Remove this file and its pages" onclick="removeSourceFile('${file.id}')">✕</button>
       `;
-      container.appendChild(chip);
-    });
-  }
+        container.appendChild(chip);
+      });
+    }
 
-  // Remove entire source file and all its pages
-  function removeSourceFile(fileId) {
-    const file = sourceFiles.find(f => f.id === fileId);
-    sourceFiles = sourceFiles.filter(f => f.id !== fileId);
-    pages = pages.filter(p => p.fileId !== fileId);
-    renderUI();
-    showToast(`Removed "${file ? file.name : 'file'}"`, 'info');
-  }
+    // Remove entire source file and all its pages
+    function removeSourceFile(fileId) {
+      const file = sourceFiles.find(f => f.id === fileId);
+      sourceFiles = sourceFiles.filter(f => f.id !== fileId);
+      pages = pages.filter(p => p.fileId !== fileId);
+      renderUI();
+      showToast(`Removed "${file ? file.name : 'file'}"`, 'info');
+    }
 
-  // Render thumbnail grid
-  function renderThumbnailGrid() {
-    const grid = document.getElementById('pageGrid');
-    grid.innerHTML = '';
+    // Render thumbnail grid
+    function renderThumbnailGrid() {
+      const grid = document.getElementById('pageGrid');
+      grid.innerHTML = '';
 
-    pages.forEach((page, index) => {
-      const card = document.createElement('div');
-      card.className = 'pm-page-card';
-      card.setAttribute('data-id', page.id);
+      pages.forEach((page, index) => {
+        const card = document.createElement('div');
+        card.className = 'pm-page-card';
+        card.setAttribute('data-id', page.id);
 
-      card.innerHTML = `
+        card.innerHTML = `
         <div class="pm-card-actions">
           <button type="button" class="pm-action-btn rotate-btn" title="Rotate 90° clockwise" onclick="rotatePage('${page.id}', event)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
@@ -1103,288 +1242,289 @@
         </div>
       `;
 
-      grid.appendChild(card);
-    });
-  }
-
-  // Initialize Sortable.js for drag-reorder
-  function initSortable() {
-    const grid = document.getElementById('pageGrid');
-    if (!grid) return;
-
-    if (sortableInstance) {
-      sortableInstance.destroy();
+        grid.appendChild(card);
+      });
     }
 
-    sortableInstance = new Sortable(grid, {
-      animation: 200,
-      ghostClass: 'sortable-ghost',
-      chosenClass: 'sortable-chosen',
-      dragClass: 'sortable-drag',
-      filter: '.pm-action-btn',
-      preventOnFilter: false,
-      onEnd: function() {
-        // Synchronize pages array to new DOM order
-        const cards = grid.querySelectorAll('.pm-page-card');
-        const newPages = [];
-        cards.forEach(card => {
-          const id = card.getAttribute('data-id');
-          const p = pages.find(item => item.id === id);
-          if (p) newPages.push(p);
-        });
-        pages = newPages;
+    // Initialize Sortable.js for drag-reorder
+    function initSortable() {
+      const grid = document.getElementById('pageGrid');
+      if (!grid) return;
 
+      if (sortableInstance) {
+        sortableInstance.destroy();
+      }
+
+      sortableInstance = new Sortable(grid, {
+        animation: 200,
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        filter: '.pm-action-btn',
+        preventOnFilter: false,
+        onEnd: function () {
+          // Synchronize pages array to new DOM order
+          const cards = grid.querySelectorAll('.pm-page-card');
+          const newPages = [];
+          cards.forEach(card => {
+            const id = card.getAttribute('data-id');
+            const p = pages.find(item => item.id === id);
+            if (p) newPages.push(p);
+          });
+          pages = newPages;
+
+          updateCardSequenceBadges();
+          renderPreviewStrip();
+          updateCounters();
+        }
+      });
+    }
+
+    // Update sequential order badges (#1, #2...) without rebuilding DOM
+    function updateCardSequenceBadges() {
+      pages.forEach((page, index) => {
+        const badge = document.getElementById(`seq-badge-${page.id}`);
+        if (badge) {
+          badge.textContent = `#${index + 1}`;
+        }
+      });
+    }
+
+    // Rotate single page 90 degrees clockwise
+    function rotatePage(pageId, event) {
+      if (event) event.stopPropagation();
+      const page = pages.find(p => p.id === pageId);
+      if (!page) return;
+
+      page.rotation = (page.rotation + 90) % 360;
+
+      // Smoothly rotate the thumbnail in the grid
+      const thumbImg = document.getElementById(`thumb-img-${pageId}`);
+      if (thumbImg) {
+        thumbImg.style.transform = `rotate(${page.rotation}deg)`;
+      }
+
+      // Update rotation badge
+      const rotBadge = document.getElementById(`rot-badge-${pageId}`);
+      if (rotBadge) {
+        rotBadge.textContent = `${page.rotation}°`;
+        rotBadge.style.display = page.rotation > 0 ? 'inline-block' : 'none';
+      }
+
+      // Update live preview strip
+      const miniImg = document.getElementById(`mini-img-${pageId}`);
+      if (miniImg) {
+        miniImg.style.transform = `rotate(${page.rotation}deg)`;
+      }
+    }
+
+    // Rotate all pages by 90 degrees clockwise
+    function rotateAllPages() {
+      if (pages.length === 0) return;
+      pages.forEach(page => {
+        page.rotation = (page.rotation + 90) % 360;
+      });
+      renderThumbnailGrid();
+      renderPreviewStrip();
+      initSortable();
+      showToast('Rotated all pages 90° clockwise', 'info');
+    }
+
+    // Delete single page from merge queue
+    function deletePage(pageId, event) {
+      if (event) event.stopPropagation();
+      const index = pages.findIndex(p => p.id === pageId);
+      if (index === -1) return;
+
+      pages.splice(index, 1);
+
+      if (pages.length === 0) {
+        renderUI();
+      } else {
+        const card = document.querySelector(`.pm-page-card[data-id="${pageId}"]`);
+        if (card) card.remove();
         updateCardSequenceBadges();
         renderPreviewStrip();
         updateCounters();
       }
-    });
-  }
-
-  // Update sequential order badges (#1, #2...) without rebuilding DOM
-  function updateCardSequenceBadges() {
-    pages.forEach((page, index) => {
-      const badge = document.getElementById(`seq-badge-${page.id}`);
-      if (badge) {
-        badge.textContent = `#${index + 1}`;
-      }
-    });
-  }
-
-  // Rotate single page 90 degrees clockwise
-  function rotatePage(pageId, event) {
-    if (event) event.stopPropagation();
-    const page = pages.find(p => p.id === pageId);
-    if (!page) return;
-
-    page.rotation = (page.rotation + 90) % 360;
-
-    // Smoothly rotate the thumbnail in the grid
-    const thumbImg = document.getElementById(`thumb-img-${pageId}`);
-    if (thumbImg) {
-      thumbImg.style.transform = `rotate(${page.rotation}deg)`;
+      showToast('Page removed', 'info');
     }
 
-    // Update rotation badge
-    const rotBadge = document.getElementById(`rot-badge-${pageId}`);
-    if (rotBadge) {
-      rotBadge.textContent = `${page.rotation}°`;
-      rotBadge.style.display = page.rotation > 0 ? 'inline-block' : 'none';
-    }
+    // Render live horizontal preview strip
+    function renderPreviewStrip() {
+      const strip = document.getElementById('previewStrip');
+      strip.innerHTML = '';
 
-    // Update live preview strip
-    const miniImg = document.getElementById(`mini-img-${pageId}`);
-    if (miniImg) {
-      miniImg.style.transform = `rotate(${page.rotation}deg)`;
-    }
-  }
+      pages.forEach((page, index) => {
+        const item = document.createElement('div');
+        item.className = 'pm-preview-item';
+        item.title = `${page.fileName} (p. ${page.pageNumber})`;
 
-  // Rotate all pages by 90 degrees clockwise
-  function rotateAllPages() {
-    if (pages.length === 0) return;
-    pages.forEach(page => {
-      page.rotation = (page.rotation + 90) % 360;
-    });
-    renderThumbnailGrid();
-    renderPreviewStrip();
-    initSortable();
-    showToast('Rotated all pages 90° clockwise', 'info');
-  }
-
-  // Delete single page from merge queue
-  function deletePage(pageId, event) {
-    if (event) event.stopPropagation();
-    const index = pages.findIndex(p => p.id === pageId);
-    if (index === -1) return;
-
-    pages.splice(index, 1);
-
-    if (pages.length === 0) {
-      renderUI();
-    } else {
-      const card = document.querySelector(`.pm-page-card[data-id="${pageId}"]`);
-      if (card) card.remove();
-      updateCardSequenceBadges();
-      renderPreviewStrip();
-      updateCounters();
-    }
-    showToast('Page removed', 'info');
-  }
-
-  // Render live horizontal preview strip
-  function renderPreviewStrip() {
-    const strip = document.getElementById('previewStrip');
-    strip.innerHTML = '';
-
-    pages.forEach((page, index) => {
-      const item = document.createElement('div');
-      item.className = 'pm-preview-item';
-      item.title = `${page.fileName} (p. ${page.pageNumber})`;
-
-      item.innerHTML = `
+        item.innerHTML = `
         <div class="pm-preview-thumb-box">
           <img class="pm-preview-thumb-img" id="mini-img-${page.id}" src="${page.dataUrl}" alt="#${index + 1}" style="transform: rotate(${page.rotation}deg);">
         </div>
         <span class="pm-preview-idx">#${index + 1}</span>
       `;
-      strip.appendChild(item);
-    });
+        strip.appendChild(item);
+      });
 
-    document.getElementById('previewCountLabel').textContent = `${pages.length} page${pages.length !== 1 ? 's' : ''} ready to merge`;
-  }
+      document.getElementById('previewCountLabel').textContent = `${pages.length} page${pages.length !== 1 ? 's' : ''} ready to merge`;
+    }
 
-  // Update counters and status
-  function updateCounters() {
-    const count = pages.length;
-    document.getElementById('pageCounterBadge').textContent = `${count} page${count !== 1 ? 's' : ''}`;
-    const convertBtn = document.getElementById('convertBtn');
-    convertBtn.disabled = count === 0;
-    if (count > 0) {
-      convertBtn.innerHTML = `
+    // Update counters and status
+    function updateCounters() {
+      const count = pages.length;
+      document.getElementById('pageCounterBadge').textContent = `${count} page${count !== 1 ? 's' : ''}`;
+      const convertBtn = document.getElementById('convertBtn');
+      convertBtn.disabled = count === 0;
+      if (count > 0) {
+        convertBtn.innerHTML = `
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Merge ${count} Page${count !== 1 ? 's' : ''}
       `;
-    }
-  }
-
-  // Reset entire application
-  function clearAll() {
-    sourceFiles = [];
-    pages = [];
-    document.getElementById('fileInput').value = '';
-    document.getElementById('folderInput').value = '';
-    renderUI();
-    showToast('All documents cleared', 'info');
-  }
-
-  // Show / update progress bar
-  function showProgress(show, text = '', percent = 0) {
-    const wrap = document.getElementById('progressWrap');
-    if (!wrap) return;
-
-    if (show) {
-      wrap.style.display = 'block';
-      document.getElementById('progressText').textContent = text;
-      const pct = Math.min(100, Math.max(0, Math.round(percent)));
-      document.getElementById('progressPercent').textContent = pct + '%';
-      document.getElementById('progressBarFill').style.width = pct + '%';
-    } else {
-      wrap.style.display = 'none';
-      document.getElementById('progressBarFill').style.width = '0%';
-    }
-  }
-
-  // Client-Side PDF Merging using pdf-lib
-  async function generatePDF() {
-    if (pages.length === 0) {
-      showToast('Please add at least one page to merge', 'error');
-      return;
+      }
     }
 
-    const btn = document.getElementById('convertBtn');
-    const originalHtml = btn.innerHTML;
-    btn.disabled = true;
-    showProgress(true, 'Preparing merged document...', 0);
+    // Reset entire application
+    function clearAll() {
+      sourceFiles = [];
+      pages = [];
+      document.getElementById('fileInput').value = '';
+      document.getElementById('folderInput').value = '';
+      renderUI();
+      showToast('All documents cleared', 'info');
+    }
 
-    try {
-      const { PDFDocument, degrees } = PDFLib;
-      const mergedPdf = await PDFDocument.create();
+    // Show / update progress bar
+    function showProgress(show, text = '', percent = 0) {
+      const wrap = document.getElementById('progressWrap');
+      if (!wrap) return;
 
-      const total = pages.length;
-      for (let i = 0; i < total; i++) {
-        const pageObj = pages[i];
-        const pct = Math.round(((i + 1) / total) * 100);
-        showProgress(true, `Merging page ${i + 1} of ${total}...`, pct);
+      if (show) {
+        wrap.style.display = 'block';
+        document.getElementById('progressText').textContent = text;
+        const pct = Math.min(100, Math.max(0, Math.round(percent)));
+        document.getElementById('progressPercent').textContent = pct + '%';
+        document.getElementById('progressBarFill').style.width = pct + '%';
+      } else {
+        wrap.style.display = 'none';
+        document.getElementById('progressBarFill').style.width = '0%';
+      }
+    }
 
-        const sourceFile = sourceFiles.find(sf => sf.id === pageObj.fileId);
-        if (!sourceFile || !sourceFile.pdfLibDoc) {
-          throw new Error(`Source PDF for page #${i + 1} (${pageObj.fileName}) is not available`);
-        }
-
-        // Copy page into destination document
-        const [copiedPage] = await mergedPdf.copyPages(sourceFile.pdfLibDoc, [pageObj.sourcePageIndex]);
-
-        // Combine existing rotation with user clockwise rotation
-        const currentAngle = copiedPage.getRotation().angle || 0;
-        if (pageObj.rotation !== 0) {
-          const finalAngle = (currentAngle + pageObj.rotation) % 360;
-          copiedPage.setRotation(degrees(finalAngle));
-        }
-
-        mergedPdf.addPage(copiedPage);
-
-        // Periodically yield to browser UI loop
-        if (i % 3 === 0) {
-          await new Promise(r => setTimeout(r, 4));
-        }
+    // Client-Side PDF Merging using pdf-lib
+    async function generatePDF() {
+      if (pages.length === 0) {
+        showToast('Please add at least one page to merge', 'error');
+        return;
       }
 
-      showProgress(true, 'Assembling final PDF file...', 100);
-      const pdfBytes = await mergedPdf.save();
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-      const downloadUrl = URL.createObjectURL(blob);
+      const btn = document.getElementById('convertBtn');
+      const originalHtml = btn.innerHTML;
+      btn.disabled = true;
+      showProgress(true, 'Preparing merged document...', 0);
 
-      // Trigger instant client-side download
-      const a = document.createElement('a');
-      a.href = downloadUrl;
-      a.download = 'toolcrate-merged.pdf';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      try {
+        const { PDFDocument, degrees } = PDFLib;
+        const mergedPdf = await PDFDocument.create();
 
-      setTimeout(() => URL.revokeObjectURL(downloadUrl), 30000);
-      showToast(`✓ Merged ${total} pages successfully!`, 'success');
-      document.getElementById('statusMsg').textContent = `✓ Successfully created "toolcrate-merged.pdf" with ${total} pages.`;
-    } catch (err) {
-      console.error('PDF Merge failure:', err);
-      showToast('Error merging PDFs: ' + err.message, 'error');
-      document.getElementById('statusMsg').textContent = 'Error: ' + err.message;
-    } finally {
-      btn.disabled = false;
-      btn.innerHTML = originalHtml;
-      setTimeout(() => {
-        showProgress(false);
-      }, 1200);
+        const total = pages.length;
+        for (let i = 0; i < total; i++) {
+          const pageObj = pages[i];
+          const pct = Math.round(((i + 1) / total) * 100);
+          showProgress(true, `Merging page ${i + 1} of ${total}...`, pct);
+
+          const sourceFile = sourceFiles.find(sf => sf.id === pageObj.fileId);
+          if (!sourceFile || !sourceFile.pdfLibDoc) {
+            throw new Error(`Source PDF for page #${i + 1} (${pageObj.fileName}) is not available`);
+          }
+
+          // Copy page into destination document
+          const [copiedPage] = await mergedPdf.copyPages(sourceFile.pdfLibDoc, [pageObj.sourcePageIndex]);
+
+          // Combine existing rotation with user clockwise rotation
+          const currentAngle = copiedPage.getRotation().angle || 0;
+          if (pageObj.rotation !== 0) {
+            const finalAngle = (currentAngle + pageObj.rotation) % 360;
+            copiedPage.setRotation(degrees(finalAngle));
+          }
+
+          mergedPdf.addPage(copiedPage);
+
+          // Periodically yield to browser UI loop
+          if (i % 3 === 0) {
+            await new Promise(r => setTimeout(r, 4));
+          }
+        }
+
+        showProgress(true, 'Assembling final PDF file...', 100);
+        const pdfBytes = await mergedPdf.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const downloadUrl = URL.createObjectURL(blob);
+
+        // Trigger instant client-side download
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = 'toolcrate-merged.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        setTimeout(() => URL.revokeObjectURL(downloadUrl), 30000);
+        showToast(`✓ Merged ${total} pages successfully!`, 'success');
+        document.getElementById('statusMsg').textContent = `✓ Successfully created "toolcrate-merged.pdf" with ${total} pages.`;
+      } catch (err) {
+        console.error('PDF Merge failure:', err);
+        showToast('Error merging PDFs: ' + err.message, 'error');
+        document.getElementById('statusMsg').textContent = 'Error: ' + err.message;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalHtml;
+        setTimeout(() => {
+          showProgress(false);
+        }, 1200);
+      }
     }
-  }
 
-  // Toast notification manager
-  function showToast(message, type = 'info') {
-    const container = document.getElementById('toastContainer');
-    if (!container) return;
+    // Toast notification manager
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
 
-    const toast = document.createElement('div');
-    toast.className = `pm-toast ${type}`;
+      const toast = document.createElement('div');
+      toast.className = `pm-toast ${type}`;
 
-    let icon = `
+      let icon = `
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;color:var(--cyan);flex-shrink:0;">
         <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
       </svg>
     `;
-    if (type === 'success') {
-      icon = `
+      if (type === 'success') {
+        icon = `
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;color:var(--mint);flex-shrink:0;">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
         </svg>
       `;
-    } else if (type === 'error') {
-      icon = `
+      } else if (type === 'error') {
+        icon = `
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;color:var(--coral);flex-shrink:0;">
           <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
         </svg>
       `;
+      }
+
+      toast.innerHTML = `${icon}<span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 4200);
     }
-
-    toast.innerHTML = `${icon}<span>${message}</span>`;
-    container.appendChild(toast);
-
-    setTimeout(() => {
-      toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateY(10px)';
-      setTimeout(() => toast.remove(), 300);
-    }, 4200);
-  }
-</script>
+  </script>
 </body>
+
 </html>
