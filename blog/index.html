@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Tips, Guides &amp; Tutorials | ToolCrate</title>
+    <meta name="description"
+        content="Guides, tutorials, and tips on how to use free browser tools for everyday tasks — image compression, PDF tools, QR codes, calculators, and more.">
+    <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/blog/">
+    <meta name="theme-color" content="#070B10">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H20HJWJQWV"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-H20HJWJQWV');</script>
+    <style>
+        .blog-hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 24px 40px;
+        }
+
+        .blog-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin: 12px 0;
+            background: var(--grad-a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blog-hero p {
+            color: var(--ink-2);
+            font-size: 1.05rem;
+            max-width: 60ch;
+            line-height: 1.6;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        @media (max-width: 640px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        .post-card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--grad-a);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .post-card:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .post-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .post-card .post-tag {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--emerald);
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            align-self: flex-start;
+        }
+
+        .post-card h2 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            line-height: 1.3;
+            margin: 4px 0;
+        }
+
+        .post-card p {
+            font-size: 0.88rem;
+            color: var(--ink-2);
+            line-height: 1.55;
+            flex: 1;
+        }
+
+        .post-card .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--ink-3);
+            font-family: var(--font-mono);
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 6px;
+        }
+
+        .post-card .read-more {
+            color: var(--emerald);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="masthead">
+            <div class="row">
+                <div class="brand-block">
+                    <div>
+                        <div class="brand">
+                            <h1><a href="../index.html">ToolCrate</a></h1>
+                        </div>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="blog-hero">
+                <a class="back-btn" href="../index.html">← Back to all tools</a>
+                <h1>Blog &amp; Guides</h1>
+                <p>Tutorials, tips, and step-by-step guides on how to solve everyday tasks with our free browser tools.
+                    New posts added every week.</p>
+            </section>
+
+            <section class="blog-grid">
+
+                <!-- POST 1 -->
+                <a class="post-card" href="compress-image-for-whatsapp.html">
+                    <span class="post-tag">Image Tools</span>
+                    <h2>How to Compress Images for WhatsApp Without Losing Quality</h2>
+                    <p>WhatsApp has a 16MB file limit. Learn how to compress any image for WhatsApp in seconds — free,
+                        no signup, and 100% private.</p>
+                    <div class="post-meta">
+                        <span>Sep 20, 2026</span>
+                        <span class="read-more">Read →</span>
+                    </div>
+                </a>
+
+                <!-- POST 2 -->
+                <a class="post-card" href="merge-pdf-free-online.html">
+                    <span class="post-tag">PDF Tools</span>
+                    <h2>Merge PDF Files Free Online — No Upload, No Signup</h2>
+                    <p>Combine multiple PDFs into one document with page-level control. Reorder, rotate, and delete
+                        pages — all in your browser.</p>
+                    <div class="post-meta">
+                        <span>Coming soon</span>
+                        <span class="read-more">Read →</span>
+                    </div>
+                </a>
+
+                <!-- POST 3 -->
+                <a class="post-card" href="cgpa-calculator-pakistan.html">
+                    <span class="post-tag">Calculators</span>
+                    <h2>CGPA Calculator for Pakistani Universities — Step by Step</h2>
+                    <p>Extract your exact semester GPA from your result card CGPA using this simple formula and free
+                        online tool.</p>
+                    <div class="post-meta">
+                        <span>Coming soon</span>
+                        <span class="read-more">Read →</span>
+                    </div>
+                </a>
+
+                <!-- POST 4 -->
+                <a class="post-card" href="qr-code-wifi-password.html">
+                    <span class="post-tag">Developer Tools</span>
+                    <h2>How to Create a QR Code for Your WiFi Password (Free)</h2>
+                    <p>Let guests connect to your WiFi instantly by scanning a QR code. No more typing long passwords.
+                    </p>
+                    <div class="post-meta">
+                        <span>Coming soon</span>
+                        <span class="read-more">Read →</span>
+                    </div>
+                </a>
+
+                <!-- POST 5 -->
+                <a class="post-card" href="compress-jpg-to-100kb.html">
+                    <span class="post-tag">Image Tools</span>
+                    <h2>Compress JPG to 100KB for Job Applications</h2>
+                    <p>Most job portals require images under 100KB. Learn how to compress JPG files to exactly 100KB in
+                        one click.</p>
+                    <div class="post-meta">
+                        <span>Coming soon</span>
+                        <span class="read-more">Read →</span>
+                    </div>
+                </a>
+
+            </section>
+        </main>
+
+        <footer>
+            <span>ToolCrate — built for people, not ads.</span>
+            <nav class="footer-links">
+                <a href="../index.html">All tools</a>
+                <a href="index.html">Blog</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../privacy.html">Privacy Policy</a>
+            </nav>
+        </footer>
+    </div>
+    <script src="../assets/common.js"></script>
+</body>
+
+</html>
