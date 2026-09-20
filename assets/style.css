@@ -2608,3 +2608,226 @@ body {
     display: none;
   }
 }
+
+/* ============================================================
+   TOOLCRATE PREMIUM POLISH v2
+   Green + Blue palette, buttery hover, boxing containers
+   ============================================================ */
+
+/* 1. CSS VARIABLES: Green+Blue Palette (dark mode) */
+:root {
+  --bg:           #0A1410;
+  --bg-2:         #0F1A17;
+  --surface:      rgba(230,255,245,0.04);
+  --surface-2:    rgba(230,255,245,0.07);
+  --surface-3:    rgba(230,255,245,0.11);
+  --border:       rgba(129,230,180,0.10);
+  --border-2:     rgba(129,230,180,0.20);
+  --border-strong:rgba(129,230,180,0.35);
+  --ink:          #E8F5EE;
+  --ink-2:        #A8C4B8;
+  --ink-3:        #6E8A7E;
+  --emerald:      #10B981;
+  --teal:         #14B8A6;
+  --cyan:         #06B6D4;
+  --sky:          #38BDF8;
+  --blue:         #3B82F6;
+  --lime:         #84CC16;
+  --amber:        #F59E0B;
+  --coral:        #F97316;
+  --mint:         #10B981;
+  --violet:       #8B5CF6;
+  --pink:         #EC4899;
+  --accent:       #10B981;
+  --accent-2:     #14B8A6;
+  --accent-3:     #06B6D4;
+  --accent-emerald:#10B981;
+  --accent-amber: #F59E0B;
+  --grad-primary: linear-gradient(135deg,#10B981 0%,#14B8A6 50%,#3B82F6 100%);
+  --grad-hero:    linear-gradient(135deg,#10B981 0%,#14B8A6 25%,#06B6D4 65%,#3B82F6 100%);
+  --grad-cool:    linear-gradient(135deg,#34D399 0%,#14B8A6 50%,#0EA5E9 100%);
+  --grad-warm:    linear-gradient(135deg,#F59E0B 0%,#F97316 100%);
+  --grad-a:       linear-gradient(135deg,#10B981 0%,#14B8A6 50%,#3B82F6 100%);
+  --grad-1:       linear-gradient(135deg,#10B981 0%,#14B8A6 100%);
+  --grad-2:       linear-gradient(135deg,#14B8A6 0%,#06B6D4 100%);
+  --grad-3:       linear-gradient(135deg,#06B6D4 0%,#3B82F6 100%);
+  --grad-4:       linear-gradient(135deg,#F59E0B 0%,#F97316 100%);
+  --shadow-sm:    0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md:    0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg:    0 12px 40px rgba(0,0,0,0.55);
+  --focus-ring:   0 0 0 3px rgba(16,185,129,0.30);
+}
+
+/* Light mode overrides */
+[data-theme="light"] {
+  --bg:           #F5FAF7;
+  --bg-2:         #EEFAF4;
+  --surface:      #FFFFFF;
+  --surface-2:    #F0FAF5;
+  --surface-3:    #E4F7EC;
+  --border:       rgba(15,42,32,0.10);
+  --border-2:     rgba(15,42,32,0.18);
+  --border-strong:rgba(15,42,32,0.30);
+  --ink:          #0A1410;
+  --ink-2:        #3D5A50;
+  --ink-3:        #6E8A7E;
+  --emerald:      #059669;
+  --teal:         #0D9488;
+  --cyan:         #0891B2;
+  --blue:         #2563EB;
+  --accent:       #059669;
+  --accent-2:     #0D9488;
+  --accent-3:     #0891B2;
+  --focus-ring:   0 0 0 3px rgba(5,150,105,0.25);
+}
+
+body { background: var(--bg); color: var(--ink); }
+
+/* Brand gradient */
+.brand a {
+  background: var(--grad-hero);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 2. BOXING */
+.tool-list,
+.blog-grid,
+.category-rail {
+  background: linear-gradient(180deg,rgba(255,255,255,0.028) 0%,rgba(255,255,255,0.008) 100%);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 50px rgba(0,0,0,0.22);
+}
+
+[data-theme="light"] .tool-list,
+[data-theme="light"] .blog-grid,
+[data-theme="light"] .category-rail {
+  background: #FFFFFF;
+  border-color: rgba(15,42,32,0.09);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,1), 0 20px 50px rgba(10,20,16,0.06);
+}
+
+.category-rail { padding: 14px 16px; margin-bottom: 22px; border-radius: 16px; }
+.tool-list { padding: 18px; }
+
+/* 3. CHIPS */
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 18px; font-size: 0.84rem; font-weight: 500;
+  line-height: 1; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--border); background: transparent; color: var(--ink-2);
+  transition:
+    background-color 0.35s cubic-bezier(0.4,0,0.2,1),
+    color            0.35s cubic-bezier(0.4,0,0.2,1),
+    border-color     0.35s cubic-bezier(0.4,0,0.2,1),
+    box-shadow       0.35s cubic-bezier(0.4,0,0.2,1),
+    transform        0.35s cubic-bezier(0.34,1.4,0.64,1);
+}
+.chip svg { width:14px; height:14px; flex-shrink:0; transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1); }
+.chip:hover { transform:translateY(-2px); border-color:var(--emerald); color:var(--ink); box-shadow:0 6px 18px rgba(16,185,129,0.20); }
+.chip:hover svg { transform:scale(1.18) rotate(-4deg); }
+.chip.active { background:var(--grad-primary); border-color:transparent; color:#fff; box-shadow:0 6px 20px rgba(16,185,129,0.30); transform:translateY(-1px); }
+.chip.active svg { transform:none; }
+
+/* Blog chip */
+.chip-blog {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:9px 18px; margin-left:10px; font-size:0.84rem; font-weight:600;
+  border-radius:999px; text-decoration:none; position:relative;
+  border:1px solid var(--border-2); color:var(--teal);
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.chip-blog::before {
+  content:''; position:absolute; left:-11px; top:50%; transform:translateY(-50%);
+  width:1px; height:22px;
+  background:linear-gradient(180deg,transparent 0%,var(--border-2) 20%,var(--border-2) 80%,transparent 100%);
+}
+.chip-blog svg { width:14px; height:14px; transition:transform 0.35s cubic-bezier(0.34,1.4,0.64,1); }
+.chip-blog:hover { transform:translateY(-2px); border-color:var(--teal); box-shadow:0 8px 24px rgba(20,184,166,0.28); }
+.chip-blog:hover svg { transform:scale(1.15) rotate(-4deg); }
+
+/* 4. TOOL CARDS */
+.tool-row {
+  transition:
+    transform    0.40s cubic-bezier(0.34,1.4,0.64,1),
+    box-shadow   0.40s cubic-bezier(0.4,0,0.2,1),
+    background   0.35s cubic-bezier(0.4,0,0.2,1),
+    border-color 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.tool-row:hover { transform:translateY(-4px); border-color:var(--border-2) !important; box-shadow:0 14px 40px rgba(0,0,0,0.28),0 0 0 1px rgba(16,185,129,0.12); }
+.tool-row .icon-wrap .icon { transition: background 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.4s cubic-bezier(0.4,0,0.2,1), color 0.3s ease; }
+.tool-row:hover .icon-wrap .icon { transform:scale(1.06) rotate(-3deg); box-shadow:0 6px 18px rgba(16,185,129,0.22); }
+.tool-row .info h3 { transition: color 0.35s ease; }
+.tool-row:hover .info h3 { color: var(--emerald); }
+.tool-row .arrow { transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), color 0.35s ease; }
+.tool-row:hover .arrow { transform:translateX(5px); color:var(--emerald); }
+
+/* 5. BUTTONS */
+.btn { position:relative; overflow:hidden; transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s cubic-bezier(0.4,0,0.2,1), filter 0.3s ease; }
+.btn::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent); transition:left 0.5s ease; pointer-events:none; }
+.btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(16,185,129,0.30); }
+.btn:hover::before { left:100%; }
+
+/* 6. BADGES */
+.badge { transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s cubic-bezier(0.4,0,0.2,1), border-color 0.35s ease; }
+.badge:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(16,185,129,0.22); border-color:var(--emerald); }
+
+/* 7. FEATURE ITEMS */
+.feature-item { transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.35s ease, background 0.35s ease; }
+.feature-item:hover { transform:translateY(-3px); border-color:var(--border-2); box-shadow:0 12px 36px rgba(0,0,0,0.22),0 0 0 1px rgba(16,185,129,0.10); }
+
+/* 8. STATS */
+.stat { transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.35s ease; }
+.stat:hover { transform:translateY(-3px); border-color:var(--border-2); box-shadow:0 12px 36px rgba(0,0,0,0.20); }
+
+/* 9. THEME TOGGLE */
+.theme-toggle { transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s cubic-bezier(0.4,0,0.2,1), border-color 0.35s ease, color 0.35s ease; }
+.theme-toggle:hover { transform:translateY(-1px); border-color:var(--emerald); box-shadow:0 4px 14px rgba(16,185,129,0.18); }
+
+/* 10. SEARCH */
+#toolSearch { transition: border-color 0.35s ease, box-shadow 0.4s cubic-bezier(0.4,0,0.2,1), background 0.35s ease; }
+#toolSearch:focus { outline:none; border-color:var(--emerald); box-shadow:0 0 0 3px rgba(16,185,129,0.18); }
+
+/* 11. BACK BUTTON */
+.back-btn { transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), color 0.35s ease; }
+.back-btn:hover { transform:translateX(-3px); color:var(--emerald); }
+
+/* 12. PANEL ICON */
+.panel-icon { transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1); }
+.panel-icon:hover { transform:scale(1.06) rotate(-3deg); }
+
+/* 13. FOOTER LINKS */
+.footer-links a { position:relative; transition:color 0.35s ease; }
+.footer-links a::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px; background:var(--grad-primary); transition:width 0.35s cubic-bezier(0.4,0,0.2,1); }
+.footer-links a:hover { color:var(--emerald); }
+.footer-links a:hover::after { width:100%; }
+
+/* 14. BLOG POST CARDS */
+.post-card { transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), border-color 0.35s ease, box-shadow 0.4s cubic-bezier(0.4,0,0.2,1); }
+.post-card:hover { transform:translateY(-3px); border-color:rgba(16,185,129,0.40); box-shadow:0 14px 40px rgba(0,0,0,0.28); }
+
+/* 15. ICON LABEL GRADIENTS */
+.icon-label { font-size:0.6rem; font-weight:700; letter-spacing:0.07em; padding:3px 7px; border-radius:6px; text-transform:uppercase; color:#fff; }
+.icon-label--text { background:linear-gradient(135deg,#10B981,#14B8A6); }
+.icon-label--img  { background:linear-gradient(135deg,#06B6D4,#3B82F6); }
+.icon-label--dev  { background:linear-gradient(135deg,#8B5CF6,#3B82F6); }
+.icon-label--num  { background:linear-gradient(135deg,#F59E0B,#F97316); }
+.icon-label--seo  { background:linear-gradient(135deg,#10B981,#06B6D4); }
+.icon-label--pdf  { background:linear-gradient(135deg,#F43F5E,#F97316); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration:0.01ms !important; animation-duration:0.01ms !important; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .tool-list, .blog-grid { padding:14px; border-radius:16px; }
+  .category-rail { padding:12px 14px; border-radius:14px; }
+  .chip-blog { margin-left:0; }
+  .chip-blog::before { display:none; }
+}

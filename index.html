@@ -478,23 +478,59 @@
       var rows = Array.prototype.slice.call(document.querySelectorAll('.tool-row'));
       var emptyNote = document.getElementById('emptyNote');
       var currentCat = 'all', currentQuery = '';
+
+      // Staggered entrance animation
       rows.forEach(function (r, i) { r.style.animationDelay = (Math.min(i, 6) * 0.015) + 's'; });
+
       function applyFilter() {
-        var q = currentQuery.trim().toLowerCase(); var anyVisible = false;
+        var q = currentQuery.trim().toLowerCase();
+        var anyVisible = false;
         rows.forEach(function (row) {
-          var cat = row.getAttribute('data-cat'); var name = row.getAttribute('data-name'); var desc = row.getAttribute('data-desc');
-          var catOk = currentCat === 'all' || cat === currentCat;
-          var qOk = !q || name.indexOf(q) > -1 || desc.indexOf(q) > -1;
-          var show = catOk && qOk; row.style.display = show ? '' : 'none'; if (show) anyVisible = true;
+          var cat  = (row.getAttribute('data-cat')  || '').toLowerCase();
+          var name = (row.getAttribute('data-name') || '').toLowerCase();
+          var desc = (row.getAttribute('data-desc') || '').toLowerCase();
+          var catOk = (currentCat === 'all') || (cat === currentCat);
+          var qOk   = !q || name.indexOf(q) > -1 || desc.indexOf(q) > -1;
+          var show  = catOk && qOk;
+          row.style.display = show ? '' : 'none';
+          if (show) anyVisible = true;
         });
-        emptyNote.style.display = anyVisible ? 'none' : 'block';
+        if (emptyNote) emptyNote.style.display = anyVisible ? 'none' : 'block';
       }
+
+      // Chip click -- only filter buttons with data-cat (skip blog anchor link)
       document.getElementById('categoryRail').addEventListener('click', function (e) {
-        var btn = e.target.closest('.chip'); if (!btn) return;
-        document.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
-        btn.classList.add('active'); currentCat = btn.getAttribute('data-cat'); applyFilter();
+        var btn = e.target.closest('[data-cat]');
+        if (!btn) return;
+        if (btn.tagName === 'A') return; // Blog link -- let it navigate normally
+        document.querySelectorAll('#categoryRail [data-cat]').forEach(function (c) {
+          c.classList.remove('active');
+        });
+        btn.classList.add('active');
+        currentCat = btn.getAttribute('data-cat');
+        applyFilter();
       });
-      document.getElementById('toolSearch').addEventListener('input', function (e) { currentQuery = e.target.value; applyFilter(); });
+
+      // Hash-based deep-link: index.html#text => auto-activate Text chip
+      var hash = (window.location.hash || '').replace('#', '').toLowerCase();
+      if (hash && hash !== 'all') {
+        var hashBtn = document.querySelector('#categoryRail [data-cat="' + hash + '"]');
+        if (hashBtn && hashBtn.tagName !== 'A') {
+          document.querySelectorAll('#categoryRail [data-cat]').forEach(function (c) { c.classList.remove('active'); });
+          hashBtn.classList.add('active');
+          currentCat = hash;
+          applyFilter();
+        }
+      }
+
+      // Search (guarded -- element may not exist on every page)
+      var searchEl = document.getElementById('toolSearch');
+      if (searchEl) {
+        searchEl.addEventListener('input', function (e) {
+          currentQuery = e.target.value;
+          applyFilter();
+        });
+      }
     })();
   </script>
 </body>
