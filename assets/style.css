@@ -393,56 +393,39 @@ a:hover {
   border-color: var(--accent);
 }
 
-/* ============ TOOL LIST (HORIZONTAL GRID ON DESKTOP) ============ */
+/* ============ TOOL GRID (iLovePDF-style) ============ */
 .tool-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin-top: 8px;
 }
 
-/* Mobile: single column */
-@media (max-width: 768px) {
-  .tool-list {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
+@media (max-width: 1200px) {
+  .tool-list { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Tablet: 2 columns */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .tool-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (max-width: 900px) {
+  .tool-list { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Desktop: 3 columns */
-@media (min-width: 1025px) {
-  .tool-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
+@media (max-width: 560px) {
+  .tool-list { grid-template-columns: 1fr; gap: 12px; }
 }
-
-/* Very large screens: 4 columns */
-@media (min-width: 1440px) {
-  .tool-list {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 
 /* ============ TOOL CARDS ============ */
 .tool-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 24px;
+  padding: 24px 22px;
   transition: all 0.2s ease;
   text-decoration: none;
   color: inherit;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: 14px;
   animation: fadeUp 0.35s ease both;
   position: relative;
   overflow: hidden;
@@ -456,19 +439,19 @@ a:hover {
 .tool-card:hover {
   border-color: var(--border-strong);
   background: var(--surface-2);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
 
+/* Small icon like iLovePDF */
 .tool-card .tool-icon {
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 14px;
+  background: var(--surface-3);
+  border-radius: 10px;
   color: var(--accent);
   flex-shrink: 0;
   transition: all 0.2s;
@@ -476,26 +459,24 @@ a:hover {
 
 .tool-card:hover .tool-icon {
   background: var(--grad-primary);
-  border-color: transparent;
   color: #fff;
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .tool-card .tool-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
 }
 
 .tool-text {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 6px;
 }
 
 .tool-title {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--ink);
   line-height: 1.3;
@@ -504,34 +485,15 @@ a:hover {
 }
 
 .tool-desc {
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   color: var(--ink-2);
-  line-height: 1.5;
+  line-height: 1.55;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin: 0;
-}
-
-/* Mobile: Vertical Card Layout */
-@media (max-width: 768px) {
-  .tool-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 24px 20px;
-    gap: 16px;
-  }
-  
-  .tool-text {
-    align-items: center;
-  }
-  
-  .tool-title {
-    font-size: 1.25rem;
-  }
 }
 
 .empty-note {
