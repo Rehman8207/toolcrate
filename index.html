@@ -100,24 +100,57 @@
 <body>
   <div class="wrap">
     <header class="masthead">
-<div class="row">
-<div class="brand-block">
-<div><div class="brand"><h1><a href="index.html">ToolCrate</a></h1></div></div>
-</div>
-<button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
-</div>
-</header>
+      <div class="row">
+        <div class="brand-block">
+          <div>
+            <div class="brand">
+              <h1><a href="index.html">ToolCrate</a></h1>
+            </div>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
+      </div>
+    </header>
 
     <main>
       <nav class="category-rail" id="categoryRail">
-        <button class="chip active" data-cat="all">✨ All tools</button>
-        <button class="chip" data-cat="text">📝 Text</button>
-        <button class="chip" data-cat="image">🖼️ Image</button>
-        <button class="chip" data-cat="numbers">🔢 Numbers</button>
-        <button class="chip" data-cat="dev">⚙️ Dev</button>
-        <button class="chip" data-cat="seo">🔎 SEO</button>
-<a class="chip chip-blog" href="blog/index.html">📚 Blog</a>
-</nav>
+        <button class="chip active" data-cat="all"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1.5" />
+            <rect x="14" y="3" width="7" height="7" rx="1.5" />
+            <rect x="3" y="14" width="7" height="7" rx="1.5" />
+            <rect x="14" y="14" width="7" height="7" rx="1.5" />
+          </svg> All tools</button>
+        <button class="chip" data-cat="text"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 7h16M4 12h10M4 17h14" />
+          </svg> Text</button>
+        <button class="chip" data-cat="image"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2" />
+            <circle cx="9" cy="10" r="2" />
+            <path d="M21 16l-5-5-4 4-3-3-6 6" />
+          </svg> Image</button>
+        <button class="chip" data-cat="numbers"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="3" width="16" height="18" rx="2" />
+            <path d="M8 7h8M8 12h2M14 12h2M8 17h2M14 17h2" />
+          </svg> Numbers</button>
+        <button class="chip" data-cat="dev"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 8l-4 4 4 4M16 8l4 4-4 4" />
+          </svg> Dev</button>
+        <button class="chip" data-cat="seo"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="10" r="6" />
+            <path d="M20 20l-5.5-5.5" />
+          </svg> SEO</button>
+        <a class="chip chip-blog" href="blog/index.html"><svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2V5z" />
+            <path d="M8 7h8M8 11h6" />
+          </svg> Blog</a>
+      </nav>
 
       <h2 style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">Available Tools</h2>
       <section class="tool-list" id="toolList">
@@ -126,9 +159,12 @@
           data-desc="count words characters sentences" href="word-counter.html"
           title="Free Word & Character Counter — Count words, characters, sentences, paragraphs and reading time as you type."
           aria-label="Free Word & Character Counter — Count words, characters, sentences, paragraphs and reading time as you type.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M4 6h16M4 12h10M4 18h7" />
-              </svg></div><span class="icon-label icon-label--text">TEXT</span></div>
+              </svg></div><span class="icon-label icon-label--text">TEXT</span>
+          </div>
           <div class="info">
             <h3>Word & Character Counter</h3>
             <p>Count words, characters, sentences, paragraphs and reading time as you type.</p>
@@ -139,9 +175,12 @@
           href="case-converter.html"
           title="Free Case Converter — Switch text between UPPERCASE, lowercase, Title Case and Sentence case."
           aria-label="Free Case Converter — Switch text between UPPERCASE, lowercase, Title Case and Sentence case.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M4 6h16M4 12h10M4 18h7" />
-              </svg></div><span class="icon-label icon-label--text">TEXT</span></div>
+              </svg></div><span class="icon-label icon-label--text">TEXT</span>
+          </div>
           <div class="info">
             <h3>Case Converter</h3>
             <p>Switch text between UPPERCASE, lowercase, Title Case and Sentence case.</p>
@@ -152,10 +191,13 @@
           href="unit-converter.html"
           title="Free Unit Converter — Convert length, weight, temperature and volume between common units."
           aria-label="Free Unit Converter — Convert length, weight, temperature and volume between common units.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="4" y="4" width="16" height="16" rx="1" />
                 <path d="M8 9h8M8 13h5M8 17h8" />
-              </svg></div><span class="icon-label icon-label--num">NUM</span></div>
+              </svg></div><span class="icon-label icon-label--num">NUM</span>
+          </div>
           <div class="info">
             <h3>Unit Converter</h3>
             <p>Convert length, weight, temperature and volume between common units.</p>
@@ -166,9 +208,12 @@
           href="qr-generator.html"
           title="Free QR Code Generator — Turn any link or text into a downloadable QR code. Generated locally."
           aria-label="Free QR Code Generator — Turn any link or text into a downloadable QR code. Generated locally.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M8 8l-4 4 4 4M16 8l4 4-4 4" />
-              </svg></div><span class="icon-label icon-label--dev">DEV</span></div>
+              </svg></div><span class="icon-label icon-label--dev">DEV</span>
+          </div>
           <div class="info">
             <h3>QR Code Generator</h3>
             <p>Turn any link or text into a downloadable QR code. Generated locally.</p>
@@ -179,9 +224,12 @@
           href="password-generator.html"
           title="Free Password Generator — Create strong random passwords. Generated on your device."
           aria-label="Free Password Generator — Create strong random passwords. Generated on your device.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M8 8l-4 4 4 4M16 8l4 4-4 4" />
-              </svg></div><span class="icon-label icon-label--dev">DEV</span></div>
+              </svg></div><span class="icon-label icon-label--dev">DEV</span>
+          </div>
           <div class="info">
             <h3>Password Generator</h3>
             <p>Create strong random passwords. Generated on your device.</p>
@@ -192,11 +240,14 @@
           href="image-compressor.html"
           title="Free Image Compressor — Shrink photo file sizes. Batch and folder upload supported."
           aria-label="Free Image Compressor — Shrink photo file sizes. Batch and folder upload supported.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="4" width="18" height="16" rx="1" />
                 <circle cx="9" cy="10" r="2" />
                 <path d="M21 16l-5-5-4 4-3-3-6 6" />
-              </svg></div><span class="icon-label icon-label--img">IMG</span></div>
+              </svg></div><span class="icon-label icon-label--img">IMG</span>
+          </div>
           <div class="info">
             <h3>Image Compressor</h3>
             <p>Shrink photo file sizes. Batch and folder upload supported.</p>
@@ -206,9 +257,12 @@
         <a class="tool-row" data-cat="dev" data-name="json formatter validator" data-desc="pretty print json"
           href="json-formatter.html" title="Free JSON Formatter — Paste JSON to pretty-print, validate or minify."
           aria-label="Free JSON Formatter — Paste JSON to pretty-print, validate or minify.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M8 8l-4 4 4 4M16 8l4 4-4 4" />
-              </svg></div><span class="icon-label icon-label--dev">DEV</span></div>
+              </svg></div><span class="icon-label icon-label--dev">DEV</span>
+          </div>
           <div class="info">
             <h3>JSON Formatter</h3>
             <p>Paste JSON to pretty-print, validate or minify.</p>
@@ -219,10 +273,13 @@
           href="age-calculator.html"
           title="Free Age Calculator — Find exact age in years, months and days from a date of birth."
           aria-label="Free Age Calculator — Find exact age in years, months and days from a date of birth.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="4" y="4" width="16" height="16" rx="1" />
                 <path d="M8 9h8M8 13h5M8 17h8" />
-              </svg></div><span class="icon-label icon-label--num">NUM</span></div>
+              </svg></div><span class="icon-label icon-label--num">NUM</span>
+          </div>
           <div class="info">
             <h3>Age Calculator</h3>
             <p>Find exact age in years, months and days from a date of birth.</p>
@@ -233,10 +290,13 @@
           href="discount-calculator.html"
           title="Free Discount & Tax Calculator — Work out final price after a discount and tax."
           aria-label="Free Discount & Tax Calculator — Work out final price after a discount and tax.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="4" y="4" width="16" height="16" rx="1" />
                 <path d="M8 9h8M8 13h5M8 17h8" />
-              </svg></div><span class="icon-label icon-label--num">NUM</span></div>
+              </svg></div><span class="icon-label icon-label--num">NUM</span>
+          </div>
           <div class="info">
             <h3>Discount & Tax Calculator</h3>
             <p>Work out final price after a discount and tax.</p>
@@ -247,10 +307,13 @@
           href="aggregate-calculator.html"
           title="Free Percentage Calculator — Add each subject's marks to get your overall percentage."
           aria-label="Free Percentage Calculator — Add each subject's marks to get your overall percentage.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="4" y="4" width="16" height="16" rx="1" />
                 <path d="M8 9h8M8 13h5M8 17h8" />
-              </svg></div><span class="icon-label icon-label--num">NUM</span></div>
+              </svg></div><span class="icon-label icon-label--num">NUM</span>
+          </div>
           <div class="info">
             <h3>Percentage Calculator</h3>
             <p>Add each subject's marks to get your overall percentage.</p>
@@ -261,10 +324,13 @@
           href="meta-tag-generator.html"
           title="Free Meta Tag Generator — Generate SEO-ready meta tags with Open Graph support."
           aria-label="Free Meta Tag Generator — Generate SEO-ready meta tags with Open Graph support.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="10" cy="10" r="6" />
                 <path d="M20 20l-5.5-5.5" />
-              </svg></div><span class="icon-label icon-label--seo">SEO</span></div>
+              </svg></div><span class="icon-label icon-label--seo">SEO</span>
+          </div>
           <div class="info">
             <h3>Meta Tag Generator</h3>
             <p>Generate SEO-ready meta tags with Open Graph support.</p>
@@ -275,9 +341,12 @@
           href="cgpa-calculator.html"
           title="Free CGPA & GPA Calculator — Extract semester GPA from result card, plan target CGPA."
           aria-label="Free CGPA & GPA Calculator — Extract semester CGPA from result card, plan target CGPA.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-              </svg></div><span class="icon-label icon-label--num">NUM</span></div>
+              </svg></div><span class="icon-label icon-label--num">NUM</span>
+          </div>
           <div class="info">
             <h3>CGPA & GPA Calculator</h3>
             <p>Extract semester GPA from result card, plan target CGPA.</p>
@@ -288,9 +357,12 @@
           href="currency-converter.html"
           title="Free Currency Converter — Convert real-time exchange rates across 150+ currencies."
           aria-label="Free Currency Converter — Convert real-time exchange rates across 150+ currencies.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3" />
-              </svg></div><span class="icon-label icon-label--num">NUM</span></div>
+              </svg></div><span class="icon-label icon-label--num">NUM</span>
+          </div>
           <div class="info">
             <h3>Currency Converter</h3>
             <p>Convert real-time exchange rates across 150+ currencies.</p>
@@ -301,9 +373,12 @@
           href="image-to-pdf.html"
           title="Free Image to PDF — Convert images to a single PDF. Folder upload, no page limit."
           aria-label="Free Image to PDF — Convert images to a single PDF. Folder upload, no page limit.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              </svg></div><span class="icon-label icon-label--img">IMG</span></div>
+              </svg></div><span class="icon-label icon-label--img">IMG</span>
+          </div>
           <div class="info">
             <h3>Image to PDF</h3>
             <p>Convert images to a single PDF. Folder upload, no page limit.</p>
@@ -314,11 +389,14 @@
           href="watermark-tool.html"
           title="Free Watermark Tool — Add text watermarks to images and PDFs. Batch with folder upload."
           aria-label="Free Watermark Tool — Add text watermarks to images and PDFs. Batch with folder upload.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
                 <circle cx="8.5" cy="8.5" r="1.5" />
                 <polyline points="21 15 16 10 5 21" />
-              </svg></div><span class="icon-label icon-label--img">IMG</span></div>
+              </svg></div><span class="icon-label icon-label--img">IMG</span>
+          </div>
           <div class="info">
             <h3>Watermark Tool</h3>
             <p>Add text watermarks to images and PDFs. Batch with folder upload.</p>
@@ -329,12 +407,15 @@
           href="pdf-merge.html"
           title="Free PDF Merger — Merge multiple PDF files into a single document entirely in your browser."
           aria-label="Free PDF Merger — Merge multiple PDF files into a single document entirely in your browser.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
                 <line x1="16" y1="13" x2="8" y2="13" />
                 <line x1="16" y1="17" x2="8" y2="17" />
-              </svg></div><span class="icon-label icon-label--pdf">PDF</span></div>
+              </svg></div><span class="icon-label icon-label--pdf">PDF</span>
+          </div>
           <div class="info">
             <h3>PDF Merger</h3>
             <p>Combine multiple PDF files with page-level control and reordering.</p>
@@ -344,12 +425,15 @@
         <a class="tool-row" data-cat="dev" data-name="pdf to text extract" data-desc="extract text from pdf file"
           href="pdf-to-text.html" title="Free PDF to Text — Extract text from PDF files entirely in your browser."
           aria-label="Free PDF to Text — Extract text from PDF files entirely in your browser.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
                 <line x1="16" y1="13" x2="8" y2="13" />
                 <line x1="16" y1="17" x2="8" y2="17" />
-              </svg></div><span class="icon-label icon-label--pdf">PDF</span></div>
+              </svg></div><span class="icon-label icon-label--pdf">PDF</span>
+          </div>
           <div class="info">
             <h3>PDF to Text</h3>
             <p>Extract plain text from PDF files entirely in your browser.</p>
@@ -360,12 +444,15 @@
           data-desc="convert text to pdf create document" href="text-to-pdf.html"
           title="Free Text to PDF — Convert plain text to a PDF document entirely in your browser."
           aria-label="Free Text to PDF — Convert plain text to a PDF document entirely in your browser.">
-          <div class="icon-wrap"><div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="icon-wrap">
+            <div class="icon"><svg width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
                 <line x1="16" y1="13" x2="8" y2="13" />
                 <line x1="16" y1="17" x2="8" y2="17" />
-              </svg></div><span class="icon-label icon-label--pdf">PDF</span></div>
+              </svg></div><span class="icon-label icon-label--pdf">PDF</span>
+          </div>
           <div class="info">
             <h3>Text to PDF</h3>
             <p>Convert plain text into a PDF document quickly and locally.</p>
@@ -377,13 +464,13 @@
     </main>
 
     <footer>
-<span>ToolCrate — built for people, not ads.</span>
-<nav class="footer-links">
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="privacy.html">Privacy Policy</a>
-</nav>
-</footer>
+      <span>ToolCrate — built for people, not ads.</span>
+      <nav class="footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </nav>
+    </footer>
   </div>
   <script src="assets/common.js"></script>
   <script>
