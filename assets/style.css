@@ -1690,3 +1690,109 @@ a:focus-visible {
     right: -8px;
   }
 }
+
+
+/* ============================================
+   TOP NAVIGATION
+   ============================================ */
+
+.top-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.top-nav a {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 8px 4px;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.top-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--grad-a, linear-gradient(135deg, #10B981 0%, #22D3EE 100%));
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+  border-radius: 2px;
+}
+
+.top-nav a:hover {
+  color: var(--emerald);
+}
+
+.top-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 640px) {
+  .top-nav {
+    gap: 16px;
+    margin-right: 12px;
+  }
+  .top-nav a {
+    font-size: 0.82rem;
+  }
+}
+
+
+/* ============================================
+   BLOG CHIP (in category rail)
+   ============================================ */
+
+.chip-blog {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(34,211,238,0.08) 100%);
+  border: 1px solid rgba(16,185,129,0.35);
+  color: var(--emerald);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  margin-left: 8px;
+}
+
+.chip-blog::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 20px;
+  background: var(--border-2);
+}
+
+.chip-blog:hover {
+  background: linear-gradient(135deg, rgba(16,185,129,0.20) 0%, rgba(34,211,238,0.12) 100%);
+  border-color: var(--emerald);
+  color: var(--emerald);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .chip-blog {
+    margin-left: 0;
+  }
+  .chip-blog::before {
+    display: none;
+  }
+}
+
+/* Hide any leftover top-nav if exists */
+.top-nav {
+  display: none !important;
+}
