@@ -41,15 +41,17 @@
   <text x="80" y="345" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800" fill="url(#textGrad)" letter-spacing="-2">16+ Free Browser Tools</text>
   <text x="80" y="405" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="400" fill="#A9A3D0">Runs entirely in your browser — no signup, nothing uploaded.</text>
   <g transform="translate(80, 490)">
-    <rect x="0" y="0" width="230" height="54" rx="27" fill="#FF4ECD" fill-opacity="0.15" stroke="#FF4ECD" stroke-width="1.5"/>
-    <circle cx="35" cy="27" r="6" fill="#FF4ECD"/>
-    <text x="55" y="35" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#FFC7EE">Nothing Uploaded</text>
-    <rect x="250" y="0" width="200" height="54" rx="27" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1.5"/>
-    <circle cx="285" cy="27" r="6" fill="#A855F7"/>
-    <text x="305" y="35" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#D8B4FE">97 PageSpeed</text>
-    <rect x="470" y="0" width="180" height="54" rx="27" fill="#22D3EE" fill-opacity="0.15" stroke="#22D3EE" stroke-width="1.5"/>
-    <circle cx="505" cy="27" r="6" fill="#22D3EE"/>
-    <text x="525" y="35" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#A5F3FC">100% Free</text>
+    <rect x="0" y="0" width="240" height="54" rx="27" fill="#FF4ECD" fill-opacity="0.15" stroke="#FF4ECD" stroke-width="1.5"/>
+    <circle cx="30" cy="27" r="6" fill="#FF4ECD"/>
+    <text x="50" y="35" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#FFC7EE">Nothing Uploaded</text>
+
+    <rect x="260" y="0" width="210" height="54" rx="27" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1.5"/>
+    <circle cx="290" cy="27" r="6" fill="#A855F7"/>
+    <text x="310" y="35" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#D8B4FE">97 PageSpeed</text>
+
+    <rect x="490" y="0" width="170" height="54" rx="27" fill="#22D3EE" fill-opacity="0.15" stroke="#22D3EE" stroke-width="1.5"/>
+    <circle cx="520" cy="27" r="6" fill="#22D3EE"/>
+    <text x="540" y="35" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#A5F3FC">100% Free</text>
   </g>
   <text x="1120" y="590" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="500" fill="#6E7E8C" text-anchor="end">site.toolcrate-tools.workers.dev</text>
 </svg>
