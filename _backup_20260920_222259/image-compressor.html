@@ -27,24 +27,24 @@
   <meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070B10">
-  <title>Free Image Compressor — Reduce Photo Size | ToolCrate</title>
+  <title>Free Image Compressor â Reduce Photo Size | ToolCrate</title>
   <meta name="description"
-    content="Compress and shrink a photo's file size for free, right in your browser. Nothing is uploaded — processed entirely on your device.">
+    content="Compress and shrink a photo's file size for free, right in your browser. Nothing is uploaded â processed entirely on your device.">
   <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/image-compressor.html">
-  <meta property="og:title" content="Free Image Compressor Online — Reduce Photo Size | ToolCrate">
+  <meta property="og:title" content="Free Image Compressor Online â Reduce Photo Size | ToolCrate">
   <meta property="og:description"
-    content="Compress and shrink a photo's file size for free, right in your browser. Nothing is uploaded — processed entirely on your device.">
+    content="Compress and shrink a photo's file size for free, right in your browser. Nothing is uploaded â processed entirely on your device.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://site.toolcrate-tools.workers.dev/image-compressor.html">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Free Image Compressor Online — Reduce Photo Size | ToolCrate">
+  <meta name="twitter:title" content="Free Image Compressor Online â Reduce Photo Size | ToolCrate">
   <meta name="twitter:description"
-    content="Compress and shrink a photo's file size for free, right in your browser. Nothing is uploaded — processed entirely on your device.">
+    content="Compress and shrink a photo's file size for free, right in your browser. Nothing is uploaded â processed entirely on your device.">
   <!-- Fonts: system fonts for maximum performance -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/style.css">
   <!-- Google tag (gtag.js) -->
-  <!-- Google tag (gtag.js) — deferred for performance -->
+  <!-- Google tag (gtag.js) â deferred for performance -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -91,7 +91,7 @@
 
     <main>
       <section class="tool-panel" id="panel-image-compressor" style="position:relative;overflow:hidden;">
-        <a class="back-btn" href="index.html">— Back to all tools</a>
+        <a class="back-btn" href="index.html">â Back to all tools</a>
         <div class="panel-art"><svg width="200" height="200" preserveAspectRatio="xMidYMid meet" viewBox="0 0 200 200"
             fill="none" stroke="currentColor" stroke-width="4">
             <rect x="25" y="35" width="150" height="110" rx="6" />
@@ -107,7 +107,7 @@
             </svg></div>
           <div>
             <h2>Image compressor</h2>
-            <p>Shrink a photo's file size before emailing or uploading it. Processed locally — the image never leaves
+            <p>Shrink a photo's file size before emailing or uploading it. Processed locally â the image never leaves
               your device.</p>
           </div>
         </div>
@@ -135,7 +135,7 @@
           </div>
           <div class="how-to">
             <h3>How to use this image compressor</h3>
-            <p>Click to choose a photo (or drag one in), adjust the quality slider, and download a smaller file —
+            <p>Click to choose a photo (or drag one in), adjust the quality slider, and download a smaller file â
               great for email attachments, website uploads or WhatsApp sharing. The image is compressed entirely in your
               browser and never uploaded anywhere.</p>
           </div>
@@ -208,7 +208,7 @@
           currentImage = new Image();
           currentImage.onload = function () {
             icOriginalImg.src = e.target.result;
-            icOriginalCap.textContent = 'Original — ' + formatBytes(originalSize);
+            icOriginalCap.textContent = 'Original â ' + formatBytes(originalSize);
             icControls.style.display = 'block';
             compressImage();
           };
@@ -232,7 +232,7 @@
         var dataUrl = canvas.toDataURL('image/jpeg', quality);
         icCompressedImg.src = dataUrl;
         var approxBytes = Math.round((dataUrl.length - 'data:image/jpeg;base64,'.length) * 0.75);
-        icCompressedCap.textContent = 'Compressed — ' + formatBytes(approxBytes);
+        icCompressedCap.textContent = 'Compressed â ' + formatBytes(approxBytes);
         icCompressedImg.dataset.href = dataUrl;
       }
       /* Debounced via requestAnimationFrame so dragging the slider on a large

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="Ly7kZPsyUOovYPRZgQrzFI62Y_VjLqnDi1i1h6cpHR0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Image to PDF Converter — Batch &amp; Folder | ToolCrate</title>
+  <meta name="description"
+    content="Convert JPG, PNG, and WebP images to a single PDF free. Batch and folder upload with no page limit. 100% private — all processing happens in your browser, nothing is uploaded.">
+  <meta name="keywords"
+    content="image to pdf, jpg to pdf, png to pdf, convert images to pdf, batch image to pdf, free image to pdf, browser image to pdf, no upload pdf converter, folder to pdf">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="ToolCrate">
+  <link rel="canonical" href="https://site.toolcrate-tools.workers.dev/image-to-pdf.html">
+  <meta name="theme-color" content="#070B10">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Image to PDF Converter — Batch &amp; Folder | ToolCrate">
+  <meta property="og:description"
+    content="Convert JPG, PNG, WebP images to a single PDF in your browser. Folder upload, no page limit, 100% free and private.">
+  <meta property="og:url" content="https://site.toolcrate-tools.workers.dev/image-to-pdf.html">
+  <meta property="og:site_name" content="ToolCrate">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Image to PDF Converter — Batch &amp; Folder | ToolCrate">
+  <meta name="twitter:description"
+    content="Convert multiple images to a single PDF, free and private, directly in your browser. No uploads.">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ToolCrate Image to PDF Converter",
+  "url": "https://site.toolcrate-tools.workers.dev/image-to-pdf.html",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free browser-based tool to convert JPG, PNG, and WebP images into a single PDF. Supports batch and folder upload, no page limit, and no server upload.",
+  "featureList": [
+    "Batch and folder image upload",
+    "JPG, PNG, WebP support",
+    "No page limit",
+    "100% processed in browser — nothing uploaded",
+    "Single PDF download"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert images to PDF online for free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Click 'Choose Files' or drag images into the upload area, then click 'Download PDF Document'. All images are merged into one PDF that downloads directly to your device." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my images uploaded to a server?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The conversion happens entirely in your browser using the jsPDF JavaScript library. Your images never leave your device." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a limit on the number of images or pages?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No — you can convert as many images as you need. Each image becomes one page in the PDF, with no artificial cap." }
+    },
+    {
+      "@type": "Question",
+      "name": "What image formats are supported?",
+      "acceptedAnswer": { "@type": "Answer", "text": "JPG, PNG, and WebP images are all supported. Each image is placed on its own PDF page, scaled to fill the full page width." }
+    }
+  ]
+}
+</script>
+
+  <!-- Fonts: system fonts for maximum performance -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Google tag (gtag.js) — deferred for performance -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-H20HJWJQWV');
+    window.addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-H20HJWJQWV';
+      document.head.appendChild(s);
+    });
+  </script>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="masthead">
+      <div class="row">
+        <div class="brand-block">
+          <div>
+            <div class="brand">
+              <h1><a href="index.html">ToolCrate</a></h1>
+            </div>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="tool-panel">
+        <div class="panel-head">
+          <div class="panel-icon">
+            <svg width="26" height="26" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+          </div>
+          <div>
+            <h2>Image to PDF Converter</h2>
+            <p>Select individual images or an entire folder — each image becomes one PDF page.</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="drop-zone" id="dropZone" onclick="document.getElementById('imgInput').click()"
+            ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')"
+            ondrop="handleDrop(event)">
+            <svg width="42" height="42" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+            <p><strong>Click to choose files</strong> or drag &amp; drop images here</p>
+            <p style="font-size:0.8rem;margin-top:6px;opacity:0.6">JPG · PNG · WebP — no page limit</p>
+            <input type="file" id="imgInput" multiple accept="image/*" style="display:none;"
+              onchange="handleFiles(this.files)">
+          </div>
+
+          <div class="preview-grid" id="previewGrid"
+            style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px;margin:18px 0;">
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" id="convertBtn" disabled onclick="generatePDF()">
+              <svg width="16" height="16" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" style="width:16px;height:16px">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Download PDF
+            </button>
+            <button class="btn secondary" onclick="clearAll()">Clear All</button>
+          </div>
+          <p id="statusMsg" style="margin-top:12px;font-size:0.85rem;color:var(--ink-3);"></p>
+        </div>
+      </div>
+
+      <!-- SEO Content -->
+      <section class="seo-guide-content">
+        <h2>Free Image to PDF Converter — No Upload, No Limit</h2>
+        <p>ToolCrate's Image to PDF tool converts your JPG, PNG, and WebP images into a single, downloadable PDF
+          document entirely inside your browser. No files are ever sent to a server — everything runs locally using the
+          <strong>jsPDF</strong> JavaScript library.</p>
+
+        <h3>How to Convert Images to PDF</h3>
+        <ol style="padding-left:22px;margin-bottom:18px;">
+          <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;">Click the upload area or
+            drag and drop your images</li>
+          <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;">Preview the images — they
+            appear in order as PDF pages</li>
+          <li style="font-size:0.9rem;color:var(--ink-2);line-height:1.7;margin-bottom:8px;">Click <strong>Download
+              PDF</strong> to save the merged document</li>
+        </ol>
+
+        <h3>Frequently Asked Questions</h3>
+        <details>
+          <summary>Are my images uploaded to a server?</summary>
+          <p>No. The conversion uses the jsPDF library running entirely in your browser. Your images never leave your
+            device and are never sent to any server or third party.</p>
+        </details>
+        <details>
+          <summary>Is there a page or file size limit?</summary>
+          <p>There is no artificial page cap. You can convert as many images as you need. Very large batches may take a
+            few seconds to process depending on your device.</p>
+        </details>
+        <details>
+          <summary>What image formats are supported?</summary>
+          <p>JPG, JPEG, PNG, and WebP are all supported. Each image is placed on its own page in the PDF, scaled to fill
+            the full page width.</p>
+        </details>
+        <details>
+          <summary>Can I reorder the images before converting?</summary>
+          <p>Images are added in the order you select them. To control the order, select files in the desired sequence
+            or rename them with numbered prefixes (01_, 02_, etc.) before selecting.</p>
+        </details>
+      </section>
+    </main>
+
+    <footer>
+      <span>ToolCrate — built for people, not ads.</span>
+      <nav class="footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </nav>
+    </footer>
+  </div>
+
+  <script src="assets/common.js"></script>
+  <script>
+    let selectedFiles = [];
+
+    function handleDrop(e) {
+      e.preventDefault();
+      document.getElementById('dropZone').classList.remove('drag');
+      handleFiles(e.dataTransfer.files);
+    }
+
+    function handleFiles(files) {
+      const preview = document.getElementById('previewGrid');
+      preview.innerHTML = '';
+      selectedFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+      document.getElementById('statusMsg').textContent = selectedFiles.length + ' image' + (selectedFiles.length !== 1 ? 's' : '') + ' selected.';
+      document.getElementById('convertBtn').disabled = selectedFiles.length === 0;
+
+      selectedFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.cssText = 'width:100%;height:110px;object-fit:cover;border-radius:8px;border:1px solid var(--border)';
+          preview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function clearAll() {
+      selectedFiles = [];
+      document.getElementById('previewGrid').innerHTML = '';
+      document.getElementById('convertBtn').disabled = true;
+      document.getElementById('statusMsg').textContent = '';
+      document.getElementById('imgInput').value = '';
+    }
+
+    async function generatePDF() {
+      if (selectedFiles.length === 0) return;
+      const btn = document.getElementById('convertBtn');
+      btn.disabled = true;
+      btn.textContent = 'Generating…';
+      document.getElementById('statusMsg').textContent = 'Processing ' + selectedFiles.length + ' image(s)…';
+
+      try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+
+        for (let i = 0; i < selectedFiles.length; i++) {
+          const file = selectedFiles[i];
+          const dataUrl = await readFileAsDataURL(file);
+          if (i > 0) pdf.addPage();
+          const imgProps = pdf.getImageProperties(dataUrl);
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+          pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+        }
+
+        pdf.save('toolcrate-images.pdf');
+        document.getElementById('statusMsg').textContent = '✓ PDF downloaded successfully!';
+      } catch (err) {
+        document.getElementById('statusMsg').textContent = 'Error: ' + err.message;
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PDF';
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result);
+        reader.readAsDataURL(file);
+      });
+    }
+  </script>
+</body>
+
+</html>

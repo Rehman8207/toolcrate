@@ -2831,3 +2831,77 @@ body { background: var(--bg); color: var(--ink); }
   .chip-blog { margin-left:0; }
   .chip-blog::before { display:none; }
 }
+
+
+/* ============================================================
+   FIX: Native select dropdown options
+   Native <option> elements don't inherit theme colors well
+   in dark mode — options end up white-on-white.
+   This forces proper contrast in both themes.
+   ============================================================ */
+
+/* Default (dark theme): dark popup, light text */
+select option,
+.field select option,
+.wm-field select option,
+.input-group select option {
+  background-color: #0F1A17 !important;
+  color: #E8F5EE !important;
+  padding: 8px 12px;
+}
+
+/* Selected/hovered option */
+select option:checked,
+select option:hover,
+.field select option:checked,
+.wm-field select option:checked {
+  background-color: #10B981 !important;
+  color: #FFFFFF !important;
+}
+
+/* Light theme: light popup, dark text */
+[data-theme="light"] select option,
+[data-theme="light"] .field select option,
+[data-theme="light"] .wm-field select option,
+[data-theme="light"] .input-group select option {
+  background-color: #FFFFFF !important;
+  color: #0A1410 !important;
+}
+
+[data-theme="light"] select option:checked,
+[data-theme="light"] select option:hover {
+  background-color: #059669 !important;
+  color: #FFFFFF !important;
+}
+
+/* Also ensure the closed select shows readable text */
+select,
+.field select,
+.wm-field select,
+.input-group select {
+  color: var(--ink) !important;
+  background-color: var(--bg-2) !important;
+}
+
+[data-theme="light"] select,
+[data-theme="light"] .field select {
+  color: #0A1410 !important;
+  background-color: #FFFFFF !important;
+}
+
+/* Disabled options */
+select option:disabled {
+  opacity: 0.5;
+}
+
+/* Firefox-specific: option styling */
+@supports (-moz-appearance: none) {
+  select option {
+    background-color: #0F1A17;
+    color: #E8F5EE;
+  }
+  [data-theme="light"] select option {
+    background-color: #FFFFFF;
+    color: #0A1410;
+  }
+}
