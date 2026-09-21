@@ -223,7 +223,7 @@
     var lines = [];
     lines.push('<meta charset="' + charset + '">');
     if(title) lines.push('<title>' + escapeAttr(title) + '</title>');
-    if(desc) lines.push('<meta name="description" content="' + escapeAttr(desc) + '">');
+    if(desc) lines.push('');
     if(keywords) lines.push('<meta name="keywords" content="' + escapeAttr(keywords) + '">');
     lines.push('<meta name="robots" content="' + indexVal + ',' + followVal + '">');
     if(revisit) lines.push('<meta name="revisit-after" content="' + revisit + ' days">');
