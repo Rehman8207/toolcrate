@@ -450,6 +450,12 @@
     font-size: 0.78rem; color: var(--wm-muted); line-height: 1.6;
   }
 </style>
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ToolCrate">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="ToolCrate">
 </head>
 <body class="wm-page">
 <div class="wrap">
@@ -1216,6 +1222,15 @@
   logoScaleValue.textContent = logoScaleInput.value + '%';
   logoOpacityValue.textContent = parseFloat(logoOpacityInput.value).toFixed(2);
 })();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function(reg) { console.log('SW registered'); })
+      .catch(function(err) { console.log('SW failed:', err); });
+  });
+}
 </script>
 </body>
 </html>

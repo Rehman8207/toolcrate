@@ -1,0 +1,54 @@
+{
+  "name": "ToolCrate \u2014 18+ Free Browser Tools",
+  "short_name": "ToolCrate",
+  "description": "18+ free browser tools that run entirely in your browser. No signup, no uploads, offline-ready.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0A1410",
+  "theme_color": "#0A1410",
+  "categories": [
+    "utilities",
+    "productivity",
+    "tools"
+  ],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Word Counter",
+      "url": "/word-counter.html",
+      "description": "Count words, characters, and reading time"
+    },
+    {
+      "name": "Image Compressor",
+      "url": "/image-compressor.html",
+      "description": "Compress images without uploading"
+    },
+    {
+      "name": "PDF Merger",
+      "url": "/pdf-merge.html",
+      "description": "Merge PDFs with page control"
+    },
+    {
+      "name": "QR Generator",
+      "url": "/qr-generator.html",
+      "description": "Create QR codes locally"
+    }
+  ]
+}

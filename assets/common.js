@@ -119,3 +119,79 @@
   }
 
 })();
+
+
+/* ============================================================
+   PWA INSTALL BUTTON
+   ============================================================ */
+
+(function() {
+  'use strict';
+
+  let deferredPrompt = null;
+  const installBtn = document.getElementById('installAppBtn');
+
+  if (!installBtn) return;
+
+  // Hide button if already installed (standalone mode)
+  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+    installBtn.style.display = 'none';
+    return;
+  }
+
+  // Hide by default until browser fires the prompt event
+  installBtn.style.display = 'none';
+
+  // Browser ready to install
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'inline-flex';
+  });
+
+  // User clicks install button
+  installBtn.addEventListener('click', async function() {
+    if (!deferredPrompt) {
+      // Fallback: show manual instructions
+      alert(
+        'To install ToolCrate as an app:\n\n' +
+        '• Chrome/Edge desktop: Click the install icon (⊕) in the address bar\n' +
+        '• Android Chrome: Menu (⋮) → "Add to Home screen"\n' +
+        '• iPhone Safari: Share → "Add to Home Screen"'
+      );
+      return;
+    }
+
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+
+    if (outcome === 'accepted') {
+      installBtn.style.display = 'none';
+    }
+
+    deferredPrompt = null;
+  });
+
+  // Detect successful install
+  window.addEventListener('appinstalled', function() {
+    installBtn.style.display = 'none';
+  });
+
+  // iOS Safari — no beforeinstallprompt, so always show button
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (isIOS && !window.navigator.standalone) {
+    installBtn.style.display = 'inline-flex';
+  }
+
+  // Fallback for browsers that don't support beforeinstallprompt
+  // Show button after 3 seconds if not fired
+  setTimeout(function() {
+    if (installBtn.style.display === 'none' && 'serviceWorker' in navigator) {
+      // Only show if service worker is available but prompt didn't fire
+      // This catches cases where install is possible but event didn't fire
+      // We'll show but the click handler will show manual instructions
+      installBtn.style.display = 'inline-flex';
+    }
+  }, 3000);
+
+})();

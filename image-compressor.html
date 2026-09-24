@@ -72,6 +72,12 @@
   "featureList": ["Batch and folder upload","JPG, PNG, WebP support","Adjustable compression quality","Browser-based  no server upload","Side-by-side size comparison"]
 }
 </script>
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ToolCrate">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="ToolCrate">
 </head>
 
 <body>
@@ -85,7 +91,11 @@
             </div>
           </div>
         </div>
-        <button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
+        <button class="install-app-btn" id="installAppBtn" type="button" aria-label="Install ToolCrate as app">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+<span>Install App</span>
+</button>
+<button class="theme-toggle" id="themeToggle" type="button">☀️ Light</button>
       </div>
     </header>
 
@@ -253,6 +263,15 @@
 
     })();
   </script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function(reg) { console.log('SW registered'); })
+      .catch(function(err) { console.log('SW failed:', err); });
+  });
+}
+</script>
 </body>
 
 </html>
