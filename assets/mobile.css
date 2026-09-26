@@ -1,0 +1,118 @@
+/* ============================================================
+   mobile.css  —  Mobile-specific overrides (max-width: 768px)
+   Complements responsive.css — minimal overrides, no duplicates
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* Masthead spacing */
+  .masthead {
+    padding: 14px 0 12px;
+    margin-bottom: 14px;
+  }
+
+  .masthead .row {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Hero illustration */
+  .hero-illus {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Hero typography */
+  .hero-title {
+    font-size: clamp(1.3rem, 4.5vw, 1.7rem);
+    margin: 8px 0 10px;
+  }
+
+  .hero-sub {
+    font-size: 0.88rem;
+  }
+
+  /* Tool card info width */
+  .tool-row .info {
+    width: 100%;
+  }
+
+  /* Panel icon */
+  .panel-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Slider controls */
+  .slider-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .slider-row .val {
+    text-align: center;
+    min-width: auto;
+  }
+
+  /* Output boxes */
+  .mono-out {
+    font-size: 0.75rem;
+    max-height: 280px;
+  }
+
+  .result-box {
+    padding: 14px 16px;
+  }
+
+  .result-box .big {
+    font-size: 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .back-btn {
+    margin-bottom: 16px;
+  }
+
+  .blog-hero {
+    padding: 12px 0 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .checks {
+    gap: 8px;
+  }
+
+  .checks label {
+    font-size: 0.78rem;
+    padding: 7px 12px;
+  }
+
+  .drop-zone svg {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 10px;
+  }
+
+  .how-to {
+    padding: 14px 16px;
+  }
+
+  .remove-row {
+    padding: 8px 10px;
+    font-size: 0.7rem;
+  }
+
+  .stat .n {
+    font-size: 1.4rem;
+  }
+
+  .icon-label {
+    font-size: 0.52rem;
+    padding: 2px 4px;
+  }
+}
